@@ -1,0 +1,14 @@
+[
+  { "name": "Australian Dollar", "symbol": "AUD" },
+  { "name": "Canadian Dollar", "symbol": "CAD" },
+  { "name": "Switzerland France", "symbol": "CHF" },
+  { "name": "China Yuan china Renminbi", "symbol": "CNY" },
+  { "name": "Euro", "symbol": "EUR" },
+  { "name": "Pound Sterling", "symbol": "GBP" },
+  { "name": "Indian Rupee", "symbol": "INR" },
+  { "name": "Japanese Yen", "symbol": "JPY" },
+  { "name": "Malasian Ringgit", "symbol": "MYR" },
+  { "name": "Rubble", "symbol": "RUB" },
+  { "name": "Singapore Dollar", "symbol": "SGD" },
+  { "name": "US Dollar", "symbol": "USD" }
+]
