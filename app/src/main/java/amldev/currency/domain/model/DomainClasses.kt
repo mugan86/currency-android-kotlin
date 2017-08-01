@@ -13,9 +13,9 @@ data class Currency (val baseMoneySymbol: String, val baseMoneyName: String,
         return Money()
     }
 
-    val size: Int get() = 12
+    fun size() : Int = moneyConversion.size
 
 }
 
-data class Money (val symbol: String = "", val currencyValue: Double = 0.0, val name: String = "")
+data class Money (val symbol: String = "", val currencyValue: Double = 0.0, val name: String = "", val flag: String = "united_nations")
 
