@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/icon"
+        android:src="@mipmap/ic_launcher"
         android:layout_margin="5sp"
         android:layout_width="80sp"
         android:layout_height="80sp"

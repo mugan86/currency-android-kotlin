@@ -42,8 +42,9 @@ class MainActivity : AppCompatActivity() {
                     val data = money as JsonObject
                     val symbol = data["symbol"].toString()
                     val name = data["name"].toString()
-                    println("$symbol: $name")
-                    moneys.add(Money(symbol, 0.0, name))
+                    val flag = data["flag"].toString()
+                    println("$symbol: $name ----> Flag: $flag")
+                    moneys.add(Money(symbol, 0.0, name, flag))
             }
 
             println(moneys.size)
