@@ -2,21 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
+    android:background="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/icon"
         android:src="@mipmap/ic_launcher"
-        android:layout_margin="5sp"
-        android:layout_width="80sp"
-        android:layout_height="80sp"
+        android:layout_margin="15sp"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
         tools:src="@mipmap/ic_launcher"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_marginLeft="10sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
         <TextView
+            android:visibility="gone"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_width="wrap_content"
@@ -24,11 +27,20 @@
             android:id="@+id/symbolTextView"
             tools:text="EUR"/>
         <TextView
+            android:layout_marginTop="-6sp"
+            android:layout_marginLeft="10sp"
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/nameTextView"
             tools:text="Euro"/>
-    </LinearLayout>
+        <ImageView
+            android:layout_marginRight="10sp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_arrow_right"
+            android:id="@+id/arrowImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </LinearLayout>
