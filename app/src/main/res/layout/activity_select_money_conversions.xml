@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="amldev.currency.ui.activities.SelectMoneyConversionsActivity">
+    <RelativeLayout
+        android:id="@+id/selectMoneyZone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10sp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameTextView"
+            android:layout_toLeftOf="@+id/icon"
+            tools:text="Your select money is EURO"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/icon"
+            android:src="@drawable/ic_europe"
+            android:layout_margin="15sp"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            tools:src="@drawable/ic_europe"/>
+    </RelativeLayout>
+    <GridView
+        android:id="@+id/conversionOtherMoneyGridView"
+        android:numColumns="auto_fit"
+        android:gravity="center"
+        android:layout_below="@+id/selectMoneyZone"
+        android:layout_above="@+id/adsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:id="@+id/adsLinearLayout"
+        android:background="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50sp">
+        <TextView
+            tools:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
