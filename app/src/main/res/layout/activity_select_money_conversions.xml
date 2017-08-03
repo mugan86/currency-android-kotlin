@@ -10,7 +10,8 @@
         android:id="@+id/selectMoneyZone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <TextView
             android:textAlignment="center"
             android:layout_centerVertical="true"
@@ -30,26 +31,31 @@
             android:layout_height="48sp"
             tools:src="@drawable/ic_europe"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/inputConversionUnitsZone"
+        android:layout_below="@+id/selectMoneyZone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            tools:text="Input value to convert with select money"/>
+        <EditText
+            android:layout_gravity="end"
+            android:ems="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <GridView
+        android:layout_below="@+id/inputConversionUnitsZone"
         android:id="@+id/conversionOtherMoneyGridView"
         android:numColumns="auto_fit"
         android:gravity="center"
-        android:layout_below="@+id/selectMoneyZone"
-        android:layout_above="@+id/adsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <LinearLayout
-        android:id="@+id/adsLinearLayout"
-        android:background="@color/colorAccent"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="50sp">
-        <TextView
-            tools:text="@string/app_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
 
 
 </RelativeLayout>
