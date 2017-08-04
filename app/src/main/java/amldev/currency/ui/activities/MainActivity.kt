@@ -3,6 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import org.jetbrains.anko.doAsync
@@ -14,11 +15,9 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import domain.model.Money
-import org.jetbrains.anko.toast
 import java.io.InputStreamReader
 import android.support.v7.widget.LinearLayoutManager
 import org.jetbrains.anko.uiThread
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
             uiThread {
 
-                val adapter = MoneyAdapter(moneys) { toast("${it.symbol} / ${it.name}") }
+                val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name) }
                 moneysList.adapter = adapter
             }
 
@@ -66,6 +65,15 @@ class MainActivity : AppCompatActivity() {
                 println(result.getSelectMoneyCurrency("USD").currencyValue)
             }*/
         }
+
+    }
+
+    private fun openConversionsWithSelectMoney(symbol: String, name: String) {
+        val intent = Intent(this, SelectMoneyConversionsActivity::class.java)
+        intent.putExtra("symbol", symbol)
+        intent.putExtra("name", name)
+        startActivity(intent)
+        overridePendingTransition(0,0)
 
     }
 
