@@ -2,95 +2,47 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
-import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import org.jetbrains.anko.doAsync
-import kotlinx.android.synthetic.main.activity_main.*
-import com.google.gson.JsonParser
-import android.os.Build
-import android.support.annotation.RequiresApi
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import domain.model.Money
-import java.io.InputStreamReader
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import data.CurrencyRequest
+import domain.model.Money
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
-
+    var moneys = ArrayList<Money>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         helloTextView.text = "Hello!!!!"
-
-        val moneys = ArrayList<Money>()
-
         moneysList.layoutManager = LinearLayoutManager(this)
 
         doAsync {
 
             //Load list currencies and log symbol and name
 
-            ((Parser().parse(StringBuilder(getJSONResource(applicationContext)))
-                    as JsonObject)["currencies"] as JsonArray<*>).map {
-                money ->
-                    val data = money as JsonObject
-                    val symbol = data["symbol"].toString()
-                    val name = data["name"].toString()
-                    val flag = data["flag"].toString()
-                    println("$symbol: $name ----> Flag: $flag")
-                    moneys.add(Money(symbol, 0.0, name, flag))
-            }
-
-            println(moneys.size)
+            moneys = CurrencyRequest().getMoneyList(this@MainActivity)
 
             uiThread {
 
-                val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name) }
+                val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name, it.flag) }
                 moneysList.adapter = adapter
             }
-
-
-
-            /*var result = RequestCurrencyCommand("EUR").execute();
-            uiThread {
-                println(result.baseMoneySymbol + "  " + result.moneyConversion.toString())
-
-                // TODO Unresolved reference size
-                println(result.size)
-                println(result.getSelectMoneyCurrency("USD").currencyValue)
-            }*/
         }
 
     }
 
-    private fun openConversionsWithSelectMoney(symbol: String, name: String) {
+    private fun openConversionsWithSelectMoney(symbol: String, name: String, flag: String) {
         val intent = Intent(this, SelectMoneyConversionsActivity::class.java)
         intent.putExtra("symbol", symbol)
         intent.putExtra("name", name)
+        intent.putExtra("flag", flag)
         startActivity(intent)
         overridePendingTransition(0,0)
 
     }
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    fun getJSONResource(context: Context): String? {
-        try {
-            context.getAssets().open("list-currencies.json").use({ `is` ->
-                val parser = JsonParser()
-                return parser.parse(InputStreamReader(`is`)).toString()
-            })
-        } catch (e: Exception) {
-
-        }
-
-        return null
-    }
-
 }

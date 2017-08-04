@@ -19,8 +19,8 @@
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nameTextView"
-            android:layout_toLeftOf="@+id/icon"
+            android:id="@+id/selectMoneyInfoTextView"
+            android:layout_toLeftOf="@+id/selectLanguageFlag"
             tools:text="Your select money is EURO"/>
         <ImageView
             android:layout_alignParentRight="true"
@@ -38,14 +38,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/inputConvertInfoTextView"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"
             android:layout_marginLeft="10sp"
-            android:text="Input value to convert with select money"
             tools:text="Input value to convert with select money"/>
         <EditText
+            android:id="@+id/inputMoneyValueToConvertEditText"
             android:inputType="numberDecimal"
             android:text="1"
             android:layout_gravity="end"
