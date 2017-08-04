@@ -5,20 +5,20 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/moneyFlag"
+        android:id="@+id/gridImage"
         android:layout_width="48sp"
         android:layout_height="48sp"
         android:src="@drawable/ic_europe">
     </ImageView>
 
     <TextView
-        android:id="@+id/grid_text"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/gridText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:layout_marginLeft="10sp"
-        android:textSize="16sp"
-        tools:text="0.23">
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        tools:text="Test">
     </TextView>
 
 </LinearLayout>
