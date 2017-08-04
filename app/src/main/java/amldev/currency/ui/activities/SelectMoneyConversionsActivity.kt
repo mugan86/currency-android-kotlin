@@ -16,9 +16,25 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_money_conversions)
 
+        val symbol = intent.getStringExtra("symbol")
+                ?: throw IllegalStateException("field symbol missing in Intent")
+
+        val name = intent.getStringExtra("name")
+                ?: throw IllegalStateException("field name missing in Intent")
+
+        val flag = intent.getStringExtra("flag")
+                ?: throw IllegalStateException("field flag missing in Intent")
+
+        println("Get Intent Extra data:  $symbol / $name / $flag")
+
+        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(flag)))
+
         val adapter = MoneysConversionsCustomGrid(this, nations, imageId)
         conversionOtherMoneyGridView.adapter = adapter
         conversionOtherMoneyGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> Toast.makeText(this, "You Clicked at " + nations[+position], Toast.LENGTH_SHORT).show() }
 
     }
+
+    private fun getFlagDrawable(flag: String) =
+            this.resources.getIdentifier("ic_$flag", "drawable", this.packageName)
 }
