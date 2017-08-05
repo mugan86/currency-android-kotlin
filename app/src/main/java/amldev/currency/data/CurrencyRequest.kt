@@ -30,7 +30,8 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
                 as JsonObject)["currencies"] as JsonArray<*>).map {
             money ->
             val data = money as JsonObject
-            moneys.add(Money(data["symbol"].toString(), 0.0, data["name"].toString(), data["flag"].toString()))
+
+            moneys.add(Money(data["symbol"].toString(), 0.0, data["name"].toString(), data["flag"].toString(), getFlagDrawable(context, data["flag"].toString())))
         }
         return moneys
     }
@@ -48,6 +49,9 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
 
         return null
     }
+
+    private fun getFlagDrawable(context: Context, flag: String) =
+            context.resources.getIdentifier("ic_$flag", "drawable", context.packageName)
 }
 
 
