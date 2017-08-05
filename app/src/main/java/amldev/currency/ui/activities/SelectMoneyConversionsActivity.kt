@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
 import amldev.currency.R
+import android.view.View
 import com.kotlin.amugika.gridview.ui.adapter.MoneysConversionsCustomGrid
 import data.CurrencyRequest
 import domain.commands.RequestCurrencyCommand
@@ -31,13 +32,20 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         println("Get Intent Extra data:  $symbol / $name / $flag")
 
-        inputMoneyValueToConvertEditText.selectAll()
-
         selectMoneyInfoTextView.text = "Your select money is $name"
 
         selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(flag)))
 
         inputConvertInfoTextView.text = "Input value to convert with $symbol: "
+
+
+        editConversionValueImageButton.setOnClickListener {
+            inputMoneyValueToConvertEditText.visibility = View.VISIBLE
+            selectMoneyValueToConvertTextView.visibility = View.GONE
+            editConversionValueImageButton.visibility = View.GONE
+            inputMoneyValueToConvertEditText.selectAll()
+
+        }
 
         val progress = indeterminateProgressDialog("This a progress dialog")
 
