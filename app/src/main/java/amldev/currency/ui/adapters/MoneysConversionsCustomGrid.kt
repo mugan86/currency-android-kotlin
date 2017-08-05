@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.grid_item_money_conversion.view.*
 import amldev.currency.ui.utils.ctx
+import domain.model.Currency
+import domain.model.Money
 
 /**
  * Created by anartzmugika on 3/8/17.
  */
 
-class MoneysConversionsCustomGrid(private val symbols: Array<String>, private val Imageid: IntArray) : BaseAdapter() {
+class MoneysConversionsCustomGrid(private val moneys: List<Money>, private val currency: Currency, private val inputValue: Double) : BaseAdapter() {
 
-    override fun getCount(): Int = symbols.size
+    override fun getCount(): Int = moneys.size
 
     override fun getItem(position: Int): Any? = null
 
@@ -26,8 +28,10 @@ class MoneysConversionsCustomGrid(private val symbols: Array<String>, private va
         if (convertView == null) {
             grid = (parent.ctx
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.grid_item_money_conversion, null)
-            grid.gridText.text = symbols[position]
-            grid.gridImage.setImageResource(Imageid[position])
+            var conversion: Double = 0.0
+            currency.moneyConversion.filter{it.symbol == moneys[position].symbol}.map{conversion = it.currencyValue}
+            grid.gridText.text = (conversion * inputValue).toString()
+            grid.gridImage.setImageResource(moneys[position].icon)
         } else { grid = convertView }
 
         return grid
