@@ -11,6 +11,8 @@ import domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.indeterminateProgressDialog
+
 
 class MainActivity : AppCompatActivity() {
     var moneys = ArrayList<Money>()
@@ -20,9 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         helloTextView.text = "Hello!!!!"
         moneysList.layoutManager = LinearLayoutManager(this)
-
+        val progress = indeterminateProgressDialog("This a progress dialog")
         doAsync {
 
+            progress.show()
             //Load list currencies and log symbol and name
 
             moneys = CurrencyRequest().getMoneyList(this@MainActivity)
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
                 val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name, it.flag) }
                 moneysList.adapter = adapter
+                progress.dismiss()
             }
         }
 

@@ -10,6 +10,7 @@ import com.kotlin.amugika.gridview.ui.adapter.MoneysConversionsCustomGrid
 import domain.commands.RequestCurrencyCommand
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
@@ -41,8 +42,10 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         inputConvertInfoTextView.text = "Input value to convert with $symbol: "
 
         //TODO Take select symbol and quit money to show in
+        val progress = indeterminateProgressDialog("This a progress dialog")
 
         doAsync {
+            progress.show()
             var result = RequestCurrencyCommand(symbol).execute();
             println(result.size())
             println(result.getSelectMoneyCurrency("USD").currencyValue)
@@ -51,6 +54,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
                 val adapter = MoneysConversionsCustomGrid(symbols, imageId)
                 conversionOtherMoneyGridView.adapter = adapter
                 conversionOtherMoneyGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> Toast.makeText(parent.context, "You Clicked at " + symbols[+position], Toast.LENGTH_SHORT).show() }
+                progress.dismiss()
             }
         }
 
