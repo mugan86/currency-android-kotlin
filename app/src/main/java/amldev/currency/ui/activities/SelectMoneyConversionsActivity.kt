@@ -64,12 +64,8 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             println(result)
             println(result.getSelectMoneyCurrency("USD").currencyValue)
 
-            println()
-
-
             uiThread {
                 addMoneyConversionsData(result, symbol)
-                // conversionOtherMoneyGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> Toast.makeText(parent.context, "You Clicked at " + moneys[+position].name, Toast.LENGTH_SHORT).show() }
                 progress.dismiss()
             }
         }
@@ -84,11 +80,10 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             //TODO Pending to check
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if (s.length == 0) {
+                if (s.isEmpty()) {
                     addMoneyConversionsData(result, symbol)
-                }
-                else {
-                    addMoneyConversionsData(result,symbol, inputMoneyValueToConvertEditText.toString().toDouble())
+                } else {
+                    if (inputMoneyValueToConvertEditText.text.toString().last() != '.') addMoneyConversionsData(result,symbol, inputMoneyValueToConvertEditText.text.toString().toFloat())
                 }
 
             }
@@ -97,9 +92,9 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
     }
 
-    private fun addMoneyConversionsData(result: Currency, symbol: String, value: Double = 1.0) {
+    private fun addMoneyConversionsData(result: Currency, symbol: String, value: Float = 1.0.toFloat()) {
         val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
-        val adapter = MoneysConversionsCustomGrid(moneys, result, value) //TODO use edittext value
+        val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble()) //TODO use edittext value
         conversionOtherMoneyGridView.adapter = adapter
     }
 
