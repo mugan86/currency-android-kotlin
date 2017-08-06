@@ -30,7 +30,7 @@ class MoneysConversionsCustomGrid(private val moneys: List<Money>, private val c
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.grid_item_money_conversion, null)
             var conversion: Double = 0.0
             currency.moneyConversion.filter{it.symbol == moneys[position].symbol}.map{conversion = it.currencyValue}
-            grid.gridText.text = (conversion * inputValue).toString()
+            grid.gridText.text = "%.3f".format(conversion * inputValue)
             grid.gridImage.setImageResource(moneys[position].icon)
         } else { grid = convertView }
 
