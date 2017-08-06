@@ -1,23 +1,28 @@
 package amldev.currency.ui.activities
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-
 import amldev.currency.R
+import amldev.currency.ui.utils.showHideKeyBoardForce
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import com.kotlin.amugika.gridview.ui.adapter.MoneysConversionsCustomGrid
 import data.CurrencyRequest
 import domain.commands.RequestCurrencyCommand
+import domain.model.Currency
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
-    internal var imageId = intArrayOf(R.drawable.ic_australia, R.drawable.ic_canada, R.drawable.ic_china, R.drawable.ic_switzerland, R.drawable.ic_europe, R.drawable.ic_united_kingdom, R.drawable.ic_india, R.drawable.ic_japan, R.drawable.ic_malaysia, R.drawable.ic_russia, R.drawable.ic_singapore, R.drawable.ic_uuss)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_money_conversions)
+
+        //val baseMoneySymbol: String, val baseMoneyName: String, val moneyConversion: List<Money>, val date: String
 
         // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -29,6 +34,8 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         val flag = intent.getStringExtra("flag")
                 ?: throw IllegalStateException("field flag missing in Intent")
+
+        var result = Currency(symbol, name, ArrayList() , "")
 
         println("Get Intent Extra data:  $symbol / $name / $flag")
 
@@ -43,15 +50,17 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             inputMoneyValueToConvertEditText.visibility = View.VISIBLE
             selectMoneyValueToConvertTextView.visibility = View.GONE
             editConversionValueImageButton.visibility = View.GONE
-            inputMoneyValueToConvertEditText.selectAll()
+            showHideKeyBoardForce(inputMoneyValueToConvertEditText, true, this)
+
+            // linearlayout = inputMoneyValueToConvertEditText
 
         }
 
-        val progress = indeterminateProgressDialog("This a progress dialog")
+        val progress = indeterminateProgressDialog("Cargando los datos...")
 
         doAsync {
             progress.show()
-            var result = RequestCurrencyCommand(symbol).execute();
+            result = RequestCurrencyCommand(symbol).execute();
             println(result)
             println(result.getSelectMoneyCurrency("USD").currencyValue)
 
@@ -59,17 +68,55 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
 
             uiThread {
-                val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
-                val adapter = MoneysConversionsCustomGrid(moneys, result, 1.0) //TODO use edittext value
-                conversionOtherMoneyGridView.adapter = adapter
+                addMoneyConversionsData(result, symbol)
                 // conversionOtherMoneyGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> Toast.makeText(parent.context, "You Clicked at " + moneys[+position].name, Toast.LENGTH_SHORT).show() }
                 progress.dismiss()
             }
         }
 
+        inputMoneyValueToConvertEditText.addTextChangedListener(object : TextWatcher {
 
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+            //TODO Pending to check
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if (s.length == 0) {
+                    addMoneyConversionsData(result, symbol)
+                }
+                else {
+                    addMoneyConversionsData(result,symbol, inputMoneyValueToConvertEditText.toString().toDouble())
+                }
+
+            }
+        })
+
+
+    }
+
+    private fun addMoneyConversionsData(result: Currency, symbol: String, value: Double = 1.0) {
+        val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
+        val adapter = MoneysConversionsCustomGrid(moneys, result, value) //TODO use edittext value
+        conversionOtherMoneyGridView.adapter = adapter
     }
 
     private fun getFlagDrawable(flag: String) =
             this.resources.getIdentifier("ic_$flag", "drawable", this.packageName)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("Destroy activity and hide keyboard!")
+        showHideKeyBoardForce(inputMoneyValueToConvertEditText, false, this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        println("Pause activity and hide keyboard!")
+        showHideKeyBoardForce(inputMoneyValueToConvertEditText, false, this)
+    }
+
+
 }
