@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import data.CurrencyRequest
 import domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -20,9 +21,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        helloTextView.text = "Hello!!!!"
+        setSupportActionBar(toolbar)
+
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(false);
+
+        toolbar.setTitle("Currency converter")
+        toolbar.setSubtitle("Select your base money")
+
+        introTextView.text = "Select your base money to make all currency conversions"
         moneysList.layoutManager = LinearLayoutManager(this)
-        val progress = indeterminateProgressDialog("This a progress dialog")
+        val progress = indeterminateProgressDialog("Cargando lista de divisas...")
         doAsync {
 
             progress.show()
@@ -47,6 +55,5 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("flag", flag)
         startActivity(intent)
         overridePendingTransition(0,0)
-
     }
 }
