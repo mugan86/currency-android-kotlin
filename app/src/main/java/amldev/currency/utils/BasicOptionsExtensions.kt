@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 
 /**************************************************************************************************
  * Created by Anartz Mugika on 7/8/17.
+ * In this extension I add basic operations functions to use in all app
  *************************************************************************************************/
 fun isNetworkConnected(context: Context): Boolean {
     /**************************************************************************************************
