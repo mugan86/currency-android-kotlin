@@ -1,9 +1,24 @@
 <resources>
-    <string name="app_name">Currency</string>
+    <string name="app_name">Currency converter</string>
 
     <string name="sans_serif">sans-serif</string>
     <string name="sans_serif_light">sans-serif-light</string>
     <string name="sans_serif_black">sans-serif-black</string>
     <string name="sans_serif_medium">sans-serif-medium</string>
+
+    <string name="try_again_load">Try again to reload</string>
+    <string name="loading_data">Loading data…</string>
+    <string name="no_correct_load_data">Not correctly load data, please reload"</string>
+
+    <!--activity_main.xml-->
+    <string name="start_text_to_first_instructions">Select your base money to make all currency conversions</string>
+    <string name="select_your_base_money">Select your base money</string>
+    <string name="loading_currency_list_txt">Loading currency list…</string>
+
+    <!--activity_select_money_conversions.xml-->
+    <string name="default_selection_text">Your select money is EURO</string>
+    <string name="input_value_money_instructions">Input value to convert with select money</string>
+    <string name="select_money_txt">Your select money is %1$s</string>
+    <string name="input_value_to_convert">Input value to convert with %1$s</string>
 
 </resources>
