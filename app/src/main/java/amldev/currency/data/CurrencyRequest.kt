@@ -1,5 +1,6 @@
 package data
 
+import amldev.currency.utils.isNetworkConnected
 import android.content.Context
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -14,7 +15,7 @@ import java.net.URL
 
 /******************************************************************************************************************
  * Created by Anartz Mugika on 19/07/2017.
- * Take data from server with pass values in constructor
+ * Take data from server (if neetwork connected) or from assets (not connected) with pass values in constructor
  ******************************************************************************************************************/
 class CurrencyRequest(private val baseMoney: String = "EUR") {
     companion object {
@@ -22,11 +23,17 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
         private val URL_LOCALHOST = "https://api.fixer.io/latest?symbols=$symbols&base="
     }
 
-    fun execute() : CurrencyResult = Gson().fromJson(URL(URL_LOCALHOST + baseMoney).readText(), CurrencyResult::class.java)
+    fun execute(context:Context) : CurrencyResult {
+        if (isNetworkConnected(context)) return Gson().fromJson(URL(URL_LOCALHOST + baseMoney).readText(), CurrencyResult::class.java)
+        //Without Internet, takae assets/currencies/baseMoney.json file
+        return Gson().fromJson(getJSONResource(context, "currencies/${baseMoney.toLowerCase()}"), CurrencyResult::class.java)
+    }
 
+
+    //Load start money info list to use to select our base money
     fun getMoneyList(context:Context) : ArrayList<Money> {
         var moneys: ArrayList<Money> = ArrayList()
-        ((Parser().parse(StringBuilder(getJSONResource(context)))
+        ((Parser().parse(StringBuilder(getJSONResource(context, "list-currencies")))
                 as JsonObject)["currencies"] as JsonArray<*>).map {
             money ->
             val data = money as JsonObject
@@ -37,9 +44,9 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
     }
 
     private @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    fun getJSONResource(context: Context): String? {
+    fun getJSONResource(context: Context, name: String): String? {
         try {
-            context.getAssets().open("list-currencies.json").use({ `is` ->
+            context.getAssets().open("$name.json").use({ `is` ->
                 val parser = JsonParser()
                 return parser.parse(InputStreamReader(`is`)).toString()
             })
