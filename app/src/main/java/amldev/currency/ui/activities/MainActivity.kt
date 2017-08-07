@@ -21,16 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar)
+        addToolbar()
 
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(false);
-
-        toolbar.setTitle("Currency converter")
-        toolbar.setSubtitle("Select your base money")
-
-        introTextView.text = "Select your base money to make all currency conversions"
         moneysList.layoutManager = LinearLayoutManager(this)
-        val progress = indeterminateProgressDialog("Loading currency list...")
+        val progress = indeterminateProgressDialog(resources.getString(R.string.loading_currency_list_txt))
         doAsync {
 
             progress.show()
@@ -55,5 +49,14 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("flag", flag)
         startActivity(intent)
         overridePendingTransition(0,0)
+    }
+
+    private fun addToolbar() {
+        setSupportActionBar(toolbar)
+
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(false);
+
+        toolbar.setTitle(resources.getString(R.string.app_name))
+        toolbar.setSubtitle(resources.getString(R.string.select_your_base_money))
     }
 }
