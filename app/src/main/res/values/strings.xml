@@ -21,4 +21,8 @@
     <string name="select_money_txt">Your select money is %1$s</string>
     <string name="input_value_to_convert">Input value to convert with %1$s</string>
 
+    <!-- share options strings -->
+    <string name="share_chooser_title">Share app</string>
+    <string name="share_message"> Download in Google Play: https://play.google.com/store/apps/details?id=amldev.currency</string>
+
 </resources>

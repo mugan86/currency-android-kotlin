@@ -2,10 +2,12 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
+import amldev.currency.utils.getDefaultShareIntent
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
 import data.CurrencyRequest
 import domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.jetbrains.anko.indeterminateProgressDialog
+import android.view.MenuItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,5 +61,22 @@ class MainActivity : AppCompatActivity() {
 
         toolbar.setTitle(resources.getString(R.string.app_name))
         toolbar.setSubtitle(resources.getString(R.string.select_your_base_money))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        when (item.getItemId()) {
+            R.id.action_share -> {
+                startActivity(getDefaultShareIntent(this@MainActivity, null))
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
