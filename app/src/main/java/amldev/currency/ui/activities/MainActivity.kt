@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         introTextView.text = "Select your base money to make all currency conversions"
         moneysList.layoutManager = LinearLayoutManager(this)
-        val progress = indeterminateProgressDialog("Cargando lista de divisas...")
+        val progress = indeterminateProgressDialog("Loading currency list...")
         doAsync {
 
             progress.show()

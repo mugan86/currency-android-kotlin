@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
@@ -22,31 +23,26 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_money_conversions)
-        val symbol = intent.getStringExtra("symbol")
-                ?: throw IllegalStateException("field symbol missing in Intent")
 
-        val name = intent.getStringExtra("name")
-                ?: throw IllegalStateException("field name missing in Intent")
+        //Get Intent Extras values
 
-        val flag = intent.getStringExtra("flag")
-                ?: throw IllegalStateException("field flag missing in Intent")
+        val extraData = getIntentExtras()
 
+        selectMoneyInfoTextView.text = "Your select money is ${extraData[1]}"
 
-        selectMoneyInfoTextView.text = "Your select money is $name"
+        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(extraData[2])))
 
-        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(flag)))
+        inputConvertInfoTextView.text = "Input value to convert with ${extraData[0]}: "
 
-        inputConvertInfoTextView.text = "Input value to convert with $symbol: "
-
-        val progress = indeterminateProgressDialog("Cargando los datos...")
-        var result = Currency(symbol, name, ArrayList() , "")
+        val progress = indeterminateProgressDialog("Loading data...")
+        var result = Currency(extraData[0], extraData[1], ArrayList() , "")
 
         doAsync {
             progress.show()
-            result = RequestCurrencyCommand(symbol).execute();
+            result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute();
 
             uiThread {
-                addMoneyConversionsData(result, symbol)
+                addMoneyConversionsData(result, extraData[0])
                 progress.dismiss()
             }
         }
@@ -58,21 +54,15 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.isEmpty()) addMoneyConversionsData(result, symbol)
+                if (s.isEmpty()) addMoneyConversionsData(result, extraData[0])
                 else if (inputMoneyValueToConvertEditText.text.toString().last() != '.')
-                    addMoneyConversionsData(result,symbol, inputMoneyValueToConvertEditText.text.toString().toFloat())
+                    addMoneyConversionsData(result, extraData[0], inputMoneyValueToConvertEditText.text.toString().toFloat())
             }
         })
 
-        editConversionValueImageButton.setOnClickListener {
-            availableInputMoneyToMakeCurrencyConversions()
-        }
+        addActions()
 
-        selectMoneyValueToConvertTextView.setOnClickListener {
-            availableInputMoneyToMakeCurrencyConversions()
-        }
-
-        addToolbar(name)
+        addToolbar(extraData[1])
     }
 
     private fun availableInputMoneyToMakeCurrencyConversions() {
@@ -84,10 +74,32 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         // linearlayout = inputMoneyValueToConvertEditText
     }
 
+    private fun addActions() {
+        editConversionValueImageButton.setOnClickListener {
+            availableInputMoneyToMakeCurrencyConversions()
+        }
+
+        selectMoneyValueToConvertTextView.setOnClickListener {
+            availableInputMoneyToMakeCurrencyConversions()
+        }
+
+        reloadDataButton.setOnClickListener {
+            recreate();
+        }
+    }
+
     private fun addMoneyConversionsData(result: Currency, symbol: String, value: Float = 1.0.toFloat()) {
         val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
-        val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble())
-        conversionOtherMoneyGridView.adapter = adapter
+        if (moneys.isEmpty()) {
+            toast("Not correctly load, please reload")
+            reloadDataLinearLayout.visibility = View.VISIBLE
+            conversionOtherMoneyGridView.visibility = View.GONE
+        } else {
+            reloadDataLinearLayout.visibility = View.GONE
+            conversionOtherMoneyGridView.visibility = View.VISIBLE
+            val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble())
+            conversionOtherMoneyGridView.adapter = adapter
+        }
     }
 
     private fun getFlagDrawable(flag: String) =
@@ -118,6 +130,14 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             //What to do on back clicked
             finish()
         })
+    }
+
+    private fun getIntentExtras(): Array<String> {
+        var data: Array<String> = arrayOf("", "", "")
+        data.set(0,intent.getStringExtra("symbol") ?: "EUR")
+        data.set(1, intent.getStringExtra("name")?: "Euro")
+        data.set(2, intent.getStringExtra("flag")?: "europe")
+        return data
     }
 
 
