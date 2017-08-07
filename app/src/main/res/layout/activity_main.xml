@@ -15,7 +15,7 @@ android:layout_height="match_parent">
             android:id="@+id/introTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="@string/start_text_to_first_instructions"
             />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/moneysList" android:layout_width="match_parent" android:layout_height="match_parent"/>

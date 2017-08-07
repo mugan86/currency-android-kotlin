@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/selectMoneyInfoTextView"
             android:layout_toLeftOf="@+id/selectLanguageFlag"
-            tools:text="Your select money is EURO"/>
+            tools:text="@string/default_selection_text"/>
         <ImageView
             android:layout_alignParentRight="true"
             android:id="@+id/selectLanguageFlag"
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"
             android:layout_marginLeft="10sp"
-            tools:text="Input value to convert with select money"/>
+            tools:text="@string/input_value_money_instructions"/>
         <TextView
             android:id="@+id/selectMoneyValueToConvertTextView"
             android:layout_width="wrap_content"
@@ -84,9 +83,8 @@
             android:id="@+id/reloadDataButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Try again to reload"/>
+            android:text="@string/try_again_load"/>
     </LinearLayout>
-
     <GridView
         android:visibility="gone"
         android:layout_below="@+id/inputConversionUnitsZone"
@@ -95,6 +93,4 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
 </RelativeLayout>

@@ -17,6 +17,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
+import java.util.*
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
 
@@ -28,13 +29,13 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         val extraData = getIntentExtras()
 
-        selectMoneyInfoTextView.text = "Your select money is ${extraData[1]}"
+        selectMoneyInfoTextView.text = String.format(resources.getString(R.string.select_money_txt), extraData[1])
 
         selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(extraData[2])))
 
-        inputConvertInfoTextView.text = "Input value to convert with ${extraData[0]}: "
+        inputConvertInfoTextView.text = String.format(resources.getString(R.string.input_value_to_convert), extraData[0])
 
-        val progress = indeterminateProgressDialog("Loading data...")
+        val progress = indeterminateProgressDialog(resources.getString(R.string.loading_data))
         var result = Currency(extraData[0], extraData[1], ArrayList() , "")
 
         doAsync {
@@ -91,7 +92,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     private fun addMoneyConversionsData(result: Currency, symbol: String, value: Float = 1.0.toFloat()) {
         val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
         if (moneys.isEmpty()) {
-            toast("Not correctly load, please reload")
+            toast(resources.getString(R.string.no_correct_load_data))
             reloadDataLinearLayout.visibility = View.VISIBLE
             conversionOtherMoneyGridView.visibility = View.GONE
         } else {
@@ -122,7 +123,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setTitle("Currency converter")
+        toolbar.setTitle(resources.getString(R.string.app_name))
         toolbar.setSubtitle("$name")
 
         toolbar.setNavigationIcon(resources.getDrawable(R.drawable.ic_back))
