@@ -73,8 +73,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/reloadDataLinearLayout"
+        android:layout_below="@+id/inputConversionUnitsZone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <Button
+            android:id="@+id/reloadDataButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Try again to reload"/>
+    </LinearLayout>
 
     <GridView
+        android:visibility="gone"
         android:layout_below="@+id/inputConversionUnitsZone"
         android:id="@+id/conversionOtherMoneyGridView"
         android:numColumns="auto_fit"
