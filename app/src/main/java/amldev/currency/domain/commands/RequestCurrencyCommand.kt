@@ -1,5 +1,6 @@
 package domain.commands
 
+import android.content.Context
 import data.CurrencyRequest
 import domain.mappers.CurrencyDataMapper
 import domain.model.Currency
@@ -13,8 +14,8 @@ import domain.model.Currency
  * conseguir esa información a nuestro gusto, gestionando la información dentro de las funciones que definamos
  * como es el caso de convertFromDataModel
  ***********************************************************************************************************************/
-class RequestCurrencyCommand(val baseMoney: String): Command<Currency> {
+class RequestCurrencyCommand(val baseMoney: String, val context: Context): Command<Currency> {
     override fun execute(): Currency {
-        return CurrencyDataMapper().convertFromDataModel(CurrencyRequest(baseMoney).execute());
+        return CurrencyDataMapper().convertFromDataModel(CurrencyRequest(baseMoney).execute(context));
     }
 }
