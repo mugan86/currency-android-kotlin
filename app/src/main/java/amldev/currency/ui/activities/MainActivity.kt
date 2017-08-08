@@ -3,6 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.currency.utils.getDefaultShareIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -20,6 +21,7 @@ import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
     var moneys = ArrayList<Money>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
