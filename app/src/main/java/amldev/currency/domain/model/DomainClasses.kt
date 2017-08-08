@@ -8,12 +8,8 @@ import amldev.currency.R
  **************************************************************************************************************/
 data class Currency (val baseMoneySymbol: String, val baseMoneyName: String,
                      val moneyConversion: List<Money>, val date: String) {
-    fun getSelectMoneyCurrency(selectMoney: String) : Money {
-        moneyConversion.filter{
-            (it.symbol == selectMoney)
-        }.map {  return it}
-        return Money()
-    }
+
+    fun getSelectMoneyCurrency(selectMoney: String) : Money = moneyConversion.single(){ (it.symbol == selectMoney) }
 
     fun size() : Int = moneyConversion.size
 
