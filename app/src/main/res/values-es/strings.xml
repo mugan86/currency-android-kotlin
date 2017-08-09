@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Currency converter</string>
+
+    <string name="sans_serif">sans-serif</string>
+    <string name="sans_serif_light">sans-serif-light</string>
+    <string name="sans_serif_black">sans-serif-black</string>
+    <string name="sans_serif_medium">sans-serif-medium</string>
+
+    <string name="try_again_load">Recargar de nuevo</string>
+    <string name="loading_data">Cargando datos…</string>
+    <string name="no_correct_load_data">Los datos no se han cargado correctamente. por favor, prueba de nuevo"</string>
+
+    <!--activity_main.xml-->
+    <string name="start_text_to_first_instructions">Selecciona tu moneda base para realizar las conversiones</string>
+    <string name="select_your_base_money">Selecciona tu moneda base</string>
+    <string name="loading_currency_list_txt">Cargando lista de divisas…</string>
+
+    <!--activity_select_money_conversions.xml-->
+    <string name="default_selection_text">Tu moneda selecciona es EURO</string>
+    <string name="input_value_money_instructions">Introduce el valor para realizar la conversión</string>
+    <string name="select_money_txt">Tu moneda seleccionada es %1$s</string>
+    <string name="input_value_to_convert">Introducir la cantidad a convertir %1$s</string>
+
+    <!-- share options strings -->
+    <string name="share_chooser_title">Compartir app</string>
+    <string name="share_message"> Descarga en Google Play: https://play.google.com/store/apps/details?id=amldev.currency</string>
+
+    <string name="make_your_language_selection">Selecciona el idioma deseado</string>
+    <string name="spanish">Castellano</string>
+    <string name="catalan">Catalán</string>
+    <string name="deutchand">Alemán</string>
+    <string name="english">Inglés</string>
+    <string name="basque">Euskera</string>
+    <string name="francais">Francés</string>
+    <string name="galizian">Gallego</string>
+    <string name="italian">Italiano</string>
+
+    <string-array name="language_string">
+        <item>@string/english</item>
+        <item>@string/basque</item>
+        <item>@string/spanish</item>
+    </string-array>
+    <string-array name="language_codes">
+        <item>en</item>
+        <item>eu</item>
+        <item>es</item>
+    </string-array>
+
+</resources>

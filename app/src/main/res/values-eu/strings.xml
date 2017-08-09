@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Currency converter</string>
+
+    <string name="sans_serif">sans-serif</string>
+    <string name="sans_serif_light">sans-serif-light</string>
+    <string name="sans_serif_black">sans-serif-black</string>
+    <string name="sans_serif_medium">sans-serif-medium</string>
+
+    <string name="try_again_load">Saiatu berriro</string>
+    <string name="loading_data">Datuak kargatzen…</string>
+    <string name="no_correct_load_data">Datuak ez dira zuzen kargatu, saiatu berriro mesedez"</string>
+
+    <!--activity_main.xml-->
+    <string name="start_text_to_first_instructions">Aukeratu zure txanpona konbersio guztiak burutzeko</string>
+    <string name="select_your_base_money">Aukeratu zure txanpona</string>
+    <string name="loading_currency_list_txt">Kargatu txanpon zerrenda…</string>
+
+    <!--activity_select_money_conversions.xml-->
+    <string name="default_selection_text">Aukeratutako txanpona: EURO</string>
+    <string name="input_value_money_instructions">Idatzi balioa aldaketa egiteko aukeratutako txanponarekin</string>
+    <string name="select_money_txt">Aukeratutako txanpona %1$s da</string>
+    <string name="input_value_to_convert">Idatzi balioa aldaketa egiteko %1$s txanponarekin</string>
+
+    <!-- share options strings -->
+    <string name="share_chooser_title">Partekatu aplikazioa</string>
+    <string name="share_message"> Jeitsi Google Play-n: https://play.google.com/store/apps/details?id=amldev.currency</string>
+
+    <string name="make_your_language_selection">Aukeratu nahi duzun hizkuntza</string>
+    <string name="spanish">Castellano</string>
+    <string name="catalan">Catalán</string>
+    <string name="deutchand">Alemán</string>
+    <string name="english">Inglés</string>
+    <string name="basque">Euskera</string>
+    <string name="francais">Francés</string>
+    <string name="galizian">Gallego</string>
+    <string name="italian">Italiano</string>
+
+    <string-array name="language_string">
+        <item>@string/english</item>
+        <item>@string/basque</item>
+        <item>@string/spanish</item>
+    </string-array>
+    <string-array name="language_codes">
+        <item>en</item>
+        <item>eu</item>
+        <item>es</item>
+    </string-array>
+
+</resources>
