@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-android:layout_height="match_parent">
-    <include layout="@layout/toolbar" />
-    <LinearLayout
-        android:layout_marginTop="?attr/actionBarSize"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:padding="8sp"
-            android:textAlignment="center"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:id="@+id/introTextView"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/start_text_to_first_instructions"
-            />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/moneysList" android:layout_width="match_parent" android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:orientation="vertical">
+            <include layout="@layout/toolbar" />
+            <TextView
+                android:padding="8sp"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:id="@+id/introTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_text_to_first_instructions"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/moneysList" android:layout_width="match_parent" android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/selectLanguageFab"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20sp"
+            android:src="@drawable/ic_languages" />
+    </android.support.design.widget.CoordinatorLayout>
 
 </FrameLayout>
