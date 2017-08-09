@@ -2,6 +2,9 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.ui.utils.showHideKeyBoardForce
+import amldev.translateapp.LocaleHelper
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -20,6 +23,10 @@ import org.jetbrains.anko.uiThread
 import java.util.*
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
+    //To use LocaleHelper select language
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,6 +146,11 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         data.set(1, intent.getStringExtra("name")?: "Euro")
         data.set(2, intent.getStringExtra("flag")?: "europe")
         return data
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        onCreate(null)
     }
 
 

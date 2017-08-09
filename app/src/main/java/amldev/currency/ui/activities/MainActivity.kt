@@ -3,6 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.currency.utils.getDefaultShareIntent
+import amldev.translateapp.LocaleHelper
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,16 +18,28 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.jetbrains.anko.indeterminateProgressDialog
 import android.view.MenuItem
+import android.content.DialogInterface
+import android.content.res.Configuration
+import android.support.v7.app.AlertDialog
 
 
 class MainActivity : AppCompatActivity() {
     var moneys = ArrayList<Money>()
+
+    //To use LocaleHelper select language
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         addToolbar()
+
+        addActions()
+
+        println(LocaleHelper.getLanguage(this@MainActivity))
 
         moneysList.layoutManager = LinearLayoutManager(this)
         val progress = indeterminateProgressDialog(resources.getString(R.string.loading_currency_list_txt))
@@ -80,5 +93,30 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    fun addActions() {
+        selectLanguageFab.setOnClickListener {
+            languageOptionsDialog()
+        }
+    }
+
+    private fun languageOptionsDialog() {
+        val languages_strings = resources.getStringArray(R.array.language_string)
+
+        val language_codes = resources.getStringArray(R.array.language_codes)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(resources.getString(R.string.make_your_language_selection))
+        builder.setItems(languages_strings, DialogInterface.OnClickListener { dialog, item ->
+            LocaleHelper.setLocale(this@MainActivity, language_codes [item])
+            LocaleHelper.restarApp(this@MainActivity)
+
+        })
+        builder.create().show()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        onCreate(null)
     }
 }
