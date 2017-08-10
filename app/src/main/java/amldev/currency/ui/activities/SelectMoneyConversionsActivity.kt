@@ -2,7 +2,7 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.ui.utils.showHideKeyBoardForce
-import amldev.translateapp.LocaleHelper
+import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle

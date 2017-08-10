@@ -3,7 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.currency.utils.getDefaultShareIntent
-import amldev.translateapp.LocaleHelper
+import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,6 +21,7 @@ import android.view.MenuItem
 import android.content.DialogInterface
 import android.content.res.Configuration
 import android.support.v7.app.AlertDialog
+import android.view.View
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         addActions()
 
-        println(LocaleHelper.getLanguage(this@MainActivity))
-
         moneysList.layoutManager = LinearLayoutManager(this)
         val progress = indeterminateProgressDialog(resources.getString(R.string.loading_currency_list_txt))
         doAsync {
@@ -55,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name, it.flag) }
                 moneysList.adapter = adapter
                 progress.dismiss()
+                selectLanguageFab.visibility = View.VISIBLE
             }
         }
 
