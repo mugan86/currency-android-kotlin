@@ -29,8 +29,9 @@
         <TextView
             android:layout_marginTop="-6sp"
             android:layout_marginLeft="10sp"
+            android:layout_toStartOf="@+id/arrowImageView"
             android:textSize="25sp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameTextView"
             tools:text="Euro"/>
