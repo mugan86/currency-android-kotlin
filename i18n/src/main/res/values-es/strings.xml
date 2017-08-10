@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">i18n</string>
-    <string name="make_your_language_selection">Select your language</string>
+    <string name="make_your_language_selection">Selecciona el idioma deseado</string>
     <string name="spanish">Castellano</string>
     <string name="catalan">Catalán</string>
     <string name="deutchand">Alemán</string>
