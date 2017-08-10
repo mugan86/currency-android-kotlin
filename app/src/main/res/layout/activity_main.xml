@@ -28,13 +28,14 @@
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:visibility="gone"
             android:id="@+id/selectLanguageFab"
             app:backgroundTint="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="20sp"
-            android:src="@drawable/ic_languages" />
+            android:src="@drawable/ic_world" />
     </android.support.design.widget.CoordinatorLayout>
 
 </FrameLayout>
