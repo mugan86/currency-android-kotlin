@@ -2,7 +2,7 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.ui.adapters.MoneyAdapter
-import amldev.currency.utils.getDefaultShareIntent
+import amldev.currency.extensions.getDefaultShareIntent
 import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.Intent

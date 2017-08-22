@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.grid_item_money_conversion.view.*
-import amldev.currency.ui.utils.ctx
+import amldev.currency.extensions.ctx
 import domain.model.Currency
 import domain.model.Money
 

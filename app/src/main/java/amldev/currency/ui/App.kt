@@ -1,6 +1,6 @@
 package amldev.currency.ui
 
-import amldev.currency.ui.utils.DelegatesExt
+import amldev.currency.extensions.DelegatesExt
 import android.app.Application
 
 /**

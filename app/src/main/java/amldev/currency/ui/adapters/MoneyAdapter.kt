@@ -1,7 +1,7 @@
 package amldev.currency.ui.adapters
 
 import amldev.currency.R
-import amldev.currency.ui.utils.ctx
+import amldev.currency.extensions.ctx
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
