@@ -11,7 +11,7 @@ class MoneyInfo(var map: MutableMap<String, Any?>) {
     var symbol: String by map
     var flag: String by map
 
-    constructor(money: String, symbol: String, flag: String) : this(HashMap()) {
+    constructor(symbol: String, money: String, flag: String) : this(HashMap()) {
         this.money = money
         this.symbol = symbol
         this.flag = flag
