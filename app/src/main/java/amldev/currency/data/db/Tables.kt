@@ -7,8 +7,7 @@ package amldev.currency.data.db
 object MoneyInfoTable {
     val NAME = "MoneyInfoTable" //Table Name
     val MONEY = "money"
-    val ID = "_id"
-    val SYMBOL = "symbol"
+    val SYMBOL = "_symbol" // ID
     val FLAG = "flag"
 }
 
