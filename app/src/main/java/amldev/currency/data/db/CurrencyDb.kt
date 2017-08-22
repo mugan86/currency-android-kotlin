@@ -1,9 +1,9 @@
 package amldev.currency.data.db
 
-import amldev.currency.extensions.clear
 import amldev.currency.extensions.toVarargArray
 import domain.model.Money
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
 /***************************************************************************************************
  * Created by anartzmugika on 22/8/17.
@@ -17,6 +17,10 @@ class CurrencyDb(
         with(dataMapper.convertMoneyFromDomain(money)) {
             insert(MoneyInfoTable.NAME, *map.toVarargArray())
         }
+    }
+
+    fun getMoneyListItemsSize() = dbHelper.use {
+        select(MoneyInfoTable.NAME, MoneyInfoTable.NAME, MoneyInfoTable.SYMBOL, MoneyInfoTable.FLAG)
     }
 }
 
