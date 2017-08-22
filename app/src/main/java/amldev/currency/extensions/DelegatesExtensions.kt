@@ -1,4 +1,4 @@
-package amldev.currency.ui.utils
+package amldev.currency.extensions
 
 /**
  * Created by anartzmugika on 21/8/17.

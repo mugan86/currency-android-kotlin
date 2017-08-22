@@ -1,4 +1,4 @@
-package amldev.currency.utils
+package amldev.currency.extensions
 
 import amldev.currency.R
 import android.content.Context
