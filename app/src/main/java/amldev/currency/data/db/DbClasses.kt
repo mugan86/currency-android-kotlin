@@ -1,8 +1,9 @@
 package amldev.currency.data.db
 
-/**
+/***************************************************************************************************
  * Created by anartzmugika on 22/8/17.
- */
+ *  Map database tables properties. Use with equal name in definition
+ **************************************************************************************************/
 
 
 class MoneyInfo(var map: MutableMap<String, Any?>) {

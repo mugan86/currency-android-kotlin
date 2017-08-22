@@ -4,9 +4,10 @@ import amldev.currency.ui.App
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
-/**
+/*************************************************************************************************
  * Created by anartzmugika on 21/8/17.
- */
+ * Define database create and upgrade situations
+ ************************************************************************************************/
 class CurrencyDbHelper : ManagedSQLiteOpenHelper(App.instance,
         CurrencyDbHelper.DB_NAME, null, CurrencyDbHelper.DB_VERSION) {
 

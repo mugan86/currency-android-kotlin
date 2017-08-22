@@ -2,6 +2,7 @@ package amldev.currency.data.db
 
 /***************************************************************************************************
  * Created by Anartz Mugika on 21/8/17.
+ * Tables use in currencies.db database
  ***************************************************************************************************/
 
 object MoneyInfoTable {
