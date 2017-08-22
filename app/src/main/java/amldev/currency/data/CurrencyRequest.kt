@@ -1,16 +1,13 @@
 package data
 
-import amldev.currency.utils.isNetworkConnected
+import amldev.currency.extensions.getJSONResource
+import amldev.currency.extensions.isNetworkConnected
 import android.content.Context
-import android.os.Build
-import android.support.annotation.RequiresApi
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.google.gson.Gson
-import com.google.gson.JsonParser
 import domain.model.Money
-import java.io.InputStreamReader
 import java.net.URL
 
 /******************************************************************************************************************
@@ -41,20 +38,6 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
             moneys.add(Money(data["symbol"].toString(), 0.0, data["name"].toString(), data["flag"].toString(), getFlagDrawable(context, data["flag"].toString())))
         }
         return moneys
-    }
-
-    private @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    fun getJSONResource(context: Context, name: String): String? {
-        try {
-            context.getAssets().open("$name.json").use({ `is` ->
-                val parser = JsonParser()
-                return parser.parse(InputStreamReader(`is`)).toString()
-            })
-        } catch (e: Exception) {
-
-        }
-
-        return null
     }
 
     private fun getFlagDrawable(context: Context, flag: String) =
