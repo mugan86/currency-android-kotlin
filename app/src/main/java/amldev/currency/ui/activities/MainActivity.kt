@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
             uiThread {
 
-                val adapter = MoneyAdapter(moneys) { /*toast("${it.symbol} / ${it.name}")*/ openConversionsWithSelectMoney(it.symbol, it.name, it.flag) }
+                val adapter = MoneyAdapter(moneys , { openConversionsWithSelectMoney(it.symbol, it.name, it.flag) })
                 moneysList.adapter = adapter
                 progress.dismiss()
                 selectLanguageFab.visibility = View.VISIBLE
