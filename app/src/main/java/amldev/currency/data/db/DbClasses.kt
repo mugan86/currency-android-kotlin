@@ -20,12 +20,14 @@ class MoneyInfo(var map: MutableMap<String, Any?>) {
 }
 
 class MoneyCurrencies (var map: MutableMap<String, Any?>) {
+    var _id: String by map
     var _id_base: String by map
     var _id_conversion_money: String by map
     var updated_date: String by map
     var value_conversion: String by map
 
-    constructor(_id_base: String, _id_conversion_money: String, updated_date: String, value_conversion: String): this(HashMap()) {
+    constructor(_id: String, _id_base: String, _id_conversion_money: String, updated_date: String, value_conversion: String): this(HashMap()) {
+        this._id = _id
         this._id_base = _id_base
         this._id_conversion_money = _id_conversion_money
         this.updated_date = updated_date
