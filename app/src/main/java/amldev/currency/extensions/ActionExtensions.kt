@@ -34,3 +34,6 @@ fun getJSONResource(context: Context, name: String): String? {
 
     return null
 }
+
+fun getFlagDrawable(context: Context, flag: String) =
+        context.resources.getIdentifier("ic_$flag", "drawable", context.packageName)
