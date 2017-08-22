@@ -18,10 +18,9 @@ class CurrencyDbHelper : ManagedSQLiteOpenHelper(App.instance,
 
     override fun onCreate(db: SQLiteDatabase) {
         db.createTable(MoneyInfoTable.NAME, true,
-                MoneyInfoTable.ID to TEXT + PRIMARY_KEY,
+                MoneyInfoTable.SYMBOL to TEXT + PRIMARY_KEY,
                 MoneyInfoTable.MONEY to TEXT,
-                MoneyInfoTable.FLAG to TEXT,
-                MoneyInfoTable.SYMBOL to TEXT)
+                MoneyInfoTable.FLAG to TEXT)
 
         db.createTable(MoneyCurrenciesTable.NAME, true,
                 MoneyCurrenciesTable.ID_BASE to TEXT + PRIMARY_KEY,
