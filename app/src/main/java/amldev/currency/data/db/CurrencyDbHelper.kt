@@ -2,6 +2,7 @@ package amldev.currency.data.db
 
 import amldev.currency.ui.App
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import org.jetbrains.anko.db.*
 
 /*************************************************************************************************
@@ -22,16 +23,20 @@ class CurrencyDbHelper : ManagedSQLiteOpenHelper(App.instance,
                 MoneyInfoTable.SYMBOL to TEXT + PRIMARY_KEY,
                 MoneyInfoTable.MONEY to TEXT,
                 MoneyInfoTable.FLAG to TEXT)
+        Log.d("Create table", "Create ${MoneyInfoTable.NAME} succesfully!")
 
         db.createTable(MoneyCurrenciesTable.NAME, true,
-                MoneyCurrenciesTable.ID_BASE to TEXT + PRIMARY_KEY,
-                MoneyCurrenciesTable.ID_CONVERSION_MONEY to TEXT + PRIMARY_KEY,
+                MoneyCurrenciesTable.ID to TEXT + PRIMARY_KEY,
+                MoneyCurrenciesTable.ID_BASE to TEXT,
+                MoneyCurrenciesTable.ID_CONVERSION_MONEY to TEXT,
                 MoneyCurrenciesTable.VALUE_CONVERSION to TEXT,
-                MoneyCurrenciesTable.UPDATED_DATE to TEXT)    }
+                MoneyCurrenciesTable.UPDATED_DATE to TEXT)
+        Log.d("Create table", "Create ${MoneyCurrenciesTable.NAME} succesfully!")
+    }
 
     companion object {
         val DB_NAME = "currency.db"
-        val DB_VERSION = 1
+        val DB_VERSION = 2
         val instance by lazy { CurrencyDbHelper() }
     }
 
