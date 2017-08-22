@@ -1,27 +1,28 @@
 package amldev.currency.ui.activities
 
 import amldev.currency.R
-import amldev.currency.ui.adapters.MoneyAdapter
+import amldev.currency.data.db.CurrencyDbHelper
 import amldev.currency.extensions.getDefaultShareIntent
+import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.i18n.LocaleHelper
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import data.CurrencyRequest
 import domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import org.jetbrains.anko.indeterminateProgressDialog
-import android.view.MenuItem
-import android.content.DialogInterface
-import android.content.res.Configuration
-import android.support.v7.app.AlertDialog
-import android.view.View
+import org.jetbrains.anko.uiThread
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,14 +48,31 @@ class MainActivity : AppCompatActivity() {
             progress.show()
             //Load list currencies and log symbol and name
 
+            val db = CurrencyDbHelper
+
+            println(db.DB_NAME)
+
+
+
             moneys = CurrencyRequest().getMoneyList(this@MainActivity)
 
             uiThread {
 
-                val adapter = MoneyAdapter(moneys , { openConversionsWithSelectMoney(it.symbol, it.name, it.flag) })
+                val adapter = MoneyAdapter(moneys , {
+                    openConversionsWithSelectMoney(it.symbol, it.name, it.flag)
+                })
                 moneysList.adapter = adapter
                 progress.dismiss()
                 selectLanguageFab.visibility = View.VISIBLE
+                /*moneys.map {
+                    println("Start to map money and save in sqlite db")
+                    CurrencyDb().saveMoney(Money(it.symbol, 0.0, it.name, it.flag))
+
+                }*/
+
+                // println(CurrencyDb().getMoneyListItemsSize().toString())
+
+
             }
         }
 
