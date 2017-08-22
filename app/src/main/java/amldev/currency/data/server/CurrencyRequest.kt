@@ -1,5 +1,6 @@
 package data
 
+import amldev.currency.extensions.getFlagDrawable
 import amldev.currency.extensions.getJSONResource
 import amldev.currency.extensions.isNetworkConnected
 import android.content.Context
@@ -40,8 +41,6 @@ class CurrencyRequest(private val baseMoney: String = "EUR") {
         return moneys
     }
 
-    private fun getFlagDrawable(context: Context, flag: String) =
-            context.resources.getIdentifier("ic_$flag", "drawable", context.packageName)
 }
 
 
