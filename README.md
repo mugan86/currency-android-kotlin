@@ -1,9 +1,9 @@
 # Currecy Converter Android with Kotlin
 
 App en Google Play:
-[![](http://www.sagradafamiliaalzira.es/wp-content/uploads/2016/10/google-play-badge-128x128.png)](https://play.google.com/store/apps/details?id=amldev.currency&hl=es)
 
-[![](https://lh3.googleusercontent.com/ZjFt66_CclQrKRLCs7hyP-N2VYcFH2VUHJ7EK3Fg4CMusGdae-O442nRSKYuPwaeymI=h400)](https://youtu.be/QPhSzQOi0N0)
+Download App Free: [![](https://a.fsdn.com/allura/p/goopydesktop/icon?1435677519)](https://play.google.com/store/apps/details?id=amldev.currency&hl=es)
+Demo video: [![](https://www.youtube.com/yts/img/favicon_48-vfl1s0rGh.png)](https://youtu.be/QPhSzQOi0N0)  
 
 ## Acerca de la aplicación / About App
 
