@@ -1,9 +1,15 @@
 # Currecy Converter Android with Kotlin
 
-[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://youtu.be/QPhSzQOi0N0)
+App en Google Play:
+[![](http://www.sagradafamiliaalzira.es/wp-content/uploads/2016/10/google-play-badge-128x128.png)](https://play.google.com/store/apps/details?id=amldev.currency&hl=es)
 
+[![](https://lh3.googleusercontent.com/ZjFt66_CclQrKRLCs7hyP-N2VYcFH2VUHJ7EK3Fg4CMusGdae-O442nRSKYuPwaeymI=h400)](https://youtu.be/QPhSzQOi0N0)
 
-## Español
+## Acerca de la aplicación / About App
+
+Desarrollada en Kotlin / Develop with Kotlin.
+
+### Español
 App creada por Anartz Mugika (mugan86@gmail.com)
 
 Sencillo conversor de divisas desarrollado en Kotlin
