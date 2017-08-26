@@ -7,6 +7,8 @@ import android.os.Build
 import android.preference.PreferenceManager
 import java.util.*
 import android.app.Activity
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
 
 /***************************************************************************************************
  * Created by Anartz Mugika (mugan86@gmail.com) on 30/7/17.
@@ -79,7 +81,17 @@ object LocaleHelper {
         return context
     }
 
-    fun restarApp(context: Context) {
+    fun languageOptionsDialog(context: Context) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(context.resources.getString(R.string.make_your_language_selection))
+        builder.setItems(context.resources.getStringArray(R.array.language_string), DialogInterface.OnClickListener { dialog, item ->
+            setLocale(context, context.resources.getStringArray(R.array.language_codes) [item])
+            restarApp(context)
+        })
+        builder.create().show()
+    }
+
+    private fun restarApp(context: Context) {
         val restart_app_intent = Intent(context, context::class.java)
         restart_app_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(restart_app_intent)
