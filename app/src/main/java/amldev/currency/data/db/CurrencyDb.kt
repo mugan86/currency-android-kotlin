@@ -1,6 +1,6 @@
 package amldev.currency.data.db
 
-import amldev.currency.extensions.parseOpt
+import amldev.currency.extensions.parseList
 import amldev.currency.extensions.toVarargArray
 import domain.model.Money
 import org.jetbrains.anko.db.insert
@@ -22,6 +22,7 @@ class CurrencyDb(
 
     fun getMoneyListItemsSize() = dbHelper.use {
         // select(MoneyInfoTable.NAME, MoneyInfoTable.SYMBOL, MoneyInfoTable.MONEY, MoneyInfoTable.FLAG).parseOpt {  }
+        select(MoneyInfoTable.NAME).parseList { MoneyInfo(HashMap(it)) }
     }
 }
 
