@@ -1,16 +1,15 @@
 package amldev.currency.ui.activities
 
 import amldev.currency.R
+import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.db.CurrencyDbHelper
 import amldev.currency.extensions.getDefaultShareIntent
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.i18n.LocaleHelper
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -54,7 +53,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            moneys = CurrencyRequest().getMoneyList(this@MainActivity)
+            if (CurrencyDb().getMoneyListItemsSize () == 0) loadDataFromJSONFileAndStoreInDB()
+            //else moneys = CurrencyDb().getMoneyListItems()
 
             uiThread {
 
@@ -64,18 +64,24 @@ class MainActivity : AppCompatActivity() {
                 moneysList.adapter = adapter
                 progress.dismiss()
                 selectLanguageFab.visibility = View.VISIBLE
-                /*moneys.map {
-                    println("Start to map money and save in sqlite db")
-                    CurrencyDb().saveMoney(Money(it.symbol, 0.0, it.name, it.flag))
 
-                }*/
 
                 // println(CurrencyDb().getMoneyListItemsSize().toString())
 
 
+                // println("***********************Take money list from sqlite database ${moneys.size}")
             }
         }
 
+    }
+
+    private fun loadDataFromJSONFileAndStoreInDB () {
+        moneys = CurrencyRequest().getMoneyList(this@MainActivity)
+        moneys.map {
+            println("Start to map money and save in sqlite db")
+            CurrencyDb().saveMoney(Money(it.symbol, 0.0, it.name, it.flag))
+
+        }
     }
 
     private fun openConversionsWithSelectMoney(symbol: String, name: String, flag: String) {
@@ -115,22 +121,8 @@ class MainActivity : AppCompatActivity() {
 
     fun addActions() {
         selectLanguageFab.setOnClickListener {
-            languageOptionsDialog()
+            LocaleHelper.languageOptionsDialog(this@MainActivity)
         }
-    }
-
-    private fun languageOptionsDialog() {
-        val languages_strings = resources.getStringArray(R.array.language_string)
-
-        val language_codes = resources.getStringArray(R.array.language_codes)
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(resources.getString(R.string.make_your_language_selection))
-        builder.setItems(languages_strings, DialogInterface.OnClickListener { dialog, item ->
-            LocaleHelper.setLocale(this@MainActivity, language_codes [item])
-            LocaleHelper.restarApp(this@MainActivity)
-
-        })
-        builder.create().show()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
