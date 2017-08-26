@@ -20,9 +20,11 @@ class CurrencyDb(
         }
     }
 
-    fun getMoneyListItemsSize() = dbHelper.use {
+    fun getMoneyListItems() = dbHelper.use {
         // select(MoneyInfoTable.NAME, MoneyInfoTable.SYMBOL, MoneyInfoTable.MONEY, MoneyInfoTable.FLAG).parseOpt {  }
-        select(MoneyInfoTable.NAME).parseList { MoneyInfo(HashMap(it)) }
+        select(MoneyInfoTable.NAME).parseList { MoneyInfo(HashMap(it)) }.toList()
     }
+
+    fun getMoneyListItemsSize () : Int = getMoneyListItems().size
 }
 
