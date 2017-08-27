@@ -23,10 +23,8 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 
-
 class MainActivity : AppCompatActivity() {
-    var moneys = ArrayList<Money>()
-
+    var moneys: List<Money> = mutableListOf()
     //To use LocaleHelper select language
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(base))
@@ -53,8 +51,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            if (CurrencyDb().getMoneyListItemsSize () == 0) loadDataFromJSONFileAndStoreInDB()
-            //else moneys = CurrencyDb().getMoneyListItems()
+            if (CurrencyDb().getMoneyListItemsSize () == 0) {
+                println("Load JSON File")
+                loadDataFromJSONFileAndStoreInDB()
+            }
+            else{
+                println("Get database info")
+                moneys = CurrencyDb().getMoneyListItems()
+            }
+
+
 
             uiThread {
 

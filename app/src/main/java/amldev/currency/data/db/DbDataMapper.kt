@@ -7,8 +7,7 @@ import domain.model.Money
  */
 class DbDataMapper() {
 
-    fun convertMoneyFromDomain(moneys: Money) = with(moneys) {
+    fun convertMoneyFromDomain(money: Money) = with(money) {
         MoneyInfo(symbol, name, flag)
     }
-
 }

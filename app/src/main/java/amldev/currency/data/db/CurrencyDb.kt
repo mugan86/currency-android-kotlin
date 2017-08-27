@@ -1,5 +1,6 @@
 package amldev.currency.data.db
 
+import amldev.currency.R
 import amldev.currency.extensions.parseList
 import amldev.currency.extensions.toVarargArray
 import domain.model.Money
@@ -20,9 +21,14 @@ class CurrencyDb(
         }
     }
 
-    fun getMoneyListItems() = dbHelper.use {
+    fun getMoneyListItems(): List<Money> = dbHelper.use {
         // select(MoneyInfoTable.NAME, MoneyInfoTable.SYMBOL, MoneyInfoTable.MONEY, MoneyInfoTable.FLAG).parseOpt {  }
-        select(MoneyInfoTable.NAME).parseList { MoneyInfo(HashMap(it)) }.toList()
+        val items = select(MoneyInfoTable.NAME).parseList { MoneyInfo(HashMap(it)) }
+        var moneys : MutableList<Money> = mutableListOf()
+        items.map {
+            moneys.add(Money(it.symbol, 0.0, it.money, it.flag, R.drawable.ic_united_nations))
+        }
+        return@use moneys
     }
 
     fun getMoneyListItemsSize () : Int = getMoneyListItems().size

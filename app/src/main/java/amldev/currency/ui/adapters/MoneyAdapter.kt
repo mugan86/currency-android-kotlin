@@ -11,14 +11,13 @@ import com.squareup.picasso.Picasso
 import domain.model.Money
 import kotlinx.android.synthetic.main.item_money.view.*
 
-
 /***************************************************************
  * Created by anartzmugika on 31/7/17.
  *
  * Adapter to load money info in RecyclerView List with custom flag
  *******************************************************************/
 class MoneyAdapter (
-        val moneyList: ArrayList<Money>, val itemClick: (Money) -> Unit)
+        val moneyList: List<Money>, val itemClick: (Money) -> Unit)
     : RecyclerView.Adapter<MoneyAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.ctx).inflate(R.layout.item_money, parent, false)
