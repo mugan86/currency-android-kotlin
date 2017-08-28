@@ -1,4 +1,4 @@
-# Currecy Converter Android with Kotlin
+# Currency Converter Android with Kotlin
 
 App en Google Play:
 
@@ -10,6 +10,25 @@ Demo video: [![](https://www.youtube.com/yts/img/favicon_48-vfl1s0rGh.png)](http
 Desarrollada en Kotlin / Develop with Kotlin.
 
 ### Español
+
+### Versiones
+
+1.2 (Trabajando en la próxima versión)
+
+* Los datos de las conversiones cuando se actualicen (al disponer de internet una vez al día máximo) se guardan en una Base de datos local SQLITE.
+* Los datos de las conversiones recuperarlos siempre de la Base de datos local para obtener mayor rendimiento.
+
+1.1
+
+* Opción para cambiar de idioma entre euskera, espalol e inglés.
+* Posibilidad de hacer conversiones sin internet. Los datos son del 03/08/2017.
+
+1.0
+
+* Primera versión con la lista de principales divisas y conversiones teniendo Internet.
+
+### Descripción
+
 App creada por Anartz Mugika (mugan86@gmail.com)
 
 Sencillo conversor de divisas desarrollado en Kotlin
