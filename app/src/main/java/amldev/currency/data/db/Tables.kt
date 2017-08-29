@@ -20,3 +20,15 @@ object MoneyCurrenciesTable {
     val ID_CONVERSION_MONEY = "_id_conversion_money"
     val VALUE_CONVERSION = "value_conversion"
 }
+
+object PreferencesTable {
+    val NAME = "PreferencesTable"
+    val LANGUAGE = "language"
+    val PREFER_MONEY = "prefer_money"
+}
+
+object SummaryInfoTable {
+    val NAME = "SummaryInfoTable"
+    val DATA = "data"
+    val ITEMS_CURRENCIES = "items_currencies"
+}
