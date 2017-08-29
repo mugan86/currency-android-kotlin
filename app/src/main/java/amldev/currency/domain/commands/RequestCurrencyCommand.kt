@@ -15,7 +15,5 @@ import domain.model.Currency
  * como es el caso de convertFromDataModel
  ***********************************************************************************************************************/
 class RequestCurrencyCommand(val baseMoney: String, val context: Context): Command<Currency> {
-    override fun execute(): Currency {
-        return CurrencyDataMapper().convertFromDataModel(CurrencyRequest(baseMoney).execute(context));
-    }
+    override fun execute(): Currency = CurrencyDataMapper().convertFromDataModel(CurrencyRequest(baseMoney).execute(context))
 }
