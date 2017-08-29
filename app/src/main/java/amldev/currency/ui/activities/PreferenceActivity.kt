@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.preference.PreferenceFragment
 import android.os.Build
 import android.annotation.TargetApi
-import amldev.currency.extensions.AppCompatPreferenceActivity
 import amldev.i18n.LocaleHelper
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem;

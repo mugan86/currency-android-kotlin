@@ -1,4 +1,4 @@
-package amldev.currency.extensions
+package amldev.currency.ui.activities
 
 import android.content.res.Configuration;
 import android.os.Bundle;
