@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/section_personal_data_pref">
+
+        <EditTextPreference
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/section_name_lastname_pref"
+            android:key="name_last_name_preference" />
+        <EditTextPreference
+            android:defaultValue="@string/default_selection_text"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Edit text preference"
+            android:key="email_preference" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Idioma">
+
+        <ListPreference
+            android:title="Actualmente tienes seleccionado..."
+            android:entries="@array/preference_language_strings_text"
+            android:entryValues="@array/preferences_language_codes"
+            android:key="select_language_preference" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Preference category">
+
+    </PreferenceCategory>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:title="Switch preference"
+        android:key="receive_notifications" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:title="Check box preference"
+        android:key="check_box_preference_1" />
+</PreferenceScreen>
