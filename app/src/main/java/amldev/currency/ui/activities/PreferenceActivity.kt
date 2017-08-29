@@ -12,7 +12,14 @@ import android.os.Build
 import android.annotation.TargetApi
 import amldev.currency.extensions.AppCompatPreferenceActivity
 import amldev.i18n.LocaleHelper
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem;
+import android.view.View
+import android.view.ViewGroup
+import android.util.TypedValue
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+
 
 
 /**
@@ -21,26 +28,42 @@ import android.view.MenuItem;
 class SettingsActivity : AppCompatPreferenceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        load()
+        //load()
 
-        //https://bitbucket.org/csandroid/webview-example-codesyntax/src/141bd484afc6972de716d4d76b38b6529e8e304d/app/src/main/java/com/codesyntax/web/MyPreferencesActivity.java?at=master&fileviewer=file-view-default
+        val root = findViewById<View>(android.R.id.list).parent.parent.parent as LinearLayout
+        val toolbar = LayoutInflater.from(this).inflate(R.layout.toolbar, root, false) as Toolbar
+        root.addView(toolbar, 0)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        fragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
     }
 
     /**
      * Set up the [android.app.ActionBar], if the API is available.
      */
     private fun setupActionBar() {
+        layoutInflater.inflate(R.layout.toolbar, findViewById<View>(android.R.id.content) as ViewGroup)
+        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
         val actionBar = supportActionBar
-        if (actionBar != null) {
-            // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setTitle("Options")
-        }
+        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun load() {
         setupActionBar()
         fragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
+
+        val horizontalMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                2f, resources.displayMetrics).toInt()
+
+        val verticalMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                2f, resources.displayMetrics).toInt()
+
+        val topMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                (resources.getDimension(4).toInt() + 30).toFloat(),
+                resources.displayMetrics).toInt()
+
+        listView.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin)
     }
 
     /**
