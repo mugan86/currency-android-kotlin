@@ -38,5 +38,7 @@ dependencies {
     compile "com.beust:klaxon:$klaxon_version"
     compile "com.squareup.picasso:picasso:$picasso_version"
     compile project(':i18n')
+    compile "com.android.support:support-v4:$support_version"
+    compile "com.android.support:support-vector-drawable:$support_version"
     testCompile 'junit:junit:4.12'
 }
