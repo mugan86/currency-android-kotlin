@@ -25,4 +25,22 @@
     <string name="share_chooser_title">Partekatu aplikazioa</string>
     <string name="share_message"> Jeitsi Google Play-n: https://play.google.com/store/apps/details?id=amldev.currency</string>
 
+    <!--Preferences-->
+    <string name="section_personal_data_pref">Datos generales</string>
+    <string name="section_name_lastname_pref">Nombre o nick que se mostrará a los demás</string>
+    <string name="select_language_pref_text">Idioma seleccionado</string>
+
+
+    <string-array name="preference_language_strings_text">
+        <item>@string/basque</item>
+        <item>@string/spanish</item>
+        <item>@string/english</item>
+    </string-array>
+
+    <string-array name="preferences_language_codes">
+        <item>eu</item>
+        <item>es</item>
+        <item>en</item>
+    </string-array>
+
 </resources>
