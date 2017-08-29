@@ -60,8 +60,6 @@ class MainActivity : AppCompatActivity() {
                 moneys = CurrencyDb().getMoneyListItems()
             }
 
-
-
             uiThread {
 
                 val adapter = MoneyAdapter(moneys , {
@@ -119,6 +117,11 @@ class MainActivity : AppCompatActivity() {
         when (item.getItemId()) {
             R.id.action_share -> {
                 startActivity(getDefaultShareIntent(this@MainActivity, null))
+                return true
+            }
+            R.id.settings -> {
+                startActivity(Intent(this, Settings2Activity::class.java))
+                overridePendingTransition(0,0)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
