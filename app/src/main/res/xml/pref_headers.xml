@@ -3,6 +3,7 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
+        android:breadCrumbShortTitle="Test"
         android:fragment="amldev.currency.ui.activities.Settings2Activity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
@@ -11,6 +12,11 @@
         android:fragment="amldev.currency.ui.activities.Settings2Activity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
+
+    <header
+        android:fragment="amldev.currency.ui.activities.Settings2Activity$NotificationPreferenceFragment"
+        android:icon="@drawable/ic_i18n"
+        android:title="@string/select_language_pref_text" />
 
     <header
         android:fragment="amldev.currency.ui.activities.Settings2Activity$DataSyncPreferenceFragment"
