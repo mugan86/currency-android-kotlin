@@ -102,7 +102,18 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
                         else
                             null)
 
-            } else if (preference is RingtonePreference) {
+            } else if (preference is SwitchPreference) {
+                val v = value as Boolean
+                println(v)
+                if (v) {
+                    println("Active!!!")
+                }
+                else {
+                    println("Not active")
+                }
+
+            }
+            else if (preference is RingtonePreference) {
                 // For ringtone preferences, look up the correct display value
                 // using RingtoneManager.
                 if (TextUtils.isEmpty(stringValue)) {
@@ -139,6 +150,23 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
         private fun isXLargeTablet(context: Context): Boolean {
             return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
         }
+        fun bindPreferenceSwitch(preference: Preference) {
+            val vibrateSwitch = preference as SwitchPreference
+
+            if (null != vibrateSwitch) {
+                vibrateSwitch.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { arg0, isVibrateOnObject ->
+                    val isVibrateOn = isVibrateOnObject as Boolean
+                    if (isVibrateOn) {
+                        println("Active!!!")
+                    }
+                    else {
+                        println("Not active")
+                    }
+                    true
+                }
+            }
+        }
+
 
         /**
          * Binds a preference's summary to its value. More specifically, when the

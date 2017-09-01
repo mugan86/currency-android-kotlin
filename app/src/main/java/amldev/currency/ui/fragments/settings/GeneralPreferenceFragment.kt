@@ -3,17 +3,13 @@ package amldev.currency.ui.fragments.settings
 import amldev.currency.R
 import amldev.currency.ui.activities.PreferencesActivity
 import android.annotation.TargetApi
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceFragment
-import android.view.MenuItem
-import android.content.Context.VIBRATOR_SERVICE
-import android.os.Vibrator
 import android.preference.Preference
+import android.preference.PreferenceFragment
 import android.preference.SwitchPreference
-
+import android.view.MenuItem
 
 
 /**
@@ -35,20 +31,8 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         // updated to reflect the new value, per the Android Design
         // guidelines.
 
-        val vibrateSwitch = findPreference("example_switch") as SwitchPreference
 
-        if (null != vibrateSwitch) {
-            vibrateSwitch.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { arg0, isVibrateOnObject ->
-                val isVibrateOn = isVibrateOnObject as Boolean
-                if (isVibrateOn) {
-                    println("Active!!!")
-                }
-                else {
-                    println("Not active")
-                }
-                true
-            }
-        }
+        PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
         PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_list"))
         PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_text"))
     }
