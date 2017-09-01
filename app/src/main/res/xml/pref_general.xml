@@ -8,7 +8,7 @@
         android:title="@string/pref_title_social_recommendations" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+
     <EditTextPreference
         android:selectable="false"
         android:capitalize="words"
@@ -34,5 +34,19 @@
     <PreferenceCategory android:title="Preference category">
 
     </PreferenceCategory>
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:selectable="false"
+        android:capitalize="words"
+        android:singleLine="true"
+        android:summary="1.1 - 2017/08/09"
+        android:title="Version" />
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:selectable="false"
+        android:capitalize="words"
+        android:singleLine="true"
+        android:summary="@string/app_name"
+        android:title="About App" />
 
 </PreferenceScreen>
