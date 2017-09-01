@@ -68,12 +68,6 @@ class MainActivity : AppCompatActivity() {
                 moneysList.adapter = adapter
                 progress.dismiss()
                 selectLanguageFab.visibility = View.VISIBLE
-
-
-                // println(CurrencyDb().getMoneyListItemsSize().toString())
-
-
-                // println("***********************Take money list from sqlite database ${moneys.size}")
             }
         }
 
@@ -120,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.settings -> {
-                startActivity(Intent(this, Settings2Activity::class.java))
+                startActivity(Intent(this, PreferencesActivity::class.java))
                 overridePendingTransition(0,0)
                 return true
             }
