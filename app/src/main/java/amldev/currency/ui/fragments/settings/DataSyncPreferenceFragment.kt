@@ -1,7 +1,7 @@
 package amldev.currency.ui.fragments.settings
 
 import amldev.currency.R
-import amldev.currency.ui.activities.Settings2Activity
+import amldev.currency.ui.activities.PreferencesActivity
 import android.annotation.TargetApi
 import android.content.Intent
 import android.os.Build
@@ -28,13 +28,13 @@ class DataSyncPreferenceFragment : PreferenceFragment() {
         // to their values. When their values change, their summaries are
         // updated to reflect the new value, per the Android Design
         // guidelines.
-        Settings2Activity.bindPreferenceSummaryToValue(findPreference("sync_frequency"))
+        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("sync_frequency"))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == android.R.id.home) {
-            startActivity(Intent(activity, Settings2Activity::class.java))
+            startActivity(Intent(activity, PreferencesActivity::class.java))
             return true
         }
         return super.onOptionsItemSelected(item)

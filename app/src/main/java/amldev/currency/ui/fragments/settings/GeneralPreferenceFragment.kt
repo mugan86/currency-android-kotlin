@@ -1,13 +1,20 @@
 package amldev.currency.ui.fragments.settings
 
 import amldev.currency.R
-import amldev.currency.ui.activities.Settings2Activity
+import amldev.currency.ui.activities.PreferencesActivity
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceFragment
 import android.view.MenuItem
+import android.content.Context.VIBRATOR_SERVICE
+import android.os.Vibrator
+import android.preference.Preference
+import android.preference.SwitchPreference
+
+
 
 /**
  * Created by anartzmugika on 30/8/17.
@@ -27,14 +34,29 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         // to their values. When their values change, their summaries are
         // updated to reflect the new value, per the Android Design
         // guidelines.
-        Settings2Activity.bindPreferenceSummaryToValue(findPreference("example_text"))
-        Settings2Activity.bindPreferenceSummaryToValue(findPreference("example_list"))
+
+        val vibrateSwitch = findPreference("example_switch") as SwitchPreference
+
+        if (null != vibrateSwitch) {
+            vibrateSwitch.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { arg0, isVibrateOnObject ->
+                val isVibrateOn = isVibrateOnObject as Boolean
+                if (isVibrateOn) {
+                    println("Active!!!")
+                }
+                else {
+                    println("Not active")
+                }
+                true
+            }
+        }
+        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_list"))
+        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_text"))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == android.R.id.home) {
-            startActivity(Intent(activity, Settings2Activity::class.java))
+            startActivity(Intent(activity, PreferencesActivity::class.java))
             return true
         }
         return super.onOptionsItemSelected(item)

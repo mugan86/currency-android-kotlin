@@ -18,6 +18,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 
 /**
  * A [PreferenceActivity] that presents a set of application settings. On
@@ -30,7 +31,7 @@ import android.widget.LinearLayout
  * Android Design: Settings](http://developer.android.com/design/patterns/settings.html) for design guidelines and the [Settings
  * API Guide](http://developer.android.com/guide/topics/ui/settings.html) for more information on developing a Settings UI.
  */
-class Settings2Activity : AppCompatPreferenceActivity() {
+class PreferencesActivity : AppCompatPreferenceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +87,8 @@ class Settings2Activity : AppCompatPreferenceActivity() {
          */
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
             val stringValue = value.toString()
+
+            println("Value in preferences $stringValue")
 
             if (preference is ListPreference) {
                 // For list preferences, look up the correct display value in
