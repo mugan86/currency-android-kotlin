@@ -29,11 +29,8 @@
                 android:value=".ui.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".ui.activities.Settings2Activity"
-            android:label="@string/title_activity_settings2"/>
+            android:name=".ui.activities.PreferencesActivity"
+            android:label="@string/title_activity_settings"/>
     </application>
 
 </manifest>
