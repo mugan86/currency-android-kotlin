@@ -26,8 +26,6 @@
     <string name="share_message"> Descarga en Google Play: https://play.google.com/store/apps/details?id=amldev.currency</string>
 
     <!--Preferences-->
-    <string name="section_personal_data_pref">Datos generales</string>
-    <string name="section_name_lastname_pref">Nombre o nick que se mostrará a los demás</string>
     <string name="select_language_pref_text">Idioma seleccionado</string>
 
 
@@ -42,4 +40,75 @@
         <item>es</item>
         <item>en</item>
     </string-array>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Generales</string>
+
+    <string name="select_language_summary">El idioma seleccionado es %1$s.</string>
+
+    <string name="pref_title_social_recommendations">Activar opciones para recomendar redes sociales</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Siempre</item>
+        <item>Cuando sea posible</item>
+        <item>Nunca</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Frecuencia de sincronización</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>3 horas</item>
+        <item>6 horas</item>
+        <item>Nunca</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notificaciones</string>
+    <string name="pref_title_new_message_notifications">Nuevas notificaciones recibidas</string>
+    <string name="pref_title_vibrate">Vibrate when we receive push notification </string>
+
 </resources>
+
