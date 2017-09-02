@@ -6,9 +6,8 @@ import android.annotation.TargetApi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.preference.Preference
+import android.preference.ListPreference
 import android.preference.PreferenceFragment
-import android.preference.SwitchPreference
 import android.view.MenuItem
 
 
@@ -35,6 +34,10 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
         PreferencesActivity.bindPreferenceSummaryToValue(findPreference("SELECT_LANGUAGE"))
         PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_text"))
+
+        val selectLanguage = findPreference("SELECT_LANGUAGE") as ListPreference
+
+        selectLanguage.setSummary(String.format(resources.getString(R.string.select_language_summary), selectLanguage.entries))
 
     }
 
