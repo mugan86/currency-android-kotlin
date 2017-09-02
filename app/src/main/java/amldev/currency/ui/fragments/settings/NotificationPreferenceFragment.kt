@@ -27,7 +27,7 @@ class NotificationPreferenceFragment : PreferenceFragment() {
         // to their values. When their values change, their summaries are
         // updated to reflect the new value, per the Android Design
         // guidelines.
-        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
+        // PreferencesActivity.bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
