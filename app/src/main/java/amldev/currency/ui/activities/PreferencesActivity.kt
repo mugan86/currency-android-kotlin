@@ -5,20 +5,17 @@ import amldev.currency.R
 import amldev.currency.ui.fragments.settings.DataSyncPreferenceFragment
 import amldev.currency.ui.fragments.settings.GeneralPreferenceFragment
 import amldev.currency.ui.fragments.settings.NotificationPreferenceFragment
+import amldev.i18n.LocaleHelper
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Configuration
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.preference.*
 import android.support.v7.widget.Toolbar
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 
 /**
  * A [PreferenceActivity] that presents a set of application settings. On
@@ -33,9 +30,13 @@ import android.widget.Toast
  */
 class PreferencesActivity : AppCompatPreferenceActivity() {
 
+    init {
+        instance = this
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupActionBar()
+        // PreferencesActivity.Companion.get(this)
     }
 
     /**
@@ -81,6 +82,13 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
     }
 
     companion object {
+
+        private var instance: PreferencesActivity? = null
+
+        fun applicationContext() : Context {
+            return instance!!.applicationContext
+        }
+
         /**
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
@@ -101,6 +109,9 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
                             preference.entries[index]
                         else
                             null)
+                if (stringValue == "SELECT_LANGUAGE") {
+                    LocaleHelper.setLocale(applicationContext(), preference.entries[index].toString())
+                }
 
             } else if (preference is SwitchPreference) {
                 val v = value as Boolean
@@ -110,29 +121,6 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
                 }
                 else {
                     println("Not active")
-                }
-
-            }
-            else if (preference is RingtonePreference) {
-                // For ringtone preferences, look up the correct display value
-                // using RingtoneManager.
-                if (TextUtils.isEmpty(stringValue)) {
-                    // Empty values correspond to 'silent' (no ringtone).
-                    preference.setSummary(R.string.pref_ringtone_silent)
-
-                } else {
-                    val ringtone = RingtoneManager.getRingtone(
-                            preference.getContext(), Uri.parse(stringValue))
-
-                    if (ringtone == null) {
-                        // Clear the summary if there was a lookup error.
-                        preference.setSummary(null)
-                    } else {
-                        // Set the summary to reflect the new ringtone display
-                        // name.
-                        val name = ringtone.getTitle(preference.getContext())
-                        preference.setSummary(name)
-                    }
                 }
 
             } else {
@@ -151,19 +139,13 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
             return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
         }
         fun bindPreferenceSwitch(preference: Preference) {
-            val vibrateSwitch = preference as SwitchPreference
+            val optionSwitchPreference = preference as SwitchPreference
 
-            if (null != vibrateSwitch) {
-                vibrateSwitch.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { arg0, isVibrateOnObject ->
-                    val isVibrateOn = isVibrateOnObject as Boolean
-                    if (isVibrateOn) {
-                        println("Active!!!")
-                    }
-                    else {
-                        println("Not active")
-                    }
+            optionSwitchPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { arg0,  optionSwitchPreference ->
+                    val isSwitchOn = optionSwitchPreference as Boolean
+                    if (isSwitchOn) println("Active!!!")
+                    else println("Not active")
                     true
-                }
             }
         }
 
