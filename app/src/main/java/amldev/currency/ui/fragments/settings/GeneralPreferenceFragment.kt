@@ -33,8 +33,9 @@ class GeneralPreferenceFragment : PreferenceFragment() {
 
 
         PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
-        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_list"))
+        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("SELECT_LANGUAGE"))
         PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_text"))
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
