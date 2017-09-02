@@ -8,6 +8,7 @@ import amldev.currency.ui.fragments.settings.NotificationPreferenceFragment
 import amldev.i18n.LocaleHelper
 import android.annotation.TargetApi
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -32,6 +33,11 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
 
     init {
         instance = this
+    }
+
+    //To use LocaleHelper select language
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,6 +117,7 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
                             null)
                 if (stringValue == "SELECT_LANGUAGE") {
                     LocaleHelper.setLocale(applicationContext(), preference.entries[index].toString())
+                    Intent(applicationContext(), PreferencesActivity::class.java)
                 }
 
             } else if (preference is SwitchPreference) {
