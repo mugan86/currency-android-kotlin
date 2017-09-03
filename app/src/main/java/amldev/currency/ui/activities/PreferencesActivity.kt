@@ -1,22 +1,13 @@
 package amldev.currency.ui.activities
 
-
-import amldev.currency.R
-import amldev.currency.ui.fragments.settings.DataSyncPreferenceFragment
+import amldev.currency.extensions.DataPreference
 import amldev.currency.ui.fragments.settings.GeneralPreferenceFragment
-import amldev.currency.ui.fragments.settings.NotificationPreferenceFragment
 import amldev.i18n.LocaleHelper
-import android.annotation.TargetApi
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.preference.*
-import android.support.v7.widget.Toolbar
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.LinearLayout
+
 
 /**
  * A [PreferenceActivity] that presents a set of application settings. On
@@ -39,52 +30,21 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(base))
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupActionBar()
-        // PreferencesActivity.Companion.get(this)
+        load()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        /*ActionBar actionBar = getSupportActionBar();
+    fun load() {
+        // setupActionBar()
+        val actionBar = supportActionBar
         if (actionBar != null) {
             // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }*/
-        val root = findViewById<View>(android.R.id.list).getParent().getParent().getParent() as LinearLayout
-        val toolbar = LayoutInflater.from(this).inflate(R.layout.toolbar, root, false) as Toolbar
-        root.addView(toolbar, 0)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    override fun onIsMultiPane(): Boolean {
-        return isXLargeTablet(this)
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    override fun onBuildHeaders(target: List<PreferenceActivity.Header>) {
-        loadHeadersFromResource(R.xml.pref_headers, target)
-    }
-
-    /**
-     * This method stops fragment injection in malicious applications.
-     * Make sure to deny any unknown fragments here.
-     */
-    override fun isValidFragment(fragmentName: String): Boolean {
-        return PreferenceFragment::class.java.name == fragmentName
-                || GeneralPreferenceFragment::class.java.name == fragmentName
-                || DataSyncPreferenceFragment::class.java.name == fragmentName
-                || NotificationPreferenceFragment::class.java.name == fragmentName
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.title = "Options"
+        }
+        fragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
     }
 
     companion object {
@@ -102,7 +62,9 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
             val stringValue = value.toString()
 
-            println("Value in preferences $stringValue")
+            val languageBeforeChange = DataPreference.getPreference(applicationContext(), "SELECT_LANGUAGE")
+
+            println("Value in preferences $stringValue / Before select language: $languageBeforeChange")
 
             if (preference is ListPreference) {
                 // For list preferences, look up the correct display value in
@@ -115,10 +77,6 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
                             preference.entries[index]
                         else
                             null)
-                if (stringValue == "SELECT_LANGUAGE") {
-                    LocaleHelper.setLocale(applicationContext(), preference.entries[index].toString())
-                    Intent(applicationContext(), PreferencesActivity::class.java)
-                }
 
             } else if (preference is SwitchPreference) {
                 val v = value as Boolean
