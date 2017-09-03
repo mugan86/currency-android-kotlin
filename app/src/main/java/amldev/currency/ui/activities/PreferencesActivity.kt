@@ -1,10 +1,9 @@
 package amldev.currency.ui.activities
 
-import amldev.currency.extensions.DataPreference
+import amldev.currency.R
 import amldev.currency.ui.fragments.settings.GeneralPreferenceFragment
 import amldev.i18n.LocaleHelper
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import android.preference.*
 
@@ -22,10 +21,6 @@ import android.preference.*
  */
 class PreferencesActivity : AppCompatPreferenceActivity() {
 
-    init {
-        instance = this
-    }
-
     //To use LocaleHelper select language
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(base))
@@ -42,18 +37,12 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.title = "Options"
+            actionBar.title = resources.getString(R.string.settings_title)
         }
         fragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
     }
 
     companion object {
-
-        private var instance: PreferencesActivity? = null
-
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
-        }
 
         /**
          * A preference value change listener that updates the preference's summary
@@ -61,10 +50,6 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
          */
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
             val stringValue = value.toString()
-
-            val languageBeforeChange = DataPreference.getPreference(applicationContext(), "SELECT_LANGUAGE")
-
-            println("Value in preferences $stringValue / Before select language: $languageBeforeChange")
 
             if (preference is ListPreference) {
                 // For list preferences, look up the correct display value in
@@ -96,13 +81,6 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
             true
         }
 
-        /**
-         * Helper method to determine if the device has an extra-large screen. For
-         * example, 10" tablets are extra-large.
-         */
-        private fun isXLargeTablet(context: Context): Boolean {
-            return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
-        }
         fun bindPreferenceSwitch(preference: Preference) {
             val optionSwitchPreference = preference as SwitchPreference
 
