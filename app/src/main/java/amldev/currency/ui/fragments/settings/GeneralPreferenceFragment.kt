@@ -11,6 +11,7 @@ import android.preference.PreferenceFragment
 import android.view.MenuItem
 
 
+
 /**
  * Created by anartzmugika on 30/8/17.
  */
@@ -20,6 +21,7 @@ import android.view.MenuItem
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 class GeneralPreferenceFragment : PreferenceFragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_general)
@@ -38,6 +40,13 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         val selectLanguage = findPreference("SELECT_LANGUAGE") as ListPreference
 
         selectLanguage.setSummary(String.format(resources.getString(R.string.select_language_summary), selectLanguage.entries))
+
+        selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
+            //set your shared preference value equal to checked
+            println("Aldatuta: " + newValue.toString())
+            activity.recreate()
+            true
+        }
 
     }
 
