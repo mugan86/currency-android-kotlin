@@ -1,6 +1,7 @@
 package amldev.currency.ui.fragments.settings
 
 import amldev.currency.R
+import amldev.currency.extensions.DataPreference
 import amldev.currency.ui.activities.PreferencesActivity
 import android.annotation.TargetApi
 import android.content.Intent
@@ -9,8 +10,6 @@ import android.os.Bundle
 import android.preference.ListPreference
 import android.preference.PreferenceFragment
 import android.view.MenuItem
-
-
 
 /**
  * Created by anartzmugika on 30/8/17.
@@ -42,8 +41,7 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         selectLanguage.setSummary(String.format(resources.getString(R.string.select_language_summary), selectLanguage.entries))
 
         selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
-            //set your shared preference value equal to checked
-            println("Aldatuta: " + newValue.toString())
+            DataPreference.setPreference(activity, Array<String>(1){"UPDATE_LANGUAGE"}, Array<String>(1){"1"})
             activity.recreate()
             true
         }
