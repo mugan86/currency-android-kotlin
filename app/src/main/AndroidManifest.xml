@@ -29,6 +29,7 @@
                 android:value=".ui.activities.MainActivity" />
         </activity>
         <activity
+            android:theme="@style/AppPreferenceTheme"
             android:name=".ui.activities.PreferencesActivity"
             android:label="@string/title_activity_settings"/>
     </application>
