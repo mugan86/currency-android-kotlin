@@ -3,6 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.db.CurrencyDbHelper
+import amldev.currency.extensions.DataPreference
 import amldev.currency.extensions.getDefaultShareIntent
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.i18n.LocaleHelper
@@ -30,6 +31,14 @@ class MainActivity : AppCompatActivity() {
         super.attachBaseContext(LocaleHelper.onAttach(base))
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (DataPreference.getPreference(this, "UPDATE_LANGUAGE").equals("1")) {
+            DataPreference.setPreference(this, Array<String>(1){"UPDATE_LANGUAGE"}, Array<String>(1){"0"})
+            this.recreate()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,8 +57,6 @@ class MainActivity : AppCompatActivity() {
             val db = CurrencyDbHelper
 
             println(db.DB_NAME)
-
-
 
             if (CurrencyDb().getMoneyListItemsSize () == 0) {
                 println("Load JSON File")
@@ -122,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addActions() {
+    private fun addActions() {
         selectLanguageFab.setOnClickListener {
             LocaleHelper.languageOptionsDialog(this@MainActivity)
         }
