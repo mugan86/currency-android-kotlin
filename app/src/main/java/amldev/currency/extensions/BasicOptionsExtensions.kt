@@ -1,6 +1,7 @@
 package amldev.currency.extensions
 
 import amldev.currency.R
+import amldev.currency.data.Constants
 import android.content.Context
 import android.net.ConnectivityManager
 import android.content.Intent
@@ -40,9 +41,9 @@ fun getDefaultShareIntent(context: Context, bm: Bitmap?): Intent {
 
     val intent = Intent(Intent.ACTION_SEND)
     if (bm == null) {
-        intent.type = "text/plain"
+        intent.type = Constants.INTENT_TYPE_TEXT
     } else {
-        intent.type = "image/*"
+        intent.type = Constants.INTENT_TYPE_IMAGE
     }
     //
 
@@ -57,7 +58,7 @@ fun getDefaultShareIntent(context: Context, bm: Bitmap?): Intent {
     if (bm != null) {
         // Save this bitmap to a file.
         val cache = context.externalCacheDir
-        val sharefile = File(cache, "toshare.png")
+        val sharefile = File(cache, Constants.SHARE_IMAGE_DEFAULT)
         try {
             val out = FileOutputStream(sharefile)
             assert(bm != null)
@@ -68,7 +69,7 @@ fun getDefaultShareIntent(context: Context, bm: Bitmap?): Intent {
             e.printStackTrace()
         }
 
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + sharefile))
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("${Constants.URL_FILE_START}$sharefile"))
     }
 
     intent.putExtra(Intent.EXTRA_SUBJECT, subject)
