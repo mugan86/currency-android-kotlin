@@ -1,6 +1,7 @@
 package amldev.currency.ui.fragments.settings
 
 import amldev.currency.R
+import amldev.currency.data.Constants
 import amldev.currency.extensions.DataPreference
 import amldev.currency.ui.activities.PreferencesActivity
 import android.annotation.TargetApi
@@ -33,15 +34,14 @@ class GeneralPreferenceFragment : PreferenceFragment() {
 
 
         PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
-        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("SELECT_LANGUAGE"))
-        PreferencesActivity.bindPreferenceSummaryToValue(findPreference("example_text"))
+        PreferencesActivity.bindPreferenceSummaryToValue(findPreference(Constants.SELECT_LANGUAGE))
 
-        val selectLanguage = findPreference("SELECT_LANGUAGE") as ListPreference
+        val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
 
         selectLanguage.setSummary(String.format(resources.getString(R.string.select_language_summary), selectLanguage.entries))
 
         selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
-            DataPreference.setPreference(activity, Array<String>(1){"UPDATE_LANGUAGE"}, Array<String>(1){"1"})
+            DataPreference.setPreference(activity, Array<String>(1){Constants.UPDATE_LANGUAGE}, Array<String>(1){"1"})
             activity.recreate()
             true
         }
@@ -52,6 +52,8 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         val id = item.itemId
         if (id == android.R.id.home) {
             startActivity(Intent(activity, PreferencesActivity::class.java))
+            activity.finish()
+            activity.overridePendingTransition(0,0)
             return true
         }
         return super.onOptionsItemSelected(item)

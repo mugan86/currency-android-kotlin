@@ -1,6 +1,7 @@
 package amldev.currency.ui.activities
 
 import amldev.currency.R
+import amldev.currency.data.Constants
 import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.db.CurrencyDbHelper
 import amldev.currency.extensions.DataPreference
@@ -10,6 +11,7 @@ import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -24,6 +26,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 
+
 class MainActivity : AppCompatActivity() {
     var moneys: List<Money> = mutableListOf()
     //To use LocaleHelper select language
@@ -33,8 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (DataPreference.getPreference(this, "UPDATE_LANGUAGE").equals("1")) {
-            DataPreference.setPreference(this, Array<String>(1){"UPDATE_LANGUAGE"}, Array<String>(1){"0"})
+        if (DataPreference.getPreference(this, Constants.UPDATE_LANGUAGE).equals("1")) {
+            DataPreference.setPreference(this, Array<String>(1){Constants.UPDATE_LANGUAGE}, Array<String>(1){"0"})
             this.recreate()
         }
     }
@@ -74,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 })
                 moneysList.adapter = adapter
                 progress.dismiss()
-                selectLanguageFab.visibility = View.VISIBLE
+                sendOpinionInGooglePlay.visibility = View.VISIBLE
             }
         }
 
@@ -130,8 +133,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addActions() {
-        selectLanguageFab.setOnClickListener {
-            LocaleHelper.languageOptionsDialog(this@MainActivity)
+        sendOpinionInGooglePlay.setOnClickListener {
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlGooglePlay(this))))
+            } catch (anfe: android.content.ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlAndroidMarket(this))))
+            }
+            overridePendingTransition(0, 0)
         }
     }
 

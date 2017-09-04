@@ -1,6 +1,7 @@
 package amldev.currency.ui.activities
 
 import amldev.currency.R
+import amldev.currency.data.Constants
 import amldev.currency.extensions.showHideKeyBoardForce
 import amldev.i18n.LocaleHelper
 import android.content.Context
@@ -78,8 +79,6 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         selectMoneyValueToConvertTextView.visibility = View.GONE
         editConversionValueImageButton.visibility = View.GONE
         showHideKeyBoardForce(inputMoneyValueToConvertEditText, true, this)
-
-        // linearlayout = inputMoneyValueToConvertEditText
     }
 
     private fun addActions() {
@@ -142,9 +141,9 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
     private fun getIntentExtras(): Array<String> {
         var data: Array<String> = arrayOf("", "", "")
-        data.set(0,intent.getStringExtra("symbol") ?: "EUR")
-        data.set(1, intent.getStringExtra("name")?: "Euro")
-        data.set(2, intent.getStringExtra("flag")?: "europe")
+        data.set(0, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_SYMBOL_VALUE) ?: Constants.DEFAULT_MONEY_SYMBOL)
+        data.set(1, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_NAME_VALUE)?: Constants.DEFAULT_MONEY_NAME)
+        data.set(2, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_FLAG_VALUE)?: Constants.DEFAULT_MONEY_FLAG)
         return data
     }
 
