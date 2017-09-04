@@ -5,7 +5,7 @@
     <item android:id="@+id/action_share"
         android:orderInCategory="100"
         android:icon="@drawable/ic_share"
-        android:title="Share"
+        android:title="@string/share_chooser_title"
         android:showAsAction="ifRoom"
         app:showAsAction="always"
         tools:ignore="AppCompatResource" />
