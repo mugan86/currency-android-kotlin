@@ -15,6 +15,7 @@ Desarrollada en Kotlin / Develop with Kotlin.
 
 **1.2 (Trabajando en la próxima versión)**
 
+* Posibilidad de configurar las opciones de sincronización, idioma y otros aspectos de la aplicación.
 * Los datos de las conversiones cuando se actualicen (al disponer de internet una vez al día máximo) se guardan en una Base de datos local SQLITE.
 * Los datos de las conversiones recuperarlos siempre de la Base de datos local para obtener mayor rendimiento.
 
@@ -58,6 +59,7 @@ La lista de divisas que contiene el conversor. Será ampliable con el tiempo.
 
 **1.2 (Working on the next version)**
 
+* Possibility to configure synchronization options, language and other aspects of the application.
 * Conversion data when updated (when the Internet is available once a day maximum) is saved in a local SQLITE database.
 * Conversion data will always retrieve it from the local database for greater performance.
 
