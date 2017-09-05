@@ -2,9 +2,10 @@ package amldev.currency.data
 
 import android.content.Context
 
-/**
+/***************************************************************************************************
  * Created by anartzmugika on 4/9/17.
- */
+ * Add constants to use in app.
+ **************************************************************************************************/
 class Constants {
     companion object {
 
@@ -27,8 +28,10 @@ class Constants {
         val URL_FILE_START = "file://"
 
         //URLs
-        fun ourAppUrlAndroidMarket (context: Context) = "https://play.google.com/store/apps/details?id=" + packageName(context)
-        fun ourAppUrlGooglePlay (context: Context) = "https://play.google.com/store/apps/details?id=" + packageName(context)
+        private val GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id="
+        private val MARKET_URL = "market://details?id="
+        fun ourAppUrlAndroidMarket (context: Context) = "$MARKET_URL${packageName(context)}"
+        fun ourAppUrlGooglePlay (context: Context) = "$GOOGLE_PLAY_URL${packageName(context)}"
         private fun packageName(context: Context) = context.packageName
     }
 }
