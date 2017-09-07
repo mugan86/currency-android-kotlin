@@ -45,8 +45,7 @@
         <item name="android:background">@color/divider</item>
     </style>
 
-    <style name="DefaultToolbar">
-        <item name="android:layout_width">match_parent</item>
+    <style name="DefaultToolbar" parent="AllHeightWidth">
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
