@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="anartzmugika.welcomeactivity">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+        <activity android:name=".ui.activities.WelcomeActivity" />
+        <activity
+            android:name=".ui.activities.SelectLanguageActivity"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/AppThemeNoActionBar"/>
+    </application>
+
+
+</manifest>

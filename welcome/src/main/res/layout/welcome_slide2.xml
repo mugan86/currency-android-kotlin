@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AllHeightWidth"
+    android:background="@color/bg_screen2">
+
+    <LinearLayout
+        style="@style/AllHeightWidthWrap"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/WelcomeImagesSize"
+            android:src="@drawable/ic_weather_partlycloudy" />
+
+        <TextView
+            style="@style/WelcomeTitleTextStyles"
+            android:text="@string/slide_2_title"
+            />
+
+        <TextView
+            style="@style/WelcomeDescriptionTextStyles"
+            android:text="@string/slide_2_desc"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

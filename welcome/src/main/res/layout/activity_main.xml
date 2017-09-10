@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AllHeightWidth"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.SelectLanguageActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_marginTop="?attr/actionBarSize"
+        style="@style/AllHeightWidth"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/activity_vertical_margin">
+        <TextView
+            android:layout_marginBottom="15sp"
+            android:id="@+id/selectLanguageTextView"
+            style="@style/AllHeightWidthWrap"
+            android:text="@string/select_language_is" />
+        <TextView
+            style="@style/AllHeightWidthWrap"
+            android:text="@string/start_again_desc" />
+
+        <Button
+            android:id="@+id/btn_start_again"
+            style="@style/Buttons"
+            android:text="@string/start_again" />
+
+        <CheckBox
+            android:id="@+id/englishLanguageCheckbox"
+            style="@style/CheckBox"
+            android:text="@string/english" />
+
+        <CheckBox
+            android:id="@+id/spanishLanguageCheckbox"
+            style="@style/CheckBox"
+            android:text="@string/spanish" />
+
+        <CheckBox
+            android:id="@+id/basqueLanguageCheckbox"
+            style="@style/CheckBox"
+            android:text="@string/basque" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
