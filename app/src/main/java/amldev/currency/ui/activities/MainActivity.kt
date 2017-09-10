@@ -8,6 +8,8 @@ import amldev.currency.extensions.DataPreference
 import amldev.currency.extensions.getDefaultShareIntent
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.i18n.LocaleHelper
+import anartzmugika.welcomeactivity.extensions.PrefManager
+import anartzmugika.welcomeactivity.ui.activities.WelcomeActivity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -36,6 +38,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (PrefManager(this@MainActivity).isFirstTimeLaunch) {
+            startActivity(Intent(this@MainActivity, WelcomeActivity::class.java))
+            overridePendingTransition(0,0)
+        }
         if (DataPreference.getPreference(this, Constants.UPDATE_LANGUAGE).equals("1")) {
             DataPreference.setPreference(this, Array<String>(1){Constants.UPDATE_LANGUAGE}, Array<String>(1){"0"})
             this.recreate()
