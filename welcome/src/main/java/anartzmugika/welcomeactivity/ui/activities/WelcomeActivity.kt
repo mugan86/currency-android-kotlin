@@ -5,19 +5,20 @@ package anartzmugika.welcomeactivity.ui.activities
  */
 
 import anartzmugika.welcomeactivity.R
+import anartzmugika.welcomeactivity.extensions.PrefManager
+import anartzmugika.welcomeactivity.extensions.changeStatusBarColor
+import anartzmugika.welcomeactivity.ui.adapters.MyViewPageAdapter
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.text.Html
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
-
-import anartzmugika.welcomeactivity.extensions.PrefManager
-
-import anartzmugika.welcomeactivity.extensions.changeStatusBarColor
-import anartzmugika.welcomeactivity.ui.adapters.MyViewPageAdapter
 import kotlinx.android.synthetic.main.activity_welcome.*
+
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -126,5 +127,22 @@ class WelcomeActivity : AppCompatActivity() {
         override fun onPageScrollStateChanged(arg0: Int) {
 
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() === 0) {
+            Log.d("CDA", "onKeyDown Called")
+            onBackPressed()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+
+    override fun onBackPressed() {
+        Log.d("CDA", "onBackPressed Called")
+        finishAffinity()
     }
 }
