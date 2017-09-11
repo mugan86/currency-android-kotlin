@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/AllHeightWidth"
-    android:background="@color/bg_screen2">
+    android:background="@color/bg_screen3">
 
     <LinearLayout
         style="@style/AllHeightWidthWrap"
@@ -11,7 +11,7 @@
 
         <ImageView
             style="@style/WelcomeImagesSize"
-            android:src="@drawable/ic_weather_partlycloudy" />
+            android:src="@drawable/ic_currency_eur" />
 
         <TextView
             style="@style/WelcomeTitleTextStyles"

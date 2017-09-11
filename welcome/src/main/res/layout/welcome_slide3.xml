@@ -11,7 +11,7 @@
 
         <ImageView
             style="@style/WelcomeImagesSize"
-            android:src="@drawable/ic_map_marker" />
+            android:src="@drawable/ic_i18n" />
 
         <TextView
             style="@style/WelcomeTitleTextStyles"
