@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Txanpon bihurgailua</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">JARRAITU</string>
+    <string name="skip">UTZI</string>
+    <string name="start">HASI</string>
+
+    <string name="slide_1_title">@string/app_name</string>
+    <string name="slide_1_desc">12 txanpon desberdinetara bihurketak egiteko aplikazioa!</string>
+
+    <string name="slide_2_title">Txanponak eguneratua!</string>
+    <string name="slide_2_desc">Txanpon bihurketen baloreak eguneratua azken balioekin!</string>
+
+    <string name="slide_3_title">Eleanitza</string>
+    <string name="slide_3_desc">Aplikazioa Euskaraz, Espainolez eta Ingelesez erabilgai!</string>
+
+    <string name="slide_4_title">Konfigurazioa</string>
+    <string name="slide_4_desc">Hizkuntza eta aplikazioaren aukerak pertsonalizatzeko aukera!</string>
+
+    <string name="start_again_desc">Click in Start again!</string>
+    <string name="start_again">Start Again</string>
+
+    <string name="select_language_is">El idioma que has seleccionado es %1$s</string>
+
+    <string name="dot_html">&#8226;</string>
+</resources>

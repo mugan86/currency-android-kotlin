@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Currency converter</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="skip">IGNORAR</string>
+    <string name="start">COMENZAR</string>
+
+    <string name="slide_1_title">@string/app_name</string>
+    <string name="slide_1_desc">¡Aplicación para realizar conversiones en 12 monedas diferentes!</string>
+
+    <string name="slide_2_title">¡Divisas actualizadas!</string>
+    <string name="slide_2_desc">¡Valores de conversión de moneda actualizados con los últimos valores!</string>
+
+    <string name="slide_3_title">Multi idioma</string>
+    <string name="slide_3_desc">¡App disponible en Español, Euskera e Inglés!</string>
+
+    <string name="slide_4_title">Configuración</string>
+    <string name="slide_4_desc">¡Posibilidad de personalizar el idioma y las opciones de aplicación!</string>
+
+    <string name="start_again_desc">Click in Start again!</string>
+    <string name="start_again">Start Again</string>
+
+    <string name="select_language_is">Your select language is %1$s</string>
+
+    <string name="dot_html">&#8226;</string>
+</resources>

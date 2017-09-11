@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Currency converter</string>
+    <string name="app_name">Conversor de divisas</string>
 
     <string name="sans_serif">sans-serif</string>
     <string name="sans_serif_light">sans-serif-light</string>
