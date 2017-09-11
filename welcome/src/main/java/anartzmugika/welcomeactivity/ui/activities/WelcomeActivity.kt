@@ -80,7 +80,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         layoutDots!!.removeAllViews()
 
-        layouts!!.map { i->
+        layouts!!.map { i ->
             var textView = TextView(this)
             textView.text = Html.fromHtml(resources.getString(R.string.dot_html))
             textView.textSize = 35f
@@ -112,7 +112,6 @@ class WelcomeActivity : AppCompatActivity() {
                 // last page. make button text to GOT IT
                 btn_next!!.text = getString(R.string.start)
                 btn_skip!!.visibility = View.GONE
-                launchHomeScreen()
             } else {
                 // still pages are left
                 btn_next!!.text = getString(R.string.next)
