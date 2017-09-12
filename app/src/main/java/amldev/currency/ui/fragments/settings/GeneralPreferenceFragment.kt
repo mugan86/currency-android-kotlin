@@ -4,7 +4,9 @@ import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.extensions.DataPreference
 import amldev.currency.ui.activities.PreferencesActivity
+import amldev.i18n.LanguageEnum
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -34,14 +36,23 @@ class GeneralPreferenceFragment : PreferenceFragment() {
 
 
         PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
-        PreferencesActivity.bindPreferenceSummaryToValue(findPreference(Constants.SELECT_LANGUAGE))
+        // PreferencesActivity.bindPreferenceSummaryToValue(findPreference(Constants.SELECT_LANGUAGE))
 
         val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
 
-        selectLanguage.setSummary(String.format(resources.getString(R.string.select_language_summary), selectLanguage.entries))
+        val selectLangCode = DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE);
+
+        println("Select lang code: " + selectLangCode)
+
+        val value = String.format(String.format(resources.getString(R.string.select_language_summary),
+                LanguageEnum.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity)))
+        println(value)
+        selectLanguage.setSummary(value)
 
         selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
+            println(newValue.toString())
             DataPreference.setPreference(activity, Array<String>(1){Constants.UPDATE_LANGUAGE}, Array<String>(1){"1"})
+            DataPreference.setPreference(activity, Array<String>(1){Constants.SELECT_LANGUAGE}, Array<String>(1){ newValue.toString()})
             activity.recreate()
             true
         }
@@ -59,3 +70,4 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         return super.onOptionsItemSelected(item)
     }
 }
+
