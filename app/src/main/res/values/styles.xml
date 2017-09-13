@@ -56,4 +56,27 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <style name="WrapContentHeightWidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="WrapHeightMatchWidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="WrapWidthtMatchHeight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+
+    <style name="DefaultFloatingActionBar" parent="WrapContentHeightWidth">
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/primary_dark</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">20sp</item>
+    </style>
+
 </resources>
