@@ -14,4 +14,8 @@
     <dimen name="secondary_font_size">13sp</dimen>
 
     <dimen name="app_bar_height">300dp</dimen>
+
+    <dimen name="app_fifteen_sp">15sp</dimen>
+
+    <dimen name="flag_default_size">48sp</dimen>
 </resources>
