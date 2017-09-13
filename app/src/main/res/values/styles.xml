@@ -71,6 +71,10 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="FlagsDefaultSize">
+        <item name="android:layout_width">@dimen/flag_default_size</item>
+        <item name="android:layout_height">@dimen/flag_default_size</item>
+    </style>
 
     <style name="DefaultFloatingActionBar" parent="WrapContentHeightWidth">
         <item name="android:visibility">gone</item>
