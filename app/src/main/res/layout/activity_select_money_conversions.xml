@@ -24,9 +24,8 @@
             android:layout_alignParentRight="true"
             android:id="@+id/selectLanguageFlag"
             android:src="@drawable/ic_europe"
-            android:layout_margin="15sp"
-            android:layout_width="48sp"
-            android:layout_height="48sp"
+            android:layout_margin="@dimen/app_fifteen_sp"
+            style="@style/FlagsDefaultSize"
             tools:src="@drawable/ic_europe"/>
     </RelativeLayout>
     <LinearLayout
