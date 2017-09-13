@@ -18,7 +18,7 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/select_language_pref_text" />
-    <PreferenceCategory android:title="Preference category">
+    <PreferenceCategory android:title="@string/more_info_app">
 
     </PreferenceCategory>
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
@@ -30,10 +30,22 @@
         android:title="Version" />
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
     <EditTextPreference
-        android:selectable="false"
         android:capitalize="words"
+        android:selectable="false"
         android:singleLine="true"
         android:summary="@string/app_name"
         android:title="About App" />
+
+    <PreferenceCategory android:title="Contact">
+
+    </PreferenceCategory>
+    <Preference android:title="Test" android:summary="Descarga la app desde Google Play">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/details?id=amldev.currency" />
+    </Preference>
+    <Preference android:title="Twitter" >
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/details?id=amldev.currency" />
+    </Preference>
 
 </PreferenceScreen>

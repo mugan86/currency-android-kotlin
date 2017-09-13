@@ -54,6 +54,8 @@
         based on your message history
     </string>
 
+    <string name="more_info_app">Más información sobre la app</string>
+
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
