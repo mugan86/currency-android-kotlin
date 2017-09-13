@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/AllHeightWidth"
     android:orientation="vertical"
     tools:context="amldev.currency.ui.activities.SelectMoneyConversionsActivity">
     <include layout="@layout/toolbar" />
     <RelativeLayout
         android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/selectMoneyZone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/WrapHeightMatchWidth"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
         <TextView
@@ -18,8 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10sp"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/WrapHeightMatchWidth"
             android:id="@+id/selectMoneyInfoTextView"
             android:layout_toLeftOf="@+id/selectLanguageFlag"
             tools:text="@string/default_selection_text"/>
@@ -43,16 +40,14 @@
             android:ems="12"
             android:id="@+id/inputConvertInfoTextView"
             android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/WrapContentHeightWidth"
             android:layout_marginRight="10sp"
             android:layout_marginLeft="18sp"
             tools:text="@string/input_value_money_instructions"/>
         <TextView
             android:ems="5"
             android:id="@+id/selectMoneyValueToConvertTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            style="@style/WrapWidthtMatchHeight"
             android:gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:textAlignment="center"
@@ -61,8 +56,7 @@
             android:layout_gravity="center"
             android:id="@+id/editConversionValueImageButton"
             android:background="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/WrapContentHeightWidth"
             android:src="@android:drawable/ic_menu_edit"/>
 
         <EditText
@@ -72,20 +66,17 @@
             android:text="1"
             android:layout_gravity="end"
             android:ems="6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/WrapContentHeightWidth" />
     </LinearLayout>
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/reloadDataLinearLayout"
         android:layout_below="@+id/inputConversionUnitsZone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/AllHeightWidth"
         android:gravity="center">
         <Button
             android:id="@+id/reloadDataButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/WrapContentHeightWidth"
             android:text="@string/try_again_load"/>
     </LinearLayout>
     <GridView
