@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.FloatingActionButton android:visibility="gone"
+    android:id="@+id/sendOpinionInGooglePlay"
+    app:backgroundTint="@color/primary_dark"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="20sp"
+    app:srcCompat="@drawable/ic_google_play"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -27,15 +27,7 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:visibility="gone"
-            android:id="@+id/sendOpinionInGooglePlay"
-            app:backgroundTint="@color/primary_dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="20sp"
-            app:srcCompat="@drawable/ic_google_play" />
+        <include layout="@layout/fab" />
     </android.support.design.widget.CoordinatorLayout>
 
 </FrameLayout>

@@ -24,6 +24,7 @@ import data.CurrencyRequest
 import domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.fab.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
