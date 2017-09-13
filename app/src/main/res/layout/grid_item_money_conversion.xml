@@ -7,18 +7,16 @@
     <ImageView
         android:layout_marginLeft="12sp"
         android:id="@+id/gridImage"
-        android:layout_width="48sp"
-        android:layout_height="48sp"
+        style="@style/FlagsDefaultSize"
         android:src="@drawable/ic_europe">
     </ImageView>
 
     <TextView
         android:layout_gravity="center_vertical"
         android:id="@+id/gridText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:textSize="15sp"
+        style="@style/WrapContentHeightWidth"
+        android:layout_marginStart="@dimen/app_fifteen_sp"
+        android:textSize="@dimen/app_fifteen_sp"
         tools:text="Test">
     </TextView>
 
