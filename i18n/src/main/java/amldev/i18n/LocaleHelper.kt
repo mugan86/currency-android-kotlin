@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog
 
 /***************************************************************************************************
  * Created by Anartz Mugika (mugan86@gmail.com) on 30/7/17.
+ * Manage Locale language use in app.
  ***************************************************************************************************/
 object LocaleHelper {
 
@@ -27,9 +28,7 @@ object LocaleHelper {
         return setLocale(context, lang)
     }
 
-    fun getLanguage(context: Context): String {
-        return getPersistedData(context, Locale.getDefault().language)
-    }
+    fun getLanguage(context: Context): String = getPersistedData(context, Locale.getDefault().language)
 
     fun setLocale(context: Context, language: String): Context {
         persist(context, language)
@@ -97,7 +96,6 @@ object LocaleHelper {
 
         if(changeLanguage) {
             setLocale(context, lang)
-            println("change language from " + getLanguage(context) + " to " + lang)
             restartApp(context)
         }
     }
