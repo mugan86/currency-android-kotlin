@@ -7,7 +7,7 @@ import android.content.Context
  *
  * Return language name after pass get preference language value.
  **************************************************************************************************/
-enum class LanguageEnum {
+enum class Language {
     SELECT;
 
     fun getLanguageName(lang: String, context: Context): String {
