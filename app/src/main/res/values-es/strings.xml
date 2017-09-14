@@ -46,13 +46,24 @@
     <!-- Example General settings -->
     <string name ="settings_title">Opciones generales</string>
     <string name="pref_header_general">Generales</string>
+    <string name="pref_title_contact">Contacto</string>
 
     <string name="select_language_summary">El idioma seleccionado es %1$s.</string>
 
-    <string name="pref_title_social_recommendations">Activar opciones para recomendar redes sociales</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
+    <string name="pref_title_use_internet">Usar internet para usar los valores actuales</string>
+    <string name="pref_description_use_internet">Usar internet para tener los valores de las conversiones actualizadas</string>
+
+    <string name="pref_title_about_app">Sobre la aplicación</string>
+    <string name="pref_description_about_app">Conversor de divisas creado en Kotlin y Android por Anartz Mugika (mugan86@gmail.com)</string>
+
+    <string name="pref_title_version_info">Versión</string>
+    <string name="pref_description_version_info">1.2 – 2017/09/16</string>
+
+    <string name="pref_title_google_play_opinion">¡Dame tu opinión!</string>
+    <string name="pref_description_google_play_opinion">¡Hacer click para poder escribir tu opinión en la ficha de la aplicación!</string>
+
+    <string name="pref_title_twitter">Twitter</string>
+    <string name="pref_description_twitter">Sigueme para tener novedades sobre esta app y otros proyectos mios</string>
 
     <string name="more_info_app">Más información sobre la app</string>
 

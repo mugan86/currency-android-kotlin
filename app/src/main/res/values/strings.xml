@@ -49,13 +49,24 @@
 
     <string name ="settings_title">General options</string>
     <string name="pref_header_general">General</string>
+    <string name="pref_title_contact">Contact</string>
 
     <string name="select_language_summary">The select language is %1$s .</string>
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
+    <string name="pref_title_use_internet">Use internet to update currencies</string>
+    <string name="pref_description_use_internet">Use internet to update money currencies today</string>
+
+    <string name="pref_title_about_app">About app</string>
+    <string name="pref_description_about_app">Currency converter created in Kotlin and Android by Anartz Mugika (mugan86@gmail.com)</string>
+
+    <string name="pref_title_version_info">Version</string>
+    <string name="pref_description_version_info">1.2 – 2017/09/16</string>
+
+    <string name="pref_title_google_play_opinion">Give me your opinion!</string>
+    <string name="pref_description_google_play_opinion">Click here to write your opinion on the application sheet!</string>
+
+    <string name="pref_title_twitter">Twitter</string>
+    <string name="pref_description_twitter">Follow me to have news about this app and other projects mine</string>
 
     <string name="more_info_app">More info about app</string>
 
