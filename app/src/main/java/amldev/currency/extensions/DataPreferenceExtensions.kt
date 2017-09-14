@@ -44,6 +44,11 @@ class DataPreference(private val _context: Context) {
             return sharedPreferences.getString(propertyName, "")
         }
 
+        fun getPreferenceBoolean(context: Context, propertyName: String): Boolean {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPreferences.getBoolean(propertyName, false)
+        }
+
         fun setPreference(context: Context, propertyNames: Array<String>, propertyValues: Array<String>) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPreferences.edit()
