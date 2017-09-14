@@ -4,9 +4,8 @@ import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.extensions.DataPreference
 import amldev.currency.ui.activities.PreferencesActivity
-import amldev.i18n.LanguageEnum
+import amldev.i18n.Language
 import android.annotation.TargetApi
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -17,10 +16,7 @@ import android.view.MenuItem
 /**
  * Created by anartzmugika on 30/8/17.
  */
-/**
- * This fragment shows general preferences only. It is used when the
- * activity is showing a two-pane settings UI.
- */
+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 class GeneralPreferenceFragment : PreferenceFragment() {
 
@@ -29,25 +25,14 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         addPreferencesFromResource(R.xml.pref_general)
         setHasOptionsMenu(true)
 
-        // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-        // to their values. When their values change, their summaries are
-        // updated to reflect the new value, per the Android Design
-        // guidelines.
-
-
-        PreferencesActivity.bindPreferenceSwitch(findPreference("example_switch"))
+        PreferencesActivity.bindPreferenceSwitch(findPreference(Constants.USE_INTERNET))
         // PreferencesActivity.bindPreferenceSummaryToValue(findPreference(Constants.SELECT_LANGUAGE))
 
+        println(DataPreference.getPreferenceBoolean(activity, Constants.USE_INTERNET))
+
         val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
-
-        val selectLangCode = DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE);
-
-        println("Select lang code: " + selectLangCode)
-
-        val value = String.format(String.format(resources.getString(R.string.select_language_summary),
-                LanguageEnum.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity)))
-        println(value)
-        selectLanguage.setSummary(value)
+        selectLanguage.setSummary(String.format(String.format(resources.getString(R.string.select_language_summary),
+                Language.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity))))
 
         selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
             println(newValue.toString())
@@ -56,7 +41,6 @@ class GeneralPreferenceFragment : PreferenceFragment() {
             activity.recreate()
             true
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
