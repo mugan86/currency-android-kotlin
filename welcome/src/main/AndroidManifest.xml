@@ -8,8 +8,7 @@
         <activity android:name=".ui.activities.WelcomeActivity" />
         <activity
             android:name=".ui.activities.SelectLanguageActivity"
-            android:label="@string/title_activity_welcome"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:label="@string/title_activity_welcome"/>
     </application>
 
 
