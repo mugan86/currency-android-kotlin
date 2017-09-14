@@ -13,6 +13,9 @@ class Constants {
         val SELECT_LANGUAGE = "SELECT_LANGUAGE"
         val UPDATE_LANGUAGE = "UPDATE_LANGUAGE"
 
+        //PREFERENCES
+        val USE_INTERNET = "USE_INTERNET"
+
         //Default money data
         val DEFAULT_MONEY_SYMBOL = "EUR"
         val DEFAULT_MONEY_NAME = "Euro"
