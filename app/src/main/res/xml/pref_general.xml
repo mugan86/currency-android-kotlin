@@ -3,9 +3,10 @@
     <SwitchPreference
         android:defaultValue="true"
         android:disableDependentsState="true"
-        android:key="example_switch"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
+        android:editable="false"
+        android:key="USE_INTERNET"
+        android:summary="@string/pref_description_use_internet"
+        android:title="@string/pref_title_use_internet" />
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->
@@ -18,6 +19,19 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/select_language_pref_text" />
+
+    <PreferenceCategory android:title="@string/pref_title_contact">
+
+    </PreferenceCategory>
+    <Preference android:title="@string/pref_title_google_play_opinion" android:summary="@string/pref_description_google_play_opinion">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/details?id=amldev.currency" />
+    </Preference>
+    <Preference android:title="@string/pref_title_twitter" android:summary="@string/pref_description_twitter">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://twitter.com/mugan86" />
+    </Preference>
+
     <PreferenceCategory android:title="@string/more_info_app">
 
     </PreferenceCategory>
@@ -26,26 +40,14 @@
         android:selectable="false"
         android:capitalize="words"
         android:singleLine="true"
-        android:summary="1.1 - 2017/08/09"
-        android:title="Version" />
+        android:summary="@string/pref_description_version_info"
+        android:title="@string/pref_title_version_info" />
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
     <EditTextPreference
         android:capitalize="words"
         android:selectable="false"
         android:singleLine="true"
-        android:summary="@string/app_name"
-        android:title="About App" />
-
-    <PreferenceCategory android:title="Contact">
-
-    </PreferenceCategory>
-    <Preference android:title="Test" android:summary="Descarga la app desde Google Play">
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://play.google.com/store/apps/details?id=amldev.currency" />
-    </Preference>
-    <Preference android:title="Twitter" >
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://play.google.com/store/apps/details?id=amldev.currency" />
-    </Preference>
+        android:summary="@string/pref_description_about_app"
+        android:title="@string/pref_title_about_app" />
 
 </PreferenceScreen>
