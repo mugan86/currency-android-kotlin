@@ -18,15 +18,15 @@
 
     <!-- dots active colors -->
     <color name="dot_light_screen1">@color/White</color>
-    <color name="dot_light_screen2">@color/dot_light_screen3</color>
-    <color name="dot_light_screen3">#93c6fd</color>
-    <color name="dot_light_screen4">@color/dot_light_screen3</color>
+    <color name="dot_light_screen2">@color/White</color>
+    <color name="dot_light_screen3">@color/White</color>
+    <color name="dot_light_screen4">@color/White</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>
-        <item>@color/dot_light_screen2</item>
-        <item>@color/dot_light_screen3</item>
-        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
     </array>
 
     <array name="array_dot_inactive">
