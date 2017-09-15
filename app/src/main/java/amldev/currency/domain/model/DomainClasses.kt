@@ -19,5 +19,6 @@ data class Money (val symbol: String = "",
                   val currencyValue: Double = 0.0,
                   val name: String = "",
                   val flag: String = "united_nations",
-                  val icon: Int = R.drawable.ic_united_nations)
+                  val icon: Int = R.drawable.ic_united_nations,
+                  val idConversion: String = "")
 
