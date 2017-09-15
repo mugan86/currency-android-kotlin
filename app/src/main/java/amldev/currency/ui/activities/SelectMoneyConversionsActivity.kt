@@ -2,6 +2,7 @@ package amldev.currency.ui.activities
 
 import amldev.currency.R
 import amldev.currency.data.Constants
+import amldev.currency.data.db.CurrencyDb
 import amldev.currency.extensions.showHideKeyBoardForce
 import amldev.i18n.LocaleHelper
 import android.content.Context
@@ -51,6 +52,9 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute();
 
             uiThread {
+                // TODO CHECK IF SAVE CORRECT
+                CurrencyDb().saveBaseConversionMoneyValues(result)
+
                 addMoneyConversionsData(result, extraData[0])
                 progress.dismiss()
             }
