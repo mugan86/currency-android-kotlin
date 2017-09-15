@@ -26,9 +26,8 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         setHasOptionsMenu(true)
 
         PreferencesActivity.bindPreferenceSwitch(findPreference(Constants.USE_INTERNET))
-        // PreferencesActivity.bindPreferenceSummaryToValue(findPreference(Constants.SELECT_LANGUAGE))
 
-        println(DataPreference.getPreferenceBoolean(activity, Constants.USE_INTERNET))
+        //TODO Take USE_INTERNET VALUE TO GET DATA WITHOUT INTERNET IF VALUE FALSE
 
         val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
         selectLanguage.setSummary(String.format(String.format(resources.getString(R.string.select_language_summary),
