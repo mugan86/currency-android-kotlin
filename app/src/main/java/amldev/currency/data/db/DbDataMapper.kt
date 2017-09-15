@@ -13,6 +13,10 @@ class DbDataMapper() {
         MoneyInfo(symbol, name, flag)
     }
 
+    fun convertCurrencyFromDomain(money: Money, baseMoneySymbol:String) = with(money) {
+        MoneyCurrencies(baseMoneySymbol + money.symbol, baseMoneySymbol, money.symbol, "", money.currencyValue.toString())
+    }
+
     fun getCurrencyMoneysListFromLocalDB(items: List<MoneyInfo>) : List<Money> {
         var moneys : MutableList<Money> = mutableListOf()
         items.map { moneys.add(Money(it.symbol, 0.0, it.money, it.flag, R.drawable.ic_united_nations)) }
