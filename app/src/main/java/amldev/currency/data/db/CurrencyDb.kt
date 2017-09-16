@@ -32,6 +32,8 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
     fun saveBaseConversionMoneyValues(currency: Currency) = dbHelper.use {
         currency.moneyConversion.map { money ->
             with(dataMapper.convertCurrencyFromDomain(money, currency.baseMoneySymbol)) {
+                println(money.symbol + currency.baseMoneySymbol)
+                // TODO Check if exist value and if exist, update!!
                 insert(MoneyCurrenciesTable.NAME, *map.toVarargArray())
             }
         }
