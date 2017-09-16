@@ -166,21 +166,4 @@
 
     <color name= "FacebookBackground">#44669c</color>
     <color name= "TwitterBackground">#099ffe</color>
-
-    <array name="array_dot_active">
-        <item>@color/dot_active</item>
-        <item>@color/dot_active</item>
-        <item>@color/dot_active</item>
-        <item>@color/dot_active</item>
-    </array>
-
-    <array name="array_dot_inactive">
-        <item>@color/dot_inactive</item>
-        <item>@color/dot_inactive</item>
-        <item>@color/dot_inactive</item>
-        <item>@color/dot_inactive</item>
-    </array>
-
-    <color name="dot_active">#8E8A8A</color>
-    <color name="dot_inactive">#2B2424</color>
 </resources>
