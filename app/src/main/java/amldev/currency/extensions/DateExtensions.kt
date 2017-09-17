@@ -13,36 +13,28 @@ object DateTime {
     private val ALL_DATA_FORMAT = "yyyy-MM-dd"
     private val ALL_DATA_WITH_TIME_FORMAT = "${ALL_DATA_FORMAT} HH:mm:ss"
     val currentData: String
-        get() {
-            val dateFormat = SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH)
-            val cal = Calendar.getInstance()
-            return dateFormat.format(cal.getTime())
-        }
+        get() =
+            SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(currentDataCalendar.getTime())
 
     val currentDataCalendar: Calendar
         get() = Calendar.getInstance()
 
 
     val currentDataTime: String
-        get() {
-            val dateFormat = SimpleDateFormat(ALL_DATA_WITH_TIME_FORMAT)
-            val date = Date()
-            return dateFormat.format(date)
-        }
+        get() = SimpleDateFormat(ALL_DATA_WITH_TIME_FORMAT).format(Date())
 
     val yesterdayData: String
         get() {
-            val dateFormat = SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH)
-            val cal = Calendar.getInstance()
+            val cal = currentDataCalendar
             cal.add(Calendar.DAY_OF_YEAR, -1)
-            return dateFormat.format(cal.getTime())
+            return SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(cal.getTime())
         }
 
     val firstDayNextYearAndLastDayBeforeYear: ArrayList<String>
         get() {
             val datas = ArrayList<String>(2)
             val dateFormat = SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH)
-            var cal = Calendar.getInstance()
+            var cal = currentDataCalendar
             cal.add(Calendar.YEAR, 1)
             cal.set(Calendar.DAY_OF_MONTH, 1)
             cal.set(Calendar.MONTH, 0)
@@ -56,38 +48,36 @@ object DateTime {
         }
 
     fun getCurrentDataWithAddSetMonthValue(first_data: String, add_month: Int): String {
-        val dateFormat = SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH)
-        val cal = Calendar.getInstance()
+        val cal = currentDataCalendar
         if (first_data != "")
         //add first_data in calendar object to correct asign in second data
         {
-            val urtea = Integer.parseInt(first_data.substring(0, 4))
-            val hilabetea = Integer.parseInt(first_data.substring(5, 7)) - 1
-            val eguna = Integer.parseInt(first_data.substring(8, 10))
+            val year = Integer.parseInt(first_data.substring(0, 4))
+            val month = Integer.parseInt(first_data.substring(5, 7)) - 1
+            val day = Integer.parseInt(first_data.substring(8, 10))
 
-            cal.set(urtea, hilabetea, eguna)
+            cal.set(year, month, day)
         }
 
         cal.add(Calendar.MONTH, add_month)  //Add two months to first data
-        return dateFormat.format(cal.getTime())
+        return SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(cal.getTime())
 
     }
 
     fun getCurrentDataWithAddSetBeforeDays(first_data: String, add_month: Int): String {
-        val dateFormat = SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH)
-        val cal = Calendar.getInstance()
+        val cal = currentDataCalendar
         if (first_data != "")
         //add first_data in calendar object to correct asign in second data
         {
-            val urtea = Integer.parseInt(first_data.substring(0, 4))
-            val hilabetea = Integer.parseInt(first_data.substring(5, 7)) - 1
-            val eguna = Integer.parseInt(first_data.substring(8, 10))
+            val year = Integer.parseInt(first_data.substring(0, 4))
+            val month = Integer.parseInt(first_data.substring(5, 7)) - 1
+            val day = Integer.parseInt(first_data.substring(8, 10))
 
-            cal.set(urtea, hilabetea, eguna)
+            cal.set(year, month, day)
         }
 
         cal.add(Calendar.DAY_OF_WEEK, -add_month)  //DownDays value to first data
-        return dateFormat.format(cal.getTime())
+        return SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(cal.getTime())
     }
 
     fun getAllDataTimeCalendarObject(date: String, hour_string: String): Calendar {
@@ -99,7 +89,7 @@ object DateTime {
         val hour_int = getHourMinutesSecondsInfo(hour_string)
 
         println(year.toString() + "/" + month + "/" + day + " " + hour_int[0] + ":" + hour_int[1] + ":" + hour_int[2])
-        val calendar = Calendar.getInstance()
+        val calendar = currentDataCalendar
         calendar.set(year, month, day, hour_int[0], hour_int[1], hour_int[2])
         return calendar
     }
