@@ -20,4 +20,8 @@ fun <T : Any> SelectQueryBuilder.parseOpt(parser: (Map<String, Any?>) -> T): T? 
 
 fun SQLiteDatabase.clear(tableName: String) {
         execSQL("delete from $tableName")
-    }
+}
+
+fun SQLiteDatabase.deleteSelect(tableName: String, whereColumn: String, value: String) {
+    execSQL("delete from $tableName where $whereColumn = '${value}'")
+}
