@@ -1,6 +1,7 @@
 package amldev.currency.data.db
 
 import amldev.currency.R
+import amldev.currency.extensions.DateTime
 import domain.model.Money
 
 /***************************************************************************************************
@@ -14,7 +15,7 @@ class DbDataMapper() {
     }
 
     fun convertCurrencyFromDomain(money: Money, baseMoneySymbol:String) = with(money) {
-        MoneyCurrencies(baseMoneySymbol + money.symbol, baseMoneySymbol, money.symbol, "", money.currencyValue.toString())
+        MoneyCurrencies(baseMoneySymbol + money.symbol, baseMoneySymbol, money.symbol, DateTime.currentData, money.currencyValue.toString())
     }
 
     fun getCurrencyMoneysListFromLocalDB(items: List<MoneyInfo>) : List<Money> {
