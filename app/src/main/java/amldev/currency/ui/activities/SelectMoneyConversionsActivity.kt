@@ -53,6 +53,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
             uiThread {
                 // TODO CHECK IF SAVE CORRECT
+                //Check if exist value and update data is diferent to current data to update or insert
                 CurrencyDb().saveBaseConversionMoneyValues(result)
 
                 addMoneyConversionsData(result, extraData[0])
