@@ -1,9 +1,6 @@
 package amldev.currency.data.db
 
-import amldev.currency.extensions.DateTime
-import amldev.currency.extensions.deleteSelect
-import amldev.currency.extensions.parseList
-import amldev.currency.extensions.toVarargArray
+import amldev.currency.extensions.*
 import domain.model.Currency
 import domain.model.Money
 import org.jetbrains.anko.db.insert
@@ -31,35 +28,36 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
 
     fun getMoneyListItemsSize () : Int = getMoneyListItems().size
 
+    // fun checkIf
+
+
+
+    // selectCurrencyMoneyWithUpdateData(MoneyCurrenciesTable.NAME, )
+
     fun saveBaseConversionMoneyValues(currency: Currency) = dbHelper.use {
-        //Currency -- Select money / Money: Conversion money values
-        currency.moneyConversion.map { money -> //Money with value of currency
-            with(dataMapper.convertCurrencyFromDomain(money, currency.baseMoneySymbol)) {
-
-                //TODO Write conditions to correct manage!!!
-                if (checkIfExistConversionMoney(currency.baseMoneySymbol + money.symbol)) {
-                    println("Delete because exist ${currency.baseMoneySymbol + money.symbol}")
-                    deleteSelect(MoneyCurrenciesTable.NAME, MoneyCurrenciesTable.ID, currency.baseMoneySymbol + money.symbol)
+        //If contain values update in this current date, ignore to delete and go to else
+        if (checkIfBaseMoneyUpdateCurrencyValues(currency.baseMoneySymbol)) {
+            println("Delete because exist ${currency.baseMoneySymbol} and no update value (OR NO EXIST VALUE)")
+            deleteSelect(MoneyCurrenciesTable.NAME, MoneyCurrenciesTable.ID_BASE, currency.baseMoneySymbol)
+            //Currency -- Select money / Money: Conversion money values
+            currency.moneyConversion.map { money -> //Money with value of currency
+                with(dataMapper.convertCurrencyFromDomain(money, currency.baseMoneySymbol)) {
+                    insert(MoneyCurrenciesTable.NAME, *map.toVarargArray())
                 }
-                else {
-
-                }
-                insert(MoneyCurrenciesTable.NAME, *map.toVarargArray())
-
             }
+        } else {
+            println("Value update to current data: ${DateTime.currentData}")
         }
 
     }
 
-    fun checkIfExistConversionMoney(id: String) : Boolean = dbHelper.use {
-        println("SELECT * FROM ${MoneyCurrenciesTable.NAME} WHERE ${MoneyCurrenciesTable.ID} = '$id' AND ${MoneyCurrenciesTable.UPDATED_DATE} = '${DateTime.currentData}'")
-        //TODO Check if UPDATED DATE too
-        if ((select(MoneyCurrenciesTable.NAME)
-                .whereSimple("${MoneyCurrenciesTable.ID} = ?", id)
-                .parseList { MoneyCurrencies(HashMap(it))}).size > 0) {
-            return@use true
-        }
-        return@use false
+    fun checkIfBaseMoneyUpdateCurrencyValues(baseMoneySymbol:String ) = dbHelper.use {
+        val consult = select(MoneyCurrenciesTable.NAME)
+                .whereArgs("(${MoneyCurrenciesTable.ID_BASE} = {${MoneyCurrenciesTable.ID_BASE}}) and (${MoneyCurrenciesTable.UPDATED_DATE} = {${MoneyCurrenciesTable.UPDATED_DATE}})",
+                        MoneyCurrenciesTable.ID_BASE to baseMoneySymbol,
+                        MoneyCurrenciesTable.UPDATED_DATE to DateTime.currentData).parseList{ MoneyCurrencies(HashMap(it))}
+        println("Check if exist values: " + consult.size)
+        return@use consult.size == 0
     }
 }
 
