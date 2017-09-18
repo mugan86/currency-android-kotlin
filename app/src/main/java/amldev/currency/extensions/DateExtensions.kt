@@ -52,45 +52,38 @@ object DateTime {
         if (first_data != "")
         //add first_data in calendar object to correct asign in second data
         {
-            val year = Integer.parseInt(first_data.substring(0, 4))
-            val month = Integer.parseInt(first_data.substring(5, 7)) - 1
-            val day = Integer.parseInt(first_data.substring(8, 10))
-
-            cal.set(year, month, day)
+            cal.set(Integer.parseInt(first_data.substring(0, 4)), //Year
+                    Integer.parseInt(first_data.substring(5, 7)) - 1, //Month
+                    Integer.parseInt(first_data.substring(8, 10))) //Day
         }
 
-        cal.add(Calendar.MONTH, add_month)  //Add two months to first data
+        cal.add(Calendar.MONTH, add_month)  //Add x months to first data
         return SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(cal.getTime())
 
     }
 
-    fun getCurrentDataWithAddSetBeforeDays(first_data: String, add_month: Int): String {
+    fun getCurrentDataWithAddSetBeforeDays(first_data: String, add_days: Int): String {
         val cal = currentDataCalendar
         if (first_data != "")
         //add first_data in calendar object to correct asign in second data
         {
-            val year = Integer.parseInt(first_data.substring(0, 4))
-            val month = Integer.parseInt(first_data.substring(5, 7)) - 1
-            val day = Integer.parseInt(first_data.substring(8, 10))
-
-            cal.set(year, month, day)
+            cal.set(Integer.parseInt(first_data.substring(0, 4)), //Year
+                    Integer.parseInt(first_data.substring(5, 7)) - 1, //Month
+                    Integer.parseInt(first_data.substring(8, 10))) //Day
         }
 
-        cal.add(Calendar.DAY_OF_WEEK, -add_month)  //DownDays value to first data
+        cal.add(Calendar.DAY_OF_WEEK, -add_days)  //Down Days value to first data
         return SimpleDateFormat(ALL_DATA_FORMAT, Locale.ENGLISH).format(cal.getTime())
     }
 
     fun getAllDataTimeCalendarObject(date: String, hour_string: String): Calendar {
         //Extract details data
-        val year = Integer.parseInt(date.substring(0, 4))
-        val month = Integer.parseInt(date.substring(5, 7)) - 1
-        val day = Integer.parseInt(date.substring(8, 10))
-
         val hour_int = getHourMinutesSecondsInfo(hour_string)
-
-        println(year.toString() + "/" + month + "/" + day + " " + hour_int[0] + ":" + hour_int[1] + ":" + hour_int[2])
         val calendar = currentDataCalendar
-        calendar.set(year, month, day, hour_int[0], hour_int[1], hour_int[2])
+        calendar.set(Integer.parseInt(date.substring(0, 4)),
+                        Integer.parseInt(date.substring(5, 7)) - 1,
+                        Integer.parseInt(date.substring(8, 10)),
+                        hour_int[0], hour_int[1], hour_int[2])
         return calendar
     }
 
