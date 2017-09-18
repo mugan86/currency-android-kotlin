@@ -49,13 +49,21 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         doAsync {
             progress.show()
+
+            //TODO Check IF EXIST VALUE IN DB TO GET VALUE from DB
+            if (!CurrencyDb().checkIfBaseMoneyUpdateCurrencyValues(extraData[0])) {
+                println("Situation to get data from database")
+                // CurrencyDb().getMoneyListItems()
+
+                // TODO Extract select money all currencies list
+
+            }
             result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute();
 
             uiThread {
                 // TODO CHECK IF SAVE CORRECT
                 //Check if exist value and update data is diferent to current data to update or insert
-                CurrencyDb().saveBaseConversionMoneyValues(result)
-
+                // CurrencyDb().saveBaseConversionMoneyValues(result)
                 addMoneyConversionsData(result, extraData[0])
                 progress.dismiss()
             }
