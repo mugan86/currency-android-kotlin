@@ -62,11 +62,11 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
             result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute()
             // CurrencyDb().saveBaseConversionMoneyValues(result)
-            // CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
+            CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
 
             //Add example query to get INNER JOIN example
             // SELECT * FROM MoneyCurrenciesTable, MoneyInfoTable  WHERE MoneyCurrenciesTable._id_base = MoneyInfoTable.symbol AND MoneyCurrenciesTable._id_base = 'EUR'
-
+            // SELECT MCT._id, MT.symbol, MCT._id_conversion_money, value_conversion, money, flag, updated_date FROM MoneyCurrenciesTable MCT, MoneyInfoTable MT WHERE MCT._id_base = MT.symbol AND MCT._id_base = 'EUR'
             uiThread {
                 // TODO CHECK IF SAVE CORRECT
                 //Check if exist value and update data is diferent to current data to update or insert
