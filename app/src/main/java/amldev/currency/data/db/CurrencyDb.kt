@@ -59,5 +59,26 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
         println("Check if exist values: " + consult.size)
         return@use consult.size == 0
     }
+
+    // TODO USe to test!!!
+    fun getSelectMoneyAndCurrencies(baseMoneySymbol: String): Currency = dbHelper.use {
+
+
+        val list = select(MoneyCurrenciesTable.NAME).whereArgs("(${MoneyCurrenciesTable.ID_BASE} = {${MoneyCurrenciesTable.ID_BASE}}) and (${MoneyCurrenciesTable.UPDATED_DATE} = {${MoneyCurrenciesTable.UPDATED_DATE}})",
+                MoneyCurrenciesTable.ID_BASE to baseMoneySymbol,
+                MoneyCurrenciesTable.UPDATED_DATE to DateTime.currentData).parseList { MoneyCurrencies(HashMap(it)) }
+        val moneyList: MutableList<Money> = mutableListOf()
+
+        list.map {
+            moneyCurrencies ->  moneyList.add(Money(baseMoneySymbol, moneyCurrencies.value_conversion.toDouble(), "", "", 0, ""))
+            println(getMoneyListItems().size.toString() + " " + moneyCurrencies._id_conversion_money)
+            val findValue = getMoneyListItems().filter({ it.symbol === moneyCurrencies._id_conversion_money})
+            println(findValue)
+
+        }
+        return@use Currency(baseMoneySymbol, "", moneyList, DateTime.currentData)
+    }
+
+
 }
 
