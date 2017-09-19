@@ -58,7 +58,14 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
                 // TODO Extract select money all currencies list
 
             }
-            result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute();
+
+
+            result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute()
+            // CurrencyDb().saveBaseConversionMoneyValues(result)
+            // CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
+
+            //Add example query to get INNER JOIN example
+            // SELECT * FROM MoneyCurrenciesTable, MoneyInfoTable  WHERE MoneyCurrenciesTable._id_base = MoneyInfoTable.symbol AND MoneyCurrenciesTable._id_base = 'EUR'
 
             uiThread {
                 // TODO CHECK IF SAVE CORRECT
