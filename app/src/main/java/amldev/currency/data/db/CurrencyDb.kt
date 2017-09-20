@@ -36,7 +36,7 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
 
     fun saveBaseConversionMoneyValues(currency: Currency) = dbHelper.use {
         //If contain values update in this current date, ignore to delete and go to else
-        if (checkIfBaseMoneyUpdateCurrencyValues(currency.baseMoneySymbol)) {
+        if (!checkIfBaseMoneyHaveUpdateData(currency.baseMoneySymbol)) {
             println("Delete because exist ${currency.baseMoneySymbol} and no update value (OR NO EXIST VALUE)")
             deleteSelect(MoneyCurrenciesTable.NAME, MoneyCurrenciesTable.ID_BASE, currency.baseMoneySymbol)
             //Currency -- Select money / Money: Conversion money values
@@ -51,32 +51,13 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
 
     }
 
-    fun checkIfBaseMoneyUpdateCurrencyValues(baseMoneySymbol:String ) = dbHelper.use {
-        val consult = select(MoneyCurrenciesTable.NAME)
-                .whereArgs("(${MoneyCurrenciesTable.ID_BASE} = {${MoneyCurrenciesTable.ID_BASE}}) and (${MoneyCurrenciesTable.UPDATED_DATE} = {${MoneyCurrenciesTable.UPDATED_DATE}})",
-                        MoneyCurrenciesTable.ID_BASE to baseMoneySymbol,
-                        MoneyCurrenciesTable.UPDATED_DATE to DateTime.currentData).parseList{ MoneyCurrencies(HashMap(it))}
-        println("Check if exist values: " + consult.size)
-        return@use consult.size == 0
+    fun checkIfBaseMoneyHaveUpdateData(baseMoneySymbol:String ) = dbHelper.use {
+        return@use checkIfValuesUpdate(baseMoneySymbol)
     }
 
-    // TODO USe to test!!!
     fun getSelectMoneyAndCurrencies(baseMoneySymbol: String): Currency = dbHelper.use {
-
-
-        val list = select(MoneyCurrenciesTable.NAME).whereArgs("(${MoneyCurrenciesTable.ID_BASE} = {${MoneyCurrenciesTable.ID_BASE}}) and (${MoneyCurrenciesTable.UPDATED_DATE} = {${MoneyCurrenciesTable.UPDATED_DATE}})",
-                MoneyCurrenciesTable.ID_BASE to baseMoneySymbol,
-                MoneyCurrenciesTable.UPDATED_DATE to DateTime.currentData).parseList { MoneyCurrencies(HashMap(it)) }
-        val moneyList: MutableList<Money> = mutableListOf()
-
-        list.map {
-            moneyCurrencies ->  moneyList.add(Money(baseMoneySymbol, moneyCurrencies.value_conversion.toDouble(), "", "", 0, ""))
-            println(getMoneyListItems().size.toString() + " " + moneyCurrencies._id_conversion_money)
-            val findValue = getMoneyListItems().filter({ it.symbol === moneyCurrencies._id_conversion_money})
-            println(findValue)
-
-        }
-        return@use Currency(baseMoneySymbol, "", moneyList, DateTime.currentData)
+        println(checkIfValuesUpdate(baseMoneySymbol))
+        return@use getMoneyWithCurrencies(baseMoneySymbol)
     }
 
 
