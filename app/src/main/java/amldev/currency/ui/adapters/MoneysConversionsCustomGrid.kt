@@ -24,11 +24,11 @@ class MoneysConversionsCustomGrid(private val moneys: List<Money>, private val c
     override fun getItemId(position: Int): Long = 0L
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var grid: View
+        val grid: View
         if (convertView == null) {
             grid = (parent.ctx
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.grid_item_money_conversion, null)
-            var conversion: Double = 0.0
+            var conversion = 0.0
             currency.moneyConversion.filter{it.symbol == moneys[position].symbol}.map{conversion = it.currencyValue}
             grid.gridText.text = "%.3f".format(conversion * inputValue)
             grid.gridImage.setImageResource(moneys[position].icon)
