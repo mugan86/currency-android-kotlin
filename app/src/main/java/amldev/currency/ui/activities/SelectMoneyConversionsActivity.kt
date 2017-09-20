@@ -50,23 +50,14 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         doAsync {
             progress.show()
 
-            //TODO Check IF EXIST VALUE IN DB TO GET VALUE from DB
-            if (!CurrencyDb().checkIfBaseMoneyUpdateCurrencyValues(extraData[0])) {
-                println("Situation to get data from database")
-                // CurrencyDb().getMoneyListItems()
+            // TODO Check if select money value store with current day data
+            result = CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
 
-                // TODO Extract select money all currencies list
-
-            }
-
-
+            //Take data from server API or local (JSON files 2017/08/03)
             result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute()
-            // CurrencyDb().saveBaseConversionMoneyValues(result)
-            CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
 
-            //Add example query to get INNER JOIN example
-            // SELECT * FROM MoneyCurrenciesTable, MoneyInfoTable  WHERE MoneyCurrenciesTable._id_base = MoneyInfoTable.symbol AND MoneyCurrenciesTable._id_base = 'EUR'
-            // SELECT MCT._id, MT.symbol, MCT._id_conversion_money, value_conversion, money, flag, updated_date FROM MoneyCurrenciesTable MCT, MoneyInfoTable MT WHERE MCT._id_base = MT.symbol AND MCT._id_base = 'EUR'
+
+
             uiThread {
                 // TODO CHECK IF SAVE CORRECT
                 //Check if exist value and update data is diferent to current data to update or insert
@@ -116,6 +107,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     }
 
     private fun addMoneyConversionsData(result: Currency, symbol: String, value: Float = 1.0.toFloat()) {
+        //Load list of moneys except select money base
         val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
         if (moneys.isEmpty()) {
             toast(resources.getString(R.string.no_correct_load_data))
@@ -125,6 +117,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             reloadDataLinearLayout.visibility = View.GONE
             conversionOtherMoneyGridView.visibility = View.VISIBLE
             val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble())
+            CurrencyDb().saveBaseConversionMoneyValues(result)
             conversionOtherMoneyGridView.adapter = adapter
         }
     }
