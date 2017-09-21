@@ -3,6 +3,7 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.data.db.CurrencyDb
+import amldev.currency.extensions.getFlagDrawable
 import amldev.currency.extensions.showHideKeyBoardForce
 import amldev.i18n.LocaleHelper
 import android.content.Context
@@ -12,10 +13,10 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import com.kotlin.amugika.gridview.ui.adapter.MoneysConversionsCustomGrid
-import data.CurrencyRequest
-import domain.commands.RequestCurrencyCommand
-import domain.model.Currency
+import amldev.currency.ui.adapters.MoneysConversionsCustomGrid
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.commands.RequestCurrencyCommand
+import amldev.currency.domain.model.Currency
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
@@ -25,6 +26,7 @@ import org.jetbrains.anko.uiThread
 import java.util.*
 
 class SelectMoneyConversionsActivity : AppCompatActivity() {
+
     //To use LocaleHelper select language
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(base))
@@ -35,12 +37,11 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_money_conversions)
 
         //Get Intent Extras values
-
         val extraData = getIntentExtras()
 
         selectMoneyInfoTextView.text = String.format(resources.getString(R.string.select_money_txt), extraData[1])
 
-        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(extraData[2])))
+        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(this@SelectMoneyConversionsActivity, extraData[2])))
 
         inputConvertInfoTextView.text = String.format(resources.getString(R.string.input_value_to_convert), extraData[0])
 
@@ -50,25 +51,19 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         doAsync {
             progress.show()
 
-            // TODO Check if select money value store with current day data
-            result = CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
-
-            //Take data from server API or local (JSON files 2017/08/03)
-            result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute()
-
-
+            if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(extraData[0])) { // Take data from sqlite database
+                result = CurrencyDb().getSelectMoneyAndCurrencies(extraData[0])
+            } else { // Take data from server or local json files
+                result = RequestCurrencyCommand(extraData[0], this@SelectMoneyConversionsActivity).execute()
+            }
 
             uiThread {
-                // TODO CHECK IF SAVE CORRECT
-                //Check if exist value and update data is diferent to current data to update or insert
-                // CurrencyDb().saveBaseConversionMoneyValues(result)
                 addMoneyConversionsData(result, extraData[0])
                 progress.dismiss()
             }
         }
 
         //Add InputMoneyValueConvertEditText View actions
-
         inputMoneyValueToConvertEditText.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -117,13 +112,13 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
             reloadDataLinearLayout.visibility = View.GONE
             conversionOtherMoneyGridView.visibility = View.VISIBLE
             val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble())
-            CurrencyDb().saveBaseConversionMoneyValues(result)
+
+            // Check if money value save and update. If not update, save after delete
+            if (!CurrencyDb().checkIfBaseMoneyHaveUpdateData(symbol)) { CurrencyDb().saveBaseConversionMoneyValues(result) }
+
             conversionOtherMoneyGridView.adapter = adapter
         }
     }
-
-    private fun getFlagDrawable(flag: String) =
-            this.resources.getIdentifier("ic_$flag", "drawable", this.packageName)
 
     override fun onDestroy() {
         super.onDestroy()
