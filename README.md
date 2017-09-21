@@ -13,13 +13,13 @@ Desarrollada en Kotlin / Develop with Kotlin.
 
 ### Versiones
 
-**1.2 (Trabajando en la próxima versión)**
+**1.2 (2017/09/22)**
 
 * Posibilidad de configurar las opciones de sincronización, idioma y otros aspectos de la aplicación.
 * Los datos de las conversiones cuando se actualicen (al disponer de internet una vez al día máximo) se guardan en una Base de datos local SQLITE.
 * Los datos de las conversiones recuperarlos siempre de la Base de datos local para obtener mayor rendimiento.
 
-**1.1**
+**1.1 (2017/08/10)**
 
 * Opción para cambiar de idioma entre euskera, espalol e inglés.
 * Posibilidad de hacer conversiones sin internet. Los datos son del 03/08/2017.
@@ -57,13 +57,13 @@ La lista de divisas que contiene el conversor. Será ampliable con el tiempo.
 
 ## Versions
 
-**1.2 (Working on the next version)**
+**1.2 (2017/09/22)**
 
 * Possibility to configure synchronization options, language and other aspects of the application.
 * Conversion data when updated (when the Internet is available once a day maximum) is saved in a local SQLITE database.
 * Conversion data will always retrieve it from the local database for greater performance.
 
-**1.1**
+**1.1 (2017/08/10)**
 
 * Option to change the language between Euskera, espalol and English.
 * Possibility of doing conversions without internet. Data are from 08/03/2017.
