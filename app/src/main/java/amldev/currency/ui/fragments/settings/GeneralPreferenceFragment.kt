@@ -27,13 +27,11 @@ class GeneralPreferenceFragment : PreferenceFragment() {
 
         PreferencesActivity.bindPreferenceSwitch(findPreference(Constants.USE_INTERNET))
 
-        //TODO Take USE_INTERNET VALUE TO GET DATA WITHOUT INTERNET IF VALUE FALSE
-
         val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
         selectLanguage.setSummary(String.format(String.format(resources.getString(R.string.select_language_summary),
                 Language.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity))))
 
-        selectLanguage.setOnPreferenceChangeListener { preference, newValue ->
+        selectLanguage.setOnPreferenceChangeListener { _, newValue ->
             println(newValue.toString())
             DataPreference.setPreference(activity, Array<String>(1){Constants.UPDATE_LANGUAGE}, Array<String>(1){"1"})
             DataPreference.setPreference(activity, Array<String>(1){Constants.SELECT_LANGUAGE}, Array<String>(1){ newValue.toString()})
