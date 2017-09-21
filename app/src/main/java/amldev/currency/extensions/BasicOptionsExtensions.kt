@@ -61,7 +61,6 @@ fun getDefaultShareIntent(context: Context, bm: Bitmap?): Intent {
         val sharefile = File(cache, Constants.SHARE_IMAGE_DEFAULT)
         try {
             val out = FileOutputStream(sharefile)
-            assert(bm != null)
             bm.compress(Bitmap.CompressFormat.PNG, 100, out)
             out.flush()
             out.close()

@@ -1,17 +1,15 @@
 package amldev.currency.extensions
 
-/**
+/**************************************************************
  * Created by anartzmugika on 22/8/17.
  */
 
 import android.database.sqlite.SQLiteDatabase
-import domain.model.Currency
-import domain.model.Money
+import amldev.currency.domain.model.Currency
+import amldev.currency.domain.model.Money
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.SelectQueryBuilder
 import android.database.DatabaseUtils
-
-
 
 fun <T : Any> SelectQueryBuilder.parseList(parser: (Map<String, Any?>) -> T): List<T> =
                parseList(object : MapRowParser<T> {

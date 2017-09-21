@@ -1,8 +1,8 @@
 package amldev.currency.data.db
 
 import amldev.currency.extensions.*
-import domain.model.Currency
-import domain.model.Money
+import amldev.currency.domain.model.Currency
+import amldev.currency.domain.model.Money
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -28,27 +28,15 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
 
     fun getMoneyListItemsSize () : Int = getMoneyListItems().size
 
-    // fun checkIf
-
-
-
-    // selectCurrencyMoneyWithUpdateData(MoneyCurrenciesTable.NAME, )
-
     fun saveBaseConversionMoneyValues(currency: Currency) = dbHelper.use {
-        //If contain values update in this current date, ignore to delete and go to else
-        if (!checkIfBaseMoneyHaveUpdateData(currency.baseMoneySymbol)) {
-            println("Delete because exist ${currency.baseMoneySymbol} and no update value (OR NO EXIST VALUE)")
-            deleteSelect(MoneyCurrenciesTable.NAME, MoneyCurrenciesTable.ID_BASE, currency.baseMoneySymbol)
-            //Currency -- Select money / Money: Conversion money values
-            currency.moneyConversion.map { money -> //Money with value of currency
-                with(dataMapper.convertCurrencyFromDomain(money, currency.baseMoneySymbol)) {
-                    insert(MoneyCurrenciesTable.NAME, *map.toVarargArray())
-                }
+        // println("Delete because exist ${currency.baseMoneySymbol} and no update value (OR NO EXIST VALUE)")
+        deleteSelect(MoneyCurrenciesTable.NAME, MoneyCurrenciesTable.ID_BASE, currency.baseMoneySymbol)
+        //Currency -- Select money / Money: Conversion money values
+        currency.moneyConversion.map { money -> //Money with value of currency
+            with(dataMapper.convertCurrencyFromDomain(money, currency.baseMoneySymbol)) {
+                insert(MoneyCurrenciesTable.NAME, *map.toVarargArray())
             }
-        } else {
-            println("Value update to current data: ${DateTime.currentData}")
         }
-
     }
 
     fun checkIfBaseMoneyHaveUpdateData(baseMoneySymbol:String ) = dbHelper.use {

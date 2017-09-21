@@ -1,9 +1,9 @@
-package domain.commands
+package amldev.currency.domain.commands
 
 import android.content.Context
-import data.CurrencyRequest
-import domain.mappers.CurrencyDataMapper
-import domain.model.Currency
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.mappers.CurrencyDataMapper
+import amldev.currency.domain.model.Currency
 
 /***********************************************************************************************************************
  * Created by Anartz Mugika on 22/07/2017.

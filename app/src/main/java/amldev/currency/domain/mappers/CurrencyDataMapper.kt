@@ -1,10 +1,10 @@
-package domain.mappers
+package amldev.currency.domain.mappers
 
-import data.CurrencyRequest
-import data.CurrencyResult
-import data.Rates
-import domain.model.Currency
-import domain.model.Money
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.data.server.CurrencyResult
+import amldev.currency.data.server.Rates
+import amldev.currency.domain.model.Currency
+import amldev.currency.domain.model.Money
 import java.text.DateFormat
 import java.util.*
 

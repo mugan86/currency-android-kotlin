@@ -1,4 +1,4 @@
-package domain.model
+package amldev.currency.domain.model
 
 import amldev.currency.R
 

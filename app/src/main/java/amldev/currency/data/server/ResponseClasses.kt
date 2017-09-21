@@ -1,4 +1,4 @@
-package data
+package amldev.currency.data.server
 
 /***********************************************************************************************************************
  * Created by Anartz Mugika on 22/07/2017.

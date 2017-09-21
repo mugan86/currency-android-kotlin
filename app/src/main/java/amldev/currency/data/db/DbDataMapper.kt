@@ -2,7 +2,7 @@ package amldev.currency.data.db
 
 import amldev.currency.R
 import amldev.currency.extensions.DateTime
-import domain.model.Money
+import amldev.currency.domain.model.Money
 
 /***************************************************************************************************
  * Created by anartzmugika on 22/8/17.

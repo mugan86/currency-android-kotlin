@@ -1,4 +1,4 @@
-package domain.commands
+package amldev.currency.domain.commands
 
 /***********************************************************************************************************************
  * Created by Anartz Mugika on 22/07/2017.
