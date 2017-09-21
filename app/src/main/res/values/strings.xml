@@ -60,7 +60,7 @@
     <string name="pref_description_about_app">Currency converter created in Kotlin and Android by Anartz Mugika (mugan86@gmail.com)</string>
 
     <string name="pref_title_version_info">Version</string>
-    <string name="pref_description_version_info">1.2 – 2017/09/16</string>
+    <string name="pref_description_version_info">1.2 – 2017/09/22</string>
 
     <string name="pref_title_google_play_opinion">Give me your opinion!</string>
     <string name="pref_description_google_play_opinion">Click here to write your opinion on the application sheet!</string>

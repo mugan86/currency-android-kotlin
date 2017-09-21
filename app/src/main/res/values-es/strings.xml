@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Conversor de divisas</string>
+    <string name="title_activity_settings">Settings</string>
 
     <string name="sans_serif">sans-serif</string>
     <string name="sans_serif_light">sans-serif-light</string>
@@ -57,7 +58,7 @@
     <string name="pref_description_about_app">Conversor de divisas creado en Kotlin y Android por Anartz Mugika (mugan86@gmail.com)</string>
 
     <string name="pref_title_version_info">Versión</string>
-    <string name="pref_description_version_info">1.2 – 2017/09/16</string>
+    <string name="pref_description_version_info">1.2 – 2017/09/22</string>
 
     <string name="pref_title_google_play_opinion">¡Dame tu opinión!</string>
     <string name="pref_description_google_play_opinion">¡Hacer click para poder escribir tu opinión en la ficha de la aplicación!</string>
