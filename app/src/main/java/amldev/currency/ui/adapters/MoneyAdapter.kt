@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import domain.model.Money
+import amldev.currency.domain.model.Money
 import kotlinx.android.synthetic.main.item_money.view.*
 
 /***************************************************************

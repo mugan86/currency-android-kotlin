@@ -83,7 +83,7 @@ object LocaleHelper {
     fun languageOptionsDialog(context: Context) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(context.resources.getString(R.string.make_your_language_selection))
-        builder.setItems(context.resources.getStringArray(R.array.language_string), DialogInterface.OnClickListener { dialog, item ->
+        builder.setItems(context.resources.getStringArray(R.array.language_string), DialogInterface.OnClickListener { _, item ->
             setLocale(context, context.resources.getStringArray(R.array.language_codes) [item])
             restartApp(context)
         })

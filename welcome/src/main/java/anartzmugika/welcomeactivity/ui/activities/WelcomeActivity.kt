@@ -81,8 +81,8 @@ class WelcomeActivity : AppCompatActivity() {
 
         layoutDots!!.removeAllViews()
 
-        layouts!!.map { i ->
-            var textView = TextView(this)
+        layouts!!.map { _ ->
+            val textView = TextView(this)
             textView.text = Html.fromHtml(resources.getString(R.string.dot_html))
             textView.textSize = 35f
             textView.setTextColor(colorsInactive[currentPage])

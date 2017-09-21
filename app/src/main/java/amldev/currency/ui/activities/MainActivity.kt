@@ -20,8 +20,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import data.CurrencyRequest
-import domain.model.Money
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.fab.*
