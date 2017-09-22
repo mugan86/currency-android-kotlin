@@ -3,7 +3,8 @@ package amldev.currency.ui.activities
 import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.data.db.CurrencyDb
-import amldev.currency.data.db.CurrencyDbHelper
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.model.Money
 import amldev.currency.extensions.DataPreference
 import amldev.currency.extensions.getDefaultShareIntent
 import amldev.currency.ui.adapters.MoneyAdapter
@@ -20,11 +21,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import amldev.currency.data.server.CurrencyRequest
-import amldev.currency.domain.model.Money
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.fab.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
@@ -104,12 +103,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addToolbar() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        toolbar.title = resources.getString(R.string.app_name)
+        toolbar.subtitle = resources.getString(R.string.select_your_base_money)
         setSupportActionBar(toolbar)
-
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(false);
-
-        toolbar.setTitle(resources.getString(R.string.app_name))
-        toolbar.setSubtitle(resources.getString(R.string.select_your_base_money))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -120,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
-        when (item.getItemId()) {
+        when (item.itemId) {
             R.id.action_share -> {
                 startActivity(getDefaultShareIntent(this@MainActivity, null))
                 return true
