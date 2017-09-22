@@ -6,6 +6,7 @@ import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.os.Bundle
 import android.preference.*
+import android.view.MenuItem
 
 
 /**
@@ -40,6 +41,17 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
             actionBar.title = resources.getString(R.string.settings_title)
         }
         fragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {
