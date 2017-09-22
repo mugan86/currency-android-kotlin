@@ -63,11 +63,6 @@ class MainActivity : AppCompatActivity() {
 
             progress.show()
             //Load list currencies and log symbol and name
-
-            val db = CurrencyDbHelper
-
-            println(db.DB_NAME)
-
             if (CurrencyDb().getMoneyListItemsSize () == 0) {
                 println("Load JSON File")
                 loadDataFromJSONFileAndStoreInDB()
