@@ -1,5 +1,7 @@
 package amldev.currency
 
+import amldev.currency.di.AppComponent
+import amldev.currency.di.AppModule
 import amldev.currency.extensions.DelegatesExt
 import android.app.Application
 
