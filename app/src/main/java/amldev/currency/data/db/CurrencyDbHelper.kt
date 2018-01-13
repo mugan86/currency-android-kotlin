@@ -1,6 +1,6 @@
 package amldev.currency.data.db
 
-import amldev.currency.ui.App
+import amldev.currency.App
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import org.jetbrains.anko.db.*

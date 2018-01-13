@@ -1,9 +1,9 @@
-package amldev.currency.ui.fragments.settings
+package amldev.currency.ui.activities.fragments.settings
 
 import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.extensions.DataPreference
-import amldev.currency.ui.activities.PreferencesActivity
+import amldev.currency.ui.activities.preferences.PreferencesActivity
 import amldev.i18n.Language
 import android.annotation.TargetApi
 import android.content.Intent
@@ -28,8 +28,8 @@ class GeneralPreferenceFragment : PreferenceFragment() {
         PreferencesActivity.bindPreferenceSwitch(findPreference(Constants.USE_INTERNET))
 
         val selectLanguage = findPreference(Constants.SELECT_LANGUAGE) as ListPreference
-        selectLanguage.setSummary(String.format(String.format(resources.getString(R.string.select_language_summary),
-                Language.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity))))
+        selectLanguage.summary = String.format(String.format(resources.getString(R.string.select_language_summary),
+                Language.SELECT.getLanguageName(DataPreference.getPreference(activity, Constants.SELECT_LANGUAGE), activity)))
 
         selectLanguage.setOnPreferenceChangeListener { _, newValue ->
             println(newValue.toString())
