@@ -33,26 +33,25 @@ import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-
 class MainActivity : AppCompatActivity(), MainPresenter.View {
 
     @Inject lateinit var presenter: MainPresenter
     val component by lazy { app.component.plus(MainModule(this)) }
 
     override fun showProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println(message = "e")
     }
 
     override fun hideProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println(message = "e")
     }
 
     override fun navigateTo(id: Money) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println(message = "e")
     }
 
     override fun updateData(media: List<Money>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println(message = "e")
     }
 
     var moneys: List<Money> = mutableListOf()
