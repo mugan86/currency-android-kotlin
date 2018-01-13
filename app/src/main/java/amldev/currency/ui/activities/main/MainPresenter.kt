@@ -12,19 +12,19 @@ class MainPresenter(val view: View, val provide: Provider) {
         fun updateData(media: List<Money>)
         fun showProgress()
         fun hideProgress()
-        fun navigateTo(id: Money)
+        fun navigateTo(money: Money)
+        fun itemClicked(money: Money)
     }
 
     fun onCreate() {
-        // Aquí cargamos los datos
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         view.showProgress()
-
         provide.dataAsync { media ->
-            println(media)
+            view.updateData(media)
+            view.hideProgress()
         }
 
     }
