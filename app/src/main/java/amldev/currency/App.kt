@@ -16,10 +16,6 @@ class App: Application() {
     }
 
     lateinit var context: Context
-    /*override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }*/
 
     val component: AppComponent by lazy {
         DaggerAppComponent
