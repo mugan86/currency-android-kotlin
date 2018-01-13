@@ -6,6 +6,7 @@ import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.server.CurrencyRequest
 import amldev.currency.domain.commands.RequestCurrencyCommand
 import amldev.currency.domain.model.Currency
+import amldev.currency.extensions.addToolbar
 import amldev.currency.extensions.getFlagDrawable
 import amldev.currency.extensions.showHideKeyBoardForce
 import amldev.currency.ui.adapters.MoneysConversionsCustomGrid
@@ -18,7 +19,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
-import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
@@ -77,7 +77,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         addActions()
 
-        addToolbar(extraData[1])
+        addToolbar(subtitle = extraData[1], title = resources.getString(R.string.app_name), backButton = true)
     }
 
     private fun availableInputMoneyToMakeCurrencyConversions() {
@@ -130,21 +130,6 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         super.onPause()
         println("Pause activity and hide keyboard!")
         showHideKeyBoardForce(inputMoneyValueToConvertEditText, false, this)
-    }
-
-    private fun addToolbar(name: String) {
-        setSupportActionBar(toolbar)
-
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        toolbar.title = resources.getString(R.string.app_name)
-        toolbar.subtitle = "$name"
-
-        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_back)
-        toolbar.setNavigationOnClickListener(View.OnClickListener {
-            //What to do on back clicked
-            finish()
-        })
     }
 
     private fun getIntentExtras(): Array<String> {
