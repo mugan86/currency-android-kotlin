@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AllHeightWidth"
     android:orientation="vertical"
-    tools:context="amldev.currency.ui.activities.SelectMoneyConversionsActivity">
+    tools:context="amldev.currency.ui.activities.money_conversions.SelectMoneyConversionsActivity">
     <include layout="@layout/toolbar" />
     <RelativeLayout
         android:layout_marginTop="?attr/actionBarSize"
