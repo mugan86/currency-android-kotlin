@@ -79,6 +79,7 @@
             android:text="@string/try_again_load"/>
     </LinearLayout>
     <GridView
+        android:scaleX="1"
         android:visibility="gone"
         android:layout_below="@+id/inputConversionUnitsZone"
         android:id="@+id/conversionOtherMoneyGridView"
