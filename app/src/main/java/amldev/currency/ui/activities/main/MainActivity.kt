@@ -22,7 +22,6 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fab.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainPresenter.View {
@@ -53,19 +52,11 @@ class MainActivity : AppCompatActivity(), MainPresenter.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         component.inject(this)
-        addToolbar()
+        addToolbar(title = resources.getString(R.string.app_name), subtitle = resources.getString(R.string.select_your_base_money))
         addActions()
         moneysList.layoutManager = LinearLayoutManager(this)
         moneysList.adapter = adapter
         presenter.onCreate()
-    }
-
-    private fun addToolbar() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-        toolbar.title = resources.getString(R.string.app_name)
-        toolbar.subtitle = resources.getString(R.string.select_your_base_money)
-        setSupportActionBar(toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
