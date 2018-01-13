@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Txanpon bihurgailua</string>
+    <string name="app_name">Currency Converter</string>
     <string name="title_activity_settings">Settings</string>
 
     <string name="sans_serif">sans-serif</string>
