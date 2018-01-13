@@ -41,7 +41,7 @@ fun getJSONResource(context: Context, name: String): String? {
 fun getFlagDrawable(context: Context, flag: String) =
         context.resources.getIdentifier("ic_$flag", "drawable", context.packageName)
 
-fun Activity.goToMarket() run {
+fun Activity.goToMarket() {
     try {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlGooglePlay(this))))
     } catch (anfe: android.content.ActivityNotFoundException) {
