@@ -1,10 +1,14 @@
-package amldev.currency.ui.activities
+package amldev.currency.ui.activities.money_conversions
 
 import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.data.db.CurrencyDb
+import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.commands.RequestCurrencyCommand
+import amldev.currency.domain.model.Currency
 import amldev.currency.extensions.getFlagDrawable
 import amldev.currency.extensions.showHideKeyBoardForce
+import amldev.currency.ui.adapters.MoneysConversionsCustomGrid
 import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.res.Configuration
@@ -13,10 +17,6 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import amldev.currency.ui.adapters.MoneysConversionsCustomGrid
-import amldev.currency.data.server.CurrencyRequest
-import amldev.currency.domain.commands.RequestCurrencyCommand
-import amldev.currency.domain.model.Currency
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
@@ -97,7 +97,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         }
 
         reloadDataButton.setOnClickListener {
-            recreate();
+            recreate()
         }
     }
 
@@ -135,12 +135,12 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     private fun addToolbar(name: String) {
         setSupportActionBar(toolbar)
 
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        toolbar.setTitle(resources.getString(R.string.app_name))
-        toolbar.setSubtitle("$name")
+        toolbar.title = resources.getString(R.string.app_name)
+        toolbar.subtitle = "$name"
 
-        toolbar.setNavigationIcon(resources.getDrawable(R.drawable.ic_back))
+        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_back)
         toolbar.setNavigationOnClickListener(View.OnClickListener {
             //What to do on back clicked
             finish()
@@ -148,7 +148,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     }
 
     private fun getIntentExtras(): Array<String> {
-        var data: Array<String> = arrayOf("", "", "")
+        val data: Array<String> = arrayOf("", "", "")
         data.set(0, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_SYMBOL_VALUE) ?: Constants.DEFAULT_MONEY_SYMBOL)
         data.set(1, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_NAME_VALUE)?: Constants.DEFAULT_MONEY_NAME)
         data.set(2, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_FLAG_VALUE)?: Constants.DEFAULT_MONEY_FLAG)

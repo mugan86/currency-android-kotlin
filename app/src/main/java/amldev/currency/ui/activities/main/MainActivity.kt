@@ -1,4 +1,4 @@
-package amldev.currency.ui.activities
+package amldev.currency.ui.activities.main
 
 import amldev.currency.R
 import amldev.currency.data.Constants
@@ -6,7 +6,12 @@ import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.server.CurrencyRequest
 import amldev.currency.domain.model.Money
 import amldev.currency.extensions.DataPreference
+import amldev.currency.extensions.app
 import amldev.currency.extensions.getDefaultShareIntent
+import amldev.currency.extensions.goToMarket
+import amldev.currency.ui.activities.main.di.MainModule
+import amldev.currency.ui.activities.money_conversions.SelectMoneyConversionsActivity
+import amldev.currency.ui.activities.preferences.PreferencesActivity
 import amldev.currency.ui.adapters.MoneyAdapter
 import amldev.i18n.LocaleHelper
 import anartzmugika.welcomeactivity.extensions.PrefManager
@@ -14,7 +19,6 @@ import anartzmugika.welcomeactivity.ui.activities.WelcomeActivity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -27,9 +31,30 @@ import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
+import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainPresenter.View {
+
+    @Inject lateinit var presenter: MainPresenter
+    val component by lazy { app.component.plus(MainModule(this)) }
+
+    override fun showProgress() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideProgress() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun navigateTo(id: Money) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun updateData(media: List<Money>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     var moneys: List<Money> = mutableListOf()
     //To use LocaleHelper select language
     override fun attachBaseContext(base: Context) {
@@ -51,6 +76,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        component.inject(this)
+        presenter.onCreate()
 
         addToolbar()
 
@@ -111,8 +138,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
@@ -134,12 +160,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addActions() {
         sendOpinionInGooglePlay.setOnClickListener {
-            try {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlGooglePlay(this))))
-            } catch (anfe: android.content.ActivityNotFoundException) {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlAndroidMarket(this))))
-            }
-            overridePendingTransition(0, 0)
+            goToMarket()
         }
     }
 

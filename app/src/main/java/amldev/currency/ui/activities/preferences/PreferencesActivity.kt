@@ -1,7 +1,7 @@
-package amldev.currency.ui.activities
+package amldev.currency.ui.activities.preferences
 
 import amldev.currency.R
-import amldev.currency.ui.fragments.settings.GeneralPreferenceFragment
+import amldev.currency.ui.activities.fragments.settings.GeneralPreferenceFragment
 import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.os.Bundle
@@ -45,7 +45,7 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
-        when (item.getItemId()) {
+        when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 return true
