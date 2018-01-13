@@ -15,7 +15,7 @@ class App: Application() {
         var instance: App by DelegatesExt.notNullSingleValue()
     }
 
-    val context: Context = applicationContext
+    lateinit var context: Context
     /*override fun onCreate() {
         super.onCreate()
         instance = this
@@ -32,5 +32,6 @@ class App: Application() {
         super.onCreate()
         component.inject(this)
         instance = this
+        context = applicationContext
     }
 }
