@@ -1,6 +1,10 @@
 package amldev.currency.extensions
 
+import amldev.currency.data.Constants
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.view.inputmethod.InputMethodManager
@@ -16,15 +20,14 @@ fun showHideKeyBoardForce(editText: EditText, show: Boolean, context: Context) {
     if (show) {
         editText.requestFocus()
         editText.selectAll()
-        inputMethodManager.toggleSoftInputFromWindow(editText.getApplicationWindowToken(), InputMethodManager.SHOW_FORCED, 0)
-    }
-    else inputMethodManager.toggleSoftInputFromWindow(editText.getApplicationWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        inputMethodManager.toggleSoftInputFromWindow(editText.applicationWindowToken, InputMethodManager.SHOW_FORCED, 0)
+    } else inputMethodManager.toggleSoftInputFromWindow(editText.applicationWindowToken, InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 }
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 fun getJSONResource(context: Context, name: String): String? {
     try {
-        context.getAssets().open("$name.json").use({ `is` ->
+        context.assets.open("$name.json").use({ `is` ->
             val parser = JsonParser()
             return parser.parse(InputStreamReader(`is`)).toString()
         })
@@ -37,3 +40,12 @@ fun getJSONResource(context: Context, name: String): String? {
 
 fun getFlagDrawable(context: Context, flag: String) =
         context.resources.getIdentifier("ic_$flag", "drawable", context.packageName)
+
+fun Activity.goToMarket() run {
+    try {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlGooglePlay(this))))
+    } catch (anfe: android.content.ActivityNotFoundException) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlAndroidMarket(this))))
+    }
+    overridePendingTransition(0, 0)
+}
