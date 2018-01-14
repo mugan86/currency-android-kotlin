@@ -8,7 +8,7 @@ import amldev.currency.extensions.DateTime.currentData
  * Finish result model definition to use in Currency result
  **************************************************************************************************************/
 data class Currency(val baseMoneySymbol: String = "NONE", val baseMoneyName: String = "Euro",
-                    val moneyConversion: List<Money> = emptyList(), val date: String = currentData) {
+                    var moneyConversion: List<Money> = emptyList(), val date: String = currentData) {
 
     fun getSelectMoneyCurrency(selectMoney: String) : Money = moneyConversion.single{ (it.symbol == selectMoney) }
 
