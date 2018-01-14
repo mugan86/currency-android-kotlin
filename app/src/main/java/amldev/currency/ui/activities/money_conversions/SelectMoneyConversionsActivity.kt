@@ -4,11 +4,9 @@ import amldev.currency.R
 import amldev.currency.data.Constants
 import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.server.CurrencyRequest
-import amldev.currency.domain.commands.RequestCurrencyCommand
 import amldev.currency.domain.model.Currency
-import amldev.currency.extensions.addToolbar
-import amldev.currency.extensions.getFlagDrawable
-import amldev.currency.extensions.showHideKeyBoardForce
+import amldev.currency.extensions.*
+import amldev.currency.ui.activities.money_conversions.di.SelectMoneyConversionsModule
 import amldev.currency.ui.adapters.MoneysConversionsCustomGrid
 import amldev.i18n.LocaleHelper
 import android.content.Context
@@ -17,15 +15,35 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
-import org.jetbrains.anko.uiThread
 import java.util.*
+import javax.inject.Inject
 
-class SelectMoneyConversionsActivity : AppCompatActivity() {
+class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversionsPresenter.View {
+
+    @Inject lateinit var presenter: SelectMoneyConversionsPresenter
+    private val component by lazy { app.component.plus(SelectMoneyConversionsModule(this)) }
+
+    private val adapter = MoneysConversionsCustomGrid(moneys = emptyList(), currency = Currency(), inputValue = 0.0)
+    override fun updateData(currency: Currency) {
+        println("Update data ${currency}")
+        adapter.moneys = currency.moneyConversion
+
+        // CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != currency.baseMoneySymbol}
+
+        // addMoneyConversionsData(currency, currency.baseMoneySymbol)
+
+    }
+
+    override fun showProgress() {
+        println(2)
+    }
+
+    override fun hideProgress() {
+        println(2)
+    }
+
 
     //To use LocaleHelper select language
     override fun attachBaseContext(base: Context) {
@@ -35,6 +53,9 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_money_conversions)
+        component.inject(this)
+
+        conversionOtherMoneyGridView.adapter = adapter
 
         //Get Intent Extras values
         val extraData = getIntentExtras()
@@ -45,10 +66,10 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
 
         inputConvertInfoTextView.text = String.format(resources.getString(R.string.input_value_to_convert), extraData[0])
 
-        val progress = indeterminateProgressDialog(resources.getString(R.string.loading_data))
+        // val progress = indeterminateProgressDialog(resources.getString(R.string.loading_data))
         var result = Currency(extraData[0], extraData[1], ArrayList() , "")
 
-        doAsync {
+        /*doAsync {
             progress.show()
 
             if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(extraData[0])) { // Take data from sqlite database
@@ -61,7 +82,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
                 addMoneyConversionsData(result, extraData[0])
                 progress.dismiss()
             }
-        }
+        }*/
 
         //Add InputMoneyValueConvertEditText View actions
         inputMoneyValueToConvertEditText.addTextChangedListener(object : TextWatcher {
@@ -78,12 +99,14 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         addActions()
 
         addToolbar(subtitle = extraData[1], title = resources.getString(R.string.app_name), backButton = true)
+
+        presenter.onCreate(Currency(extraData[0], extraData[1], ArrayList(), ""), applicationContext)
     }
 
     private fun availableInputMoneyToMakeCurrencyConversions() {
-        inputMoneyValueToConvertEditText.visibility = View.VISIBLE
-        selectMoneyValueToConvertTextView.visibility = View.GONE
-        editConversionValueImageButton.visibility = View.GONE
+        inputMoneyValueToConvertEditText.show()
+        selectMoneyValueToConvertTextView.hide()
+        editConversionValueImageButton.hide()
         showHideKeyBoardForce(inputMoneyValueToConvertEditText, true, this)
     }
 
@@ -106,11 +129,11 @@ class SelectMoneyConversionsActivity : AppCompatActivity() {
         val moneys = CurrencyRequest().getMoneyList(this@SelectMoneyConversionsActivity).filter{ it.symbol != symbol}
         if (moneys.isEmpty()) {
             toast(resources.getString(R.string.no_correct_load_data))
-            reloadDataLinearLayout.visibility = View.VISIBLE
-            conversionOtherMoneyGridView.visibility = View.GONE
+            reloadDataLinearLayout.show()
+            conversionOtherMoneyGridView.hide()
         } else {
-            reloadDataLinearLayout.visibility = View.GONE
-            conversionOtherMoneyGridView.visibility = View.VISIBLE
+            reloadDataLinearLayout.hide()
+            conversionOtherMoneyGridView.show()
             val adapter = MoneysConversionsCustomGrid(moneys, result, value.toDouble())
 
             // Check if money value save and update. If not update, save after delete
