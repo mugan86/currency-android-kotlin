@@ -13,3 +13,5 @@ typealias MoneysListUnit = (List<Money>) -> Unit
 typealias MoneysList = List<Money>
 
 typealias CurrencyUnit = (Currency) -> Unit
+
+typealias StringUnit = (String) -> Unit
