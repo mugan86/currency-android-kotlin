@@ -80,10 +80,19 @@
     </LinearLayout>
     <GridView
         android:scaleX="1"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_below="@+id/inputConversionUnitsZone"
         android:id="@+id/conversionOtherMoneyGridView"
         android:numColumns="auto_fit"
         android:gravity="center"
         style="@style/AllHeightWidth"/>
+
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </RelativeLayout>
