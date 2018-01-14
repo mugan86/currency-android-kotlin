@@ -14,9 +14,9 @@ import android.widget.EditText
 import com.google.gson.JsonParser
 import java.io.InputStreamReader
 
-/**
- * Created by anartzmugika on 6/8/17.
- */
+/********************************************************************************
+ * Created by Anartz Mugika (mugan86@gmail.com) on 6/8/17.
+ ********************************************************************************/
 fun showHideKeyBoardForce(editText: EditText, show: Boolean, context: Context) {
     val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     if (show) {
@@ -34,9 +34,8 @@ fun getJSONResource(context: Context, name: String): String? {
             return parser.parse(InputStreamReader(`is`)).toString()
         })
     } catch (e: Exception) {
-
+        e.printStackTrace()
     }
-
     return null
 }
 
@@ -53,20 +52,12 @@ fun Activity.goToMarket() {
 }
 
 
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit): String {
+fun EditText.afterTextChanged(afterTextChanged: StringUnit) {
     this.addTextChangedListener(object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            /*if (p0.isEmpty()) return ""
-            else if (inputMoneyValueToConvertEditText.text.toString().last() != '.')
-                addMoneyConversionsData(result, extraData[0], inputMoneyValueToConvertEditText.text.toString().toFloat())*/
-        }
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
+        override fun afterTextChanged(editable: Editable?) = afterTextChanged.invoke(editable.toString())
     })
-    return ""
 }
