@@ -5,7 +5,6 @@ import amldev.currency.di.AppModule
 import amldev.currency.di.DaggerAppComponent
 import amldev.currency.extensions.DelegatesExt
 import android.app.Application
-import android.content.Context
 
 /**
  * Created by anartzmugika on 21/8/17.
@@ -14,8 +13,6 @@ class App: Application() {
     companion object {
         var instance: App by DelegatesExt.notNullSingleValue()
     }
-
-    lateinit var context: Context
 
     val component: AppComponent by lazy {
         DaggerAppComponent
@@ -26,8 +23,7 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        component.inject(this)
         instance = this
-        context = applicationContext
+        component.inject(this)
     }
 }
