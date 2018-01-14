@@ -43,7 +43,7 @@ class CurrencyProvider : Provider {
         Thread.sleep(500) //Medio segundo para ejecutar la asincronia
         println("Load data....")
         val moneysList: MoneysList?
-        if (CurrencyDb().getMoneyListItemsSize() == 0) moneysList = loadDataFromJSONFileAndStoreInDB(App().context) //In first time or first call to day
+        if (CurrencyDb().getMoneyListItemsSize() == 0) moneysList = loadDataFromJSONFileAndStoreInDB(App().context!!) //In first time or first call to day
         else moneysList = CurrencyDb().getMoneyListItems() //Take data from SQLITE
         return moneysList
     }
@@ -53,21 +53,21 @@ class CurrencyProvider : Provider {
      ***********************************************************************************************/
     private var selectCurrency: Currency = Currency()
 
-    override fun loadMoneySelectData(selectCurrency_: Currency, f: CurrencyUnit) {
+    override fun loadMoneySelectData(selectCurrency_: Currency, context: Context, f: CurrencyUnit) {
         doAsync {
-            selectCurrency = loadSelectMoneyCurrency(selectCurrency_.baseMoneySymbol)
+            selectCurrency = loadSelectMoneyCurrency(selectCurrency_.baseMoneySymbol, context)
             uiThread { f(selectCurrency) }
         }
     }
 
-    private fun loadSelectMoneyCurrency(symbol: String): Currency {
+    private fun loadSelectMoneyCurrency(symbol: String, context: Context): Currency {
         Thread.sleep(500) //Medio segundo para ejecutar la asincronia
         println("Load data....")
         if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(symbol)) { // Take data from sqlite database
             return CurrencyDb().getSelectMoneyAndCurrencies(symbol)
         }
         // Take data from server or local json files
-        return RequestCurrencyCommand(symbol, App().context).execute()
+        return RequestCurrencyCommand(symbol, context).execute()
     }
 
 }
