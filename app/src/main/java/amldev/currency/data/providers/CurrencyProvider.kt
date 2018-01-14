@@ -1,6 +1,5 @@
 package amldev.currency.data.providers
 
-import amldev.currency.App
 import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.server.CurrencyRequest
 import amldev.currency.domain.commands.RequestCurrencyCommand
@@ -14,20 +13,18 @@ import android.content.Context
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-
-/**
- * Created by anartzmugika on 13/1/18.
- */
+/********************************************************************************
+ * Created by Anartz Mugika (mugan86@gmail.com) on 13/1/18.
+ ********************************************************************************/
 class CurrencyProvider : Provider {
-
     /***********************************************************************************************
      * MainActivity Provider Data
      ***********************************************************************************************/
     private var data = emptyList<Money>()
 
-    override fun loadCurrenciesList(f: MoneysListUnit) {
+    override fun loadCurrenciesList(context: Context, f: MoneysListUnit) {
         doAsync {
-            if (data.isEmpty()) data = loadCurrenciesSync()
+            if (data.isEmpty()) data = loadCurrenciesSync(context)
             uiThread { f(data) }
         }
     }
@@ -39,13 +36,9 @@ class CurrencyProvider : Provider {
     }
 
     //To Use in MainActivity.kt
-    private fun loadCurrenciesSync(): MoneysList {
-        Thread.sleep(500) //Medio segundo para ejecutar la asincronia
-        println("Load data....")
-        val moneysList: MoneysList?
-        if (CurrencyDb().getMoneyListItemsSize() == 0) moneysList = loadDataFromJSONFileAndStoreInDB(App().context!!) //In first time or first call to day
-        else moneysList = CurrencyDb().getMoneyListItems() //Take data from SQLITE
-        return moneysList
+    private fun loadCurrenciesSync(context: Context): MoneysList {
+        if (CurrencyDb().getMoneyListItemsSize() == 0) return loadDataFromJSONFileAndStoreInDB(context) //In first time or first call to day
+        return CurrencyDb().getMoneyListItems() //Take data from SQLITE
     }
 
     /***********************************************************************************************
@@ -56,18 +49,17 @@ class CurrencyProvider : Provider {
     override fun loadMoneySelectData(selectCurrency_: Currency, context: Context, f: CurrencyUnit) {
         doAsync {
             selectCurrency = loadSelectMoneyCurrency(selectCurrency_.baseMoneySymbol, context)
+            // Check if money value save and update. If not update, save after delete
+            if (!CurrencyDb().checkIfBaseMoneyHaveUpdateData(selectCurrency_.baseMoneySymbol)) {
+                CurrencyDb().saveBaseConversionMoneyValues(selectCurrency)
+            }
             uiThread { f(selectCurrency) }
         }
     }
 
     private fun loadSelectMoneyCurrency(symbol: String, context: Context): Currency {
-        Thread.sleep(500) //Medio segundo para ejecutar la asincronia
-        println("Load data....")
-        if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(symbol)) { // Take data from sqlite database
-            return CurrencyDb().getSelectMoneyAndCurrencies(symbol)
-        }
+        if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(symbol)) return CurrencyDb().getSelectMoneyAndCurrencies(symbol) // Take data from sqlite database
         // Take data from server or local json files
         return RequestCurrencyCommand(symbol, context).execute()
     }
-
 }
