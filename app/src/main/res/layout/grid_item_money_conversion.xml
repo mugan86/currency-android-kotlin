@@ -8,7 +8,8 @@
         android:layout_marginLeft="12sp"
         android:id="@+id/gridImage"
         style="@style/FlagsDefaultSize"
-        android:src="@drawable/ic_europe">
+        android:src="@drawable/ic_europe"
+        android:contentDescription="TODO">
     </ImageView>
 
     <TextView
