@@ -1,14 +1,14 @@
 package amldev.currency.data.db
 
 import amldev.currency.R
-import amldev.currency.extensions.DateTime
 import amldev.currency.domain.model.Money
+import amldev.currency.extensions.DateTime
 
 /***************************************************************************************************
  * Created by anartzmugika on 22/8/17.
  *
  **************************************************************************************************/
-class DbDataMapper() {
+class DbDataMapper {
 
     fun convertMoneyFromDomain(money: Money) = with(money) {
         MoneyInfo(symbol, name, flag)
