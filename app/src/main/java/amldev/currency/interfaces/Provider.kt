@@ -9,6 +9,6 @@ import android.content.Context
  * Created by anartzmugika on 13/1/18.
  */
 interface Provider {
-    fun loadCurrenciesList(f: MoneysListUnit)
+    fun loadCurrenciesList(context: Context, f: MoneysListUnit)
     fun loadMoneySelectData(selectCurrency_: Currency, context: Context, f: CurrencyUnit)
 }
