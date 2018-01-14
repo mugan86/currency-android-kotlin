@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), MainPresenter.View {
         addActions()
         moneysList.layoutManager = LinearLayoutManager(this)
         moneysList.adapter = adapter
-        presenter.onCreate()
+        presenter.onCreate(applicationContext)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
