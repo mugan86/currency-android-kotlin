@@ -3,7 +3,10 @@ package amldev.currency.data.providers
 import amldev.currency.App
 import amldev.currency.data.db.CurrencyDb
 import amldev.currency.data.server.CurrencyRequest
+import amldev.currency.domain.commands.RequestCurrencyCommand
+import amldev.currency.domain.model.Currency
 import amldev.currency.domain.model.Money
+import amldev.currency.extensions.CurrencyUnit
 import amldev.currency.extensions.MoneysList
 import amldev.currency.extensions.MoneysListUnit
 import amldev.currency.interfaces.Provider
@@ -17,10 +20,14 @@ import org.jetbrains.anko.uiThread
  */
 class CurrencyProvider : Provider {
 
+    /***********************************************************************************************
+     * MainActivity Provider Data
+     ***********************************************************************************************/
     private var data = emptyList<Money>()
-    override fun dataAsync(f: MoneysListUnit) {
+
+    override fun loadCurrenciesList(f: MoneysListUnit) {
         doAsync {
-            if (data.isEmpty()) data = dataSync()
+            if (data.isEmpty()) data = loadCurrenciesSync()
             uiThread { f(data) }
         }
     }
@@ -31,7 +38,8 @@ class CurrencyProvider : Provider {
         return moneysList
     }
 
-    private fun dataSync(): MoneysList {
+    //To Use in MainActivity.kt
+    private fun loadCurrenciesSync(): MoneysList {
         Thread.sleep(500) //Medio segundo para ejecutar la asincronia
         println("Load data....")
         val moneysList: MoneysList?
@@ -40,27 +48,26 @@ class CurrencyProvider : Provider {
         return moneysList
     }
 
-    /*doAsync {
+    /***********************************************************************************************
+     * SelectMoneyConversionsActivity Provider Data
+     ***********************************************************************************************/
+    private var selectCurrency: Currency = Currency()
 
-        progress.show()
-        //Load list currencies and log symbol and name
-        if (CurrencyDb().getMoneyListItemsSize () == 0) {
-            println("Load JSON File")
-            loadDataFromJSONFileAndStoreInDB()
+    override fun loadMoneySelectData(selectCurrency_: Currency, f: CurrencyUnit) {
+        doAsync {
+            selectCurrency = loadSelectMoneyCurrency(selectCurrency_.baseMoneySymbol)
+            uiThread { f(selectCurrency) }
         }
-        else{
-            println("Get database info")
-            moneys = CurrencyDb().getMoneyListItems()
-        }
+    }
 
-        uiThread {
-
-            val adapter = MoneyAdapter(moneys , {
-                openConversionsWithSelectMoney(it.symbol, it.name, it.flag)
-            })
-            moneysList.adapter = adapter
-            progress.dismiss()
-            sendOpinionInGooglePlay.visibility = View.VISIBLE
+    private fun loadSelectMoneyCurrency(symbol: String): Currency {
+        Thread.sleep(500) //Medio segundo para ejecutar la asincronia
+        println("Load data....")
+        if (CurrencyDb().checkIfBaseMoneyHaveUpdateData(symbol)) { // Take data from sqlite database
+            return CurrencyDb().getSelectMoneyAndCurrencies(symbol)
         }
-    }*/
+        // Take data from server or local json files
+        return RequestCurrencyCommand(symbol, App().context).execute()
+    }
+
 }
