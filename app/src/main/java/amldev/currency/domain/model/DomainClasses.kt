@@ -1,13 +1,14 @@
 package amldev.currency.domain.model
 
 import amldev.currency.R
+import amldev.currency.extensions.DateTime.currentData
 
 /***************************************************************************************************************
  * Created by Anartz Mugika on 19/07/2017. Updated in 05/08/2017.
  * Finish result model definition to use in Currency result
  **************************************************************************************************************/
-data class Currency (val baseMoneySymbol: String, val baseMoneyName: String,
-                     val moneyConversion: List<Money>, val date: String) {
+data class Currency(val baseMoneySymbol: String = "NONE", val baseMoneyName: String = "Euro",
+                    val moneyConversion: List<Money> = emptyList(), val date: String = currentData) {
 
     fun getSelectMoneyCurrency(selectMoney: String) : Money = moneyConversion.single{ (it.symbol == selectMoney) }
 
