@@ -22,7 +22,7 @@ class MainPresenter(val view: View, val provide: Provider) {
 
     private fun loadData() {
         view.showProgress()
-        provide.dataAsync { media ->
+        provide.loadCurrenciesList { media ->
             view.updateData(media)
             view.hideProgress()
         }
