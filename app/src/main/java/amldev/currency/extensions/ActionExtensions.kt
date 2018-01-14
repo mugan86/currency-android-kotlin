@@ -7,6 +7,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.google.gson.JsonParser
@@ -48,4 +50,23 @@ fun Activity.goToMarket() {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlAndroidMarket(this))))
     }
     overridePendingTransition(0, 0)
+}
+
+
+fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit): String {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+            /*if (p0.isEmpty()) return ""
+            else if (inputMoneyValueToConvertEditText.text.toString().last() != '.')
+                addMoneyConversionsData(result, extraData[0], inputMoneyValueToConvertEditText.text.toString().toFloat())*/
+        }
+
+        override fun afterTextChanged(editable: Editable?) {
+            afterTextChanged.invoke(editable.toString())
+        }
+    })
+    return ""
 }
