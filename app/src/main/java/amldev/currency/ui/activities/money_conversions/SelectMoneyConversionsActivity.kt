@@ -41,20 +41,13 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_money_conversions)
         component.inject(this)
-
         //Get Intent Extras values
         getIntentExtras()
-
         selectMoneyInfoTextView.text = String.format(resources.getString(R.string.select_money_txt), extras[1])
-
         selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(this@SelectMoneyConversionsActivity, extras[2])))
-
         inputConvertInfoTextView.text = String.format(resources.getString(R.string.input_value_to_convert), extras[0])
-
         addActions()
-
         addToolbar(subtitle = extras[1], title = resources.getString(R.string.app_name), backButton = true)
-
         presenter.onCreate(Currency(extras[0], extras[1], ArrayList(), ""), applicationContext)
     }
 
@@ -78,8 +71,8 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
             recreate()
         }
 
-        //Add InputMoneyValueConvertEditText View actions
         inputMoneyValueToConvertEditText.afterTextChanged {
+            //Use extension in ActionExtensions.kt
             if (it.isEmpty()) addMoneyConversionsData(Currency(extras[0], extras[1], ArrayList(), ""), extras[0])
             else if (inputMoneyValueToConvertEditText.text.toString().last() != '.')
                 addMoneyConversionsData(Currency(extras[0], extras[1], ArrayList(), ""), extras[0], inputMoneyValueToConvertEditText.text.toString().toFloat())
@@ -105,13 +98,11 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
 
     override fun onDestroy() {
         super.onDestroy()
-        println("Destroy activity and hide keyboard!")
         showHideKeyBoardForce(inputMoneyValueToConvertEditText, false, this)
     }
 
     override fun onPause() {
         super.onPause()
-        println("Pause activity and hide keyboard!")
         showHideKeyBoardForce(inputMoneyValueToConvertEditText, false, this)
     }
 

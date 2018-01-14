@@ -6,9 +6,9 @@ import amldev.currency.ui.activities.money_conversions.SelectMoneyConversionsPre
 import dagger.Module
 import dagger.Provides
 
-/**
- * Created by anartzmugika on 13/1/18.
- */
+/********************************************************************************
+ * Created by Anartz Mugika (mugan86@gmail.com) on 13/1/18.
+ ********************************************************************************/
 @Module
 class SelectMoneyConversionsModule(val activity: SelectMoneyConversionsActivity) {
     @Provides
