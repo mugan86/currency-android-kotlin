@@ -1,8 +1,8 @@
 package amldev.currency.data.db
 
-import amldev.currency.extensions.*
 import amldev.currency.domain.model.Currency
 import amldev.currency.domain.model.Money
+import amldev.currency.extensions.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -44,10 +44,7 @@ class CurrencyDb (val dbHelper: CurrencyDbHelper = CurrencyDbHelper.instance,
     }
 
     fun getSelectMoneyAndCurrencies(baseMoneySymbol: String): Currency = dbHelper.use {
-        println(checkIfValuesUpdate(baseMoneySymbol))
         return@use getMoneyWithCurrencies(baseMoneySymbol)
     }
-
-
 }
 
