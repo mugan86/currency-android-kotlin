@@ -2,6 +2,7 @@ package amldev.currency.ui.activities.main
 
 import amldev.currency.domain.model.Money
 import amldev.currency.interfaces.Provider
+import android.content.Context
 
 /**
  * Created by anartzmugika on 12/1/18.
@@ -16,13 +17,13 @@ class MainPresenter(val view: View, val provide: Provider) {
         fun itemClicked(money: Money)
     }
 
-    fun onCreate() {
-        loadData()
+    fun onCreate(context: Context) {
+        loadData(context)
     }
 
-    private fun loadData() {
+    private fun loadData(context: Context) {
         view.showProgress()
-        provide.loadCurrenciesList { media ->
+        provide.loadCurrenciesList(context) { media ->
             view.updateData(media)
             view.hideProgress()
         }
