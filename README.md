@@ -13,6 +13,14 @@ Desarrollada en Kotlin / Develop with Kotlin.
 
 ### Versiones
 
+**1.3 (Trabajando en ello)**
+
+* Adaptar la aplicación para la inyección de Dependencias con Dagger.
+* Aplicar MVP y Clean Architecture.
+* Refactorizar el código, creando nuevas extensiones y optimizaciones necesarias.
+* Animaciones en las transiciones.
+* Filtrar las monedas por continentes.
+
 **1.2 (2017/09/22)**
 
 * Posibilidad de configurar las opciones de idioma y otros aspectos de la aplicación.
@@ -56,6 +64,14 @@ La lista de divisas que contiene el conversor. Será ampliable con el tiempo.
 ## English
 
 ## Versions
+
+**1.3 (Working on it)**
+
+* Adapt the application for the injection of Dependencies with Dagger.
+* Apply MVP and Clean Architecture.
+* Refactor the code, creating new extensions and necessary optimizations.
+* Animations in transitions.
+* Filter currencies by continents.
 
 **1.2 (2017/09/22)**
 
