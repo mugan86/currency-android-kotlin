@@ -12,10 +12,9 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 
-
-/**
- * Created by anartzmugika on 29/8/17.
- */
+/********************************************************************************
+ * Created by Anartz Mugika (mugan86@gmail.com) on 29/8/17.
+ ********************************************************************************/
 abstract class AppCompatPreferenceActivity : PreferenceActivity() {
     private var mDelegate: AppCompatDelegate? = null
 
@@ -37,9 +36,7 @@ abstract class AppCompatPreferenceActivity : PreferenceActivity() {
         delegate!!.setSupportActionBar(toolbar)
     }
 
-    override fun getMenuInflater(): MenuInflater {
-        return delegate!!.menuInflater
-    }
+    override fun getMenuInflater(): MenuInflater = delegate!!.menuInflater
 
     override fun setContentView(@LayoutRes layoutResID: Int) {
         delegate!!.setContentView(layoutResID)
