@@ -78,21 +78,28 @@
             style="@style/WrapContentHeightWidth"
             android:text="@string/try_again_load"/>
     </LinearLayout>
-    <GridView
-        android:scaleX="1"
-        android:visibility="visible"
-        android:layout_below="@+id/inputConversionUnitsZone"
-        android:id="@+id/conversionOtherMoneyGridView"
-        android:numColumns="auto_fit"
-        android:gravity="center"
-        style="@style/AllHeightWidth"/>
 
-    <ProgressBar
-        android:layout_centerInParent="true"
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        tools:visibility="visible" />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_below="@+id/inputConversionUnitsZone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <GridView
+            android:scaleX="1"
+            android:visibility="visible"
+            android:id="@+id/conversionOtherMoneyGridView"
+            android:numColumns="auto_fit"
+            android:gravity="center"
+            style="@style/AllHeightWidth" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
 </RelativeLayout>
