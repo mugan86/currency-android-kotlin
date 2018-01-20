@@ -96,7 +96,7 @@ class PreferencesActivity : AppCompatPreferenceActivity() {
         fun bindPreferenceSwitch(preference: Preference) {
             val optionSwitchPreference = preference as SwitchPreference
 
-            optionSwitchPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, optionSwitchPreference ->
+            optionSwitchPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, _ ->
                     val isSwitchOn = optionSwitchPreference as Boolean
                     if (isSwitchOn) println("Active!!!")
                     else println("Not active")
