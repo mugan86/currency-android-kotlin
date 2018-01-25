@@ -1,1 +1,1 @@
-include ':app', ':i18n', ':welcome'
+include ':app', ':welcome'
