@@ -41,7 +41,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.beust:klaxon:$klaxon_version"
     implementation "com.squareup.picasso:picasso:$picasso_version"
-    implementation project(':i18n')
+    implementation 'amldev.i18n:library:1.4'
     implementation project(':welcome')
     implementation "com.android.support:support-v4:$support_version"
     implementation "com.android.support:support-vector-drawable:$support_version"
