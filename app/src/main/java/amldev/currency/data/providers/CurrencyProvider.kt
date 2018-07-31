@@ -17,6 +17,10 @@ import org.jetbrains.anko.uiThread
  * Created by Anartz Mugika (mugan86@gmail.com) on 13/1/18.
  ********************************************************************************/
 class CurrencyProvider : Provider {
+    override fun loadPreferenceData() {
+        println("TO Implement")
+    }
+
     /***********************************************************************************************
      * MainActivity Provider Data
      ***********************************************************************************************/
