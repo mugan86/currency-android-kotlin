@@ -1,6 +1,7 @@
 package amldev.currency.extensions
 
 import amldev.currency.data.Constants
+import amldev.currency.ui.activities.preferences.PreferencesActivity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -49,6 +50,12 @@ fun Activity.goToMarket() {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ourAppUrlAndroidMarket(this))))
     }
     overridePendingTransition(0, 0)
+}
+
+fun Activity.back() {
+    startActivity(Intent(this, PreferencesActivity::class.java))
+    this.finish()
+    this.overridePendingTransition(0, 0)
 }
 
 
