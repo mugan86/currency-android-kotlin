@@ -13,7 +13,7 @@ class PrefManager(private val _context: Context) {
     private val editor: SharedPreferences.Editor
 
     // shared pref mode
-    internal var PRIVATE_MODE = 0
+    private var PRIVATE_MODE = 0
 
     init {
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
@@ -30,9 +30,9 @@ class PrefManager(private val _context: Context) {
     companion object {
 
         // Shared preferences file name
-        private val PREF_NAME = "welcome-preferences-app"
+        private const val PREF_NAME = "welcome-preferences-app"
 
-        private val IS_FIRST_TIME_LAUNCH = "firstLaunch"
+        private const val IS_FIRST_TIME_LAUNCH = "firstLaunch"
     }
 
 }
