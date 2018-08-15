@@ -15,17 +15,18 @@ import java.net.URL
 
 /******************************************************************************************************************
  * Created by Anartz Mugika on 19/07/2017.
- * Take data from server (if neetwork connected) or from assets (not connected) with pass values in constructor
+ * Take data from server (if network connected) or from assets (not connected) with pass values in constructor
  ******************************************************************************************************************/
 class CurrencyRequest(private val baseMoney: String = "EUR") {
     companion object {
-        val symbols = "AUD,CAD,CHF,CNY,EUR,GBP,INR,JPY,MYR,RUB,SGD,USD"
-        private val URL_LOCALHOST = "https://api.fixer.io/latest?symbols=${symbols}&base="
+        const val symbols = "AUD,CAD,CHF,CNY,EUR,GBP,INR,JPY,MYR,RUB,SGD,USD"
+        private const val URL_LOCALHOST = "http://data.fixer.io/api/latest?symbols=$symbols&base="
+        private const val ACCESS_KEY = "&access_key=ae06e27c03f621c5ff9911c1a09d6ae5"
     }
 
     fun execute(context:Context) : CurrencyResult {
         if (isNetworkConnected(context) && DataPreference.getPreferenceBoolean(context, Constants.USE_INTERNET)) {
-            return Gson().fromJson(URL(URL_LOCALHOST + baseMoney).readText(), CurrencyResult::class.java)
+            return Gson().fromJson(URL(URL_LOCALHOST + baseMoney + ACCESS_KEY).readText(), CurrencyResult::class.java)
         }
         //Without Internet, take assets/currencies/baseMoney.json file
         return Gson().fromJson(getJSONResource(context, "currencies/${baseMoney.toLowerCase()}"), CurrencyResult::class.java)
