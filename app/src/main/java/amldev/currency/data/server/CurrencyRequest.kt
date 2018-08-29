@@ -1,6 +1,7 @@
 package amldev.currency.data.server
 
 import amldev.currency.data.Constants
+import amldev.currency.domain.model.Money
 import amldev.currency.extensions.DataPreference
 import amldev.currency.extensions.getFlagDrawable
 import amldev.currency.extensions.getJSONResource
@@ -10,7 +11,6 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.google.gson.Gson
-import amldev.currency.domain.model.Money
 import java.net.URL
 
 /******************************************************************************************************************
@@ -20,8 +20,8 @@ import java.net.URL
 class CurrencyRequest(private val baseMoney: String = "EUR") {
     companion object {
         const val symbols = "AUD,CAD,CHF,CNY,EUR,GBP,INR,JPY,MYR,RUB,SGD,USD"
-        private const val URL_LOCALHOST = "http://exchangeratesapi.io/latest?symbols=$symbols&base="
-        private const val ACCESS_KEY = "&access_key=ae06e27c03f621c5ff9911c1a09d6ae5"
+        private const val URL_LOCALHOST = "https://api.exchangeratesapi.io/latest?symbols=$symbols&base="
+        // https://api.exchangeratesapi.io/latest?symbols=AUD,CAD,CHF,CNY,EUR,GBP,INR,JPY,MYR,RUB,SGD,USD&base=GBP
     }
 
     fun execute(context:Context) : CurrencyResult {
