@@ -7,7 +7,7 @@ import android.content.Context
 /**
  * Created by anartzmugika on 12/1/18.
  */
-class MainPresenter(val view: View, val provide: Provider) {
+class MainPresenter(val view: View, private val provide: Provider) {
 
     interface View {
         fun updateData(media: List<Money>)

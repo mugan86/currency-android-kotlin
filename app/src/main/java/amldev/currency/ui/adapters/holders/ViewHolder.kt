@@ -18,7 +18,7 @@ class ViewHolder(view: View,
 
     fun bindForecast(money: Money) {
         with(money) {
-            Picasso.with(itemView.ctx).load(getFlagDrawable(itemView.ctx, flag)).into(itemView.icon)
+            Picasso.get().load(getFlagDrawable(itemView.ctx, flag)).into(itemView.icon)
             itemView.symbolTextView.text = symbol
             itemView.nameTextView.text = name
             itemView.setOnClickListener { itemClick(this) }
