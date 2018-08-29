@@ -6,7 +6,7 @@ import dagger.Subcomponent
 /********************************************************************************
  * Created by Anartz Mugika (mugan86@gmail.com) on 13/1/18.
  ********************************************************************************/
-@Subcomponent(modules = arrayOf(SelectMoneyConversionsModule::class))
+@Subcomponent(modules = [SelectMoneyConversionsModule::class])
 interface SelectMoneyConversionsComponent {
     fun inject(activity: SelectMoneyConversionsActivity)
 }
