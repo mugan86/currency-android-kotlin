@@ -12,6 +12,7 @@ import amldev.i18n.LocaleHelper
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_money_conversions.*
 import org.jetbrains.anko.toast
@@ -44,7 +45,7 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
         //Get Intent Extras values
         getIntentExtras()
         selectMoneyInfoTextView.text = String.format(resources.getString(R.string.select_money_txt), extras[1])
-        selectLanguageFlag.setImageDrawable(resources.getDrawable(getFlagDrawable(this@SelectMoneyConversionsActivity, extras[2])))
+        selectLanguageFlag.setImageDrawable(ActivityCompat.getDrawable(this, getFlagDrawable(this@SelectMoneyConversionsActivity, extras[2])))
         inputConvertInfoTextView.text = String.format(resources.getString(R.string.input_value_to_convert), extras[0])
         addActions()
         addToolbar(subtitle = extras[1], title = resources.getString(R.string.app_name), backButton = true)
@@ -107,9 +108,9 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
     }
 
     private fun getIntentExtras() {
-        extras.set(0, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_SYMBOL_VALUE) ?: Constants.DEFAULT_MONEY_SYMBOL)
-        extras.set(1, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_NAME_VALUE) ?: Constants.DEFAULT_MONEY_NAME)
-        extras.set(2, intent.getStringExtra(Constants.MONEY_GETSTREXTRA_FLAG_VALUE) ?: Constants.DEFAULT_MONEY_FLAG)
+        extras[0] = intent.getStringExtra(Constants.MONEY_GETSTREXTRA_SYMBOL_VALUE) ?: Constants.DEFAULT_MONEY_SYMBOL
+        extras[1] = intent.getStringExtra(Constants.MONEY_GETSTREXTRA_NAME_VALUE) ?: Constants.DEFAULT_MONEY_NAME
+        extras[2] = intent.getStringExtra(Constants.MONEY_GETSTREXTRA_FLAG_VALUE) ?: Constants.DEFAULT_MONEY_FLAG
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
