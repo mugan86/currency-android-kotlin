@@ -88,7 +88,6 @@ class SelectMoneyConversionsActivity : AppCompatActivity(), SelectMoneyConversio
             toast(resources.getString(R.string.no_correct_load_data))
             reloadDataLinearLayout.show()
             conversionOtherMoneyGridView.hide()
-
         } else {
             reloadDataLinearLayout.hide()
             conversionOtherMoneyGridView.show()
