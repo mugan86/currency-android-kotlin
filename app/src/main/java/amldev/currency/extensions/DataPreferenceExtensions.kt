@@ -46,7 +46,7 @@ class DataPreference(private val _context: Context) {
 
         fun getPreferenceBoolean(context: Context, propertyName: String): Boolean {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-            return sharedPreferences.getBoolean(propertyName, false)
+            return sharedPreferences.getBoolean(propertyName, true)
         }
 
         fun setPreference(context: Context, propertyNames: Array<String>, propertyValues: Array<String>) {
